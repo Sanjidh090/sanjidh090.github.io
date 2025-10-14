@@ -10,18 +10,47 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css" />
 
-  <!-- SEO -->
-  <meta name="description" content="Portfolio of Sanjid Hasan — AI/ML enthusiast, Kaggle Expert, data curator." />
+  <!-- SEO / Social -->
+  <meta name="description" content="Portfolio of Sanjid Hasan — AI/ML enthusiast, Kaggle Datasets & Notebooks Expert, data curator." />
+  <meta property="og:title" content="Sanjid Hasan — Portfolio" />
+  <meta property="og:description" content="AI/ML • Kaggle • Research • Open Datasets • Community" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sanjidh090.github.io" />
+  <meta property="og:image" content="assets/img/og-cover.png" />
   <meta name="theme-color" content="#0a0a0a" />
+
+  <!-- JSON-LD (Person) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Sanjid Hasan",
+    "url":"https://sanjidh090.github.io",
+    "sameAs":[
+      "https://github.com/Sanjidh090",
+      "https://www.kaggle.com/sanjidh090",
+      "https://linkedin.com/in/sanjidh090",
+      "https://medium.com/@sanjidh090",
+      "https://dev.to/sanjidh090"
+    ],
+    "jobTitle":"Student (EEE), KUET",
+    "knowsAbout":["Machine Learning","Data Science","NLP","Computer Vision","Open Datasets"]
+  }
+  </script>
 </head>
 <body>
+  <!-- NAV -->
   <header class="site-nav">
-    <a class="logo" href="#home">SH</a>
+    <a class="logo" href="#home" aria-label="Home">SH</a>
     <nav>
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
       <a href="#kaggle">Kaggle</a>
+      <a href="#github">GitHub</a>
+      <a href="#research">Research</a>
+      <a href="#activity">Activity</a>
+      <a href="#socials">Social</a>
       <a href="#contact">Contact</a>
     </nav>
     <button id="themeToggle" aria-label="Toggle theme">🌙</button>
@@ -32,6 +61,12 @@
     <section id="home" class="hero reveal">
       <h1>Hi, I’m <span>Sanjid Hasan</span></h1>
       <p class="tag">AI & ML Enthusiast · Kaggle Expert · Data Curator</p>
+      <div class="badges">
+        <img alt="Kaggle" src="https://img.shields.io/badge/Kaggle-Expert-blue" />
+        <img alt="Datasets" src="https://img.shields.io/badge/Datasets-Expert-1DA1F2" />
+        <img alt="Notebooks" src="https://img.shields.io/badge/Notebooks-Expert-0A66C2" />
+        <img alt="Open Source" src="https://img.shields.io/badge/Open%20Source-Active-brightgreen" />
+      </div>
       <div class="cta">
         <a class="btn" href="#contact">Get in Touch</a>
         <a class="btn ghost" href="https://www.kaggle.com/sanjidh090" target="_blank" rel="noopener">Kaggle Profile</a>
@@ -46,9 +81,14 @@
         NLP, and data products—often publishing datasets and notebooks so others can build on top of them.
       </p>
       <p>
-        Lately I’ve been focused on text analytics (news, reviews, student communities), model ensembling,
-        and sharing reproducible work through Kaggle and GitHub.
+        Recent focus: Bengali/English text analytics (news, reviews, student communities), model ensembling,
+        and reproducible pipelines on Kaggle & GitHub.
       </p>
+      <div class="quick-cards">
+        <div class="qcard"><strong>Based in:</strong> Khulna, Bangladesh</div>
+        <div class="qcard"><strong>Education:</strong> EEE @ KUET</div>
+        <div class="qcard"><strong>Interests:</strong> NLP · CV · Open Data</div>
+      </div>
     </section>
 
     <!-- SKILLS -->
@@ -74,7 +114,7 @@
       </div>
     </section>
 
-    <!-- PROJECTS -->
+    <!-- PROJECTS (GitHub) -->
     <section id="projects" class="reveal">
       <h2>Projects (GitHub)</h2>
       <div class="cards">
@@ -119,7 +159,7 @@
         <div>
           <h3>🗂️ Datasets</h3>
           <ul class="list">
-            <li><strong>BD Food Review</strong> — 334k+ reviews; highly popular; gold-level traction.</li>
+            <li><strong>BD Food Review</strong> — 334k+ reviews; huge community traction.</li>
             <li><strong>Bangladesh News Articles</strong> — aggregated English newspaper corpus.</li>
             <li><strong>BUETIAN & KUET Whispers</strong> — anonymized student community posts.</li>
             <li><strong>First Byte Datathon 2025</strong> — event dataset for reproducibility.</li>
@@ -132,15 +172,154 @@
       </div>
     </section>
 
+    <!-- GITHUB STATS -->
+    <section id="github" class="reveal">
+      <h2>GitHub</h2>
+      <div class="git-grid">
+        <img alt="GitHub Stats" loading="lazy"
+             src="https://github-readme-stats.vercel.app/api?username=Sanjidh090&show_icons=true&theme=transparent" />
+        <img alt="Top Languages" loading="lazy"
+             src="https://github-readme-stats.vercel.app/api/top-langs/?username=Sanjidh090&layout=compact&theme=transparent" />
+        <img alt="Contributions Heatmap" loading="lazy"
+             src="https://ghchart.rshah.org/2f80ed/Sanjidh090" />
+      </div>
+      <p class="muted small">These images are generated by public GitHub stat services.</p>
+    </section>
+
+    <!-- RESEARCH & PUBLICATIONS -->
+    <section id="research" class="reveal">
+      <h2>Research & Publications</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>Bangladeshi English News Articles (Dataset)</h3>
+          <p>Curated English-language news corpus from multiple Bangladeshi newspapers. Great for topic modeling & summarization.</p>
+          <div class="pill-row">
+            <span class="pill">NLP</span><span class="pill">News</span><span class="pill">Open Data</span>
+          </div>
+          <a class="card-link" href="https://www.kaggle.com/datasets/sanjidh090" target="_blank" rel="noopener">View on Kaggle →</a>
+        </article>
+        <article class="card">
+          <h3>BD Food Review (Dataset)</h3>
+          <p>334k+ Foodpanda reviews (Bangla/English). Large-scale sentiment dataset for real-world polarity classification.</p>
+          <div class="pill-row">
+            <span class="pill">Sentiment</span><span class="pill">Bangla</span><span class="pill">Large</span>
+          </div>
+          <a class="card-link" href="https://www.kaggle.com/datasets/sanjidh090/bd-food-review-dataset" target="_blank" rel="noopener">Open Dataset →</a>
+        </article>
+        <article class="card">
+          <h3>Student Community Texts (BUETIAN / KUET Whispers)</h3>
+          <p>Anonymized social datasets enabling research on informal writing, student sentiment, and moderation tools.</p>
+          <div class="pill-row">
+            <span class="pill">Social</span><span class="pill">Bangla</span><span class="pill">Privacy</span>
+          </div>
+          <a class="card-link" href="https://www.kaggle.com/sanjidh090/datasets" target="_blank" rel="noopener">Explore Datasets →</a>
+        </article>
+      </div>
+      <p class="muted small">More: <a href="https://www.researchgate.net/profile/Sanjid-Hasan" target="_blank" rel="noopener">ResearchGate</a> · <a href="https://medium.com/@sanjidh090" target="_blank" rel="noopener">Medium</a> · <a href="https://dev.to/sanjidh090" target="_blank" rel="noopener">DEV</a></p>
+    </section>
+
+    <!-- ACTIVITY / TIMELINE -->
+    <section id="activity" class="reveal">
+      <h2>Activity & Milestones</h2>
+      <ol class="timeline">
+        <li>
+          <div class="time">2025</div>
+          <div class="event">
+            <strong>Runner-up</strong>, Fragments of Feeling (NLP) — team <em>KUET_Transformers</em>.
+          </div>
+        </li>
+        <li>
+          <div class="time">2025</div>
+          <div class="event">
+            Published <strong>BD Food Review</strong> (334k+ reviews). High community adoption.
+          </div>
+        </li>
+        <li>
+          <div class="time">2025</div>
+          <div class="event">
+            Released <strong>Bangladesh News Articles</strong> corpus; EDA notebook featured.
+          </div>
+        </li>
+        <li>
+          <div class="time">2024</div>
+          <div class="event">
+            Consistent Kaggle streak; Datasets & Notebooks <strong>Expert</strong> tiers.
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- SOCIAL / LINKS -->
+    <section id="socials" class="reveal">
+      <h2>Social & Profiles</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>LinkedIn</h3>
+          <p>Professional updates, achievements, and posts.</p>
+          <a class="card-link" href="https://linkedin.com/in/sanjidh090" target="_blank" rel="noopener">Visit LinkedIn →</a>
+        </article>
+        <article class="card">
+          <h3>Kaggle</h3>
+          <p>Competitions, Notebooks, and Open Datasets.</p>
+          <a class="card-link" href="https://www.kaggle.com/sanjidh090" target="_blank" rel="noopener">Visit Kaggle →</a>
+        </article>
+        <article class="card">
+          <h3>GitHub</h3>
+          <p>Open-source code and experiments.</p>
+          <a class="card-link" href="https://github.com/Sanjidh090" target="_blank" rel="noopener">Visit GitHub →</a>
+        </article>
+        <article class="card">
+          <h3>Medium</h3>
+          <p>Explainers on math, AI, and projects.</p>
+          <a class="card-link" href="https://medium.com/@sanjidh090" target="_blank" rel="noopener">Read Posts →</a>
+        </article>
+        <article class="card">
+          <h3>DEV Community</h3>
+          <p>Short reads, notes, and how-tos.</p>
+          <a class="card-link" href="https://dev.to/sanjidh090" target="_blank" rel="noopener">Read Posts →</a>
+        </article>
+        <article class="card">
+          <h3>Google Maps (Local Guides)</h3>
+          <p>Photos, place edits, and community contributions.</p>
+          <!-- Replace the URL below with your Local Guides contrib URL once you have it -->
+          <a class="card-link" href="https://www.google.com/maps/contrib/" target="_blank" rel="noopener">See Contributions →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- MAP / LOCATION -->
+    <section class="reveal">
+      <h2>Location</h2>
+      <!-- OpenStreetMap embed (no API key needed). Adjust to your city if needed. -->
+      <div class="map-wrap">
+        <iframe
+          title="Khulna, Bangladesh"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=89.486%2C22.771%2C89.613%2C22.894&layer=mapnik"
+          style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </section>
+
     <!-- CONTACT -->
     <section id="contact" class="reveal">
       <h2>Contact</h2>
       <div class="contact-grid">
-        <p><strong>Email:</strong> <a href="mailto:sanjid9657@gmail.com">sanjid9657@gmail.com</a></p>
+        <p><strong>Email:</strong> <a id="email" href="mailto:sanjidh090@gmail.com">sanjidh090@gmail.com</a> <button class="mini" id="copyEmail">Copy</button></p>
         <p><strong>GitHub:</strong> <a href="https://github.com/Sanjidh090" target="_blank" rel="noopener">github.com/Sanjidh090</a></p>
         <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/sanjidh090" target="_blank" rel="noopener">linkedin.com/in/sanjidh090</a></p>
         <p><strong>Kaggle:</strong> <a href="https://www.kaggle.com/sanjidh090" target="_blank" rel="noopener">kaggle.com/sanjidh090</a></p>
       </div>
+
+      <!-- Simple contact form via Formspree (no backend). Replace YOUR_FORM_ID -->
+      <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="row">
+          <input name="name" placeholder="Your name" required />
+          <input type="email" name="email" placeholder="Your email" required />
+        </div>
+        <textarea name="message" rows="5" placeholder="Message" required></textarea>
+        <button class="btn" type="submit">Send</button>
+      </form>
+      <p class="muted small">By submitting, you agree to be contacted back by email.</p>
     </section>
   </main>
 

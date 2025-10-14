@@ -11,14 +11,13 @@ function setIcon(){
   themeToggle.textContent = root.classList.contains('light') ? '🌞' : '🌙';
 }
 setIcon();
-
 themeToggle.addEventListener('click', () => {
   root.classList.toggle('light');
   localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
   setIcon();
 });
 
-// smooth scroll (native CSS works, but ensure hash focus)
+// smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click', e=>{
     const id = a.getAttribute('href').slice(1);
@@ -39,5 +38,19 @@ const io = new IntersectionObserver((entries)=>{
     }
   });
 },{threshold:0.15});
-
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// copy email
+const copyBtn = document.getElementById('copyEmail');
+if (copyBtn) {
+  copyBtn.addEventListener('click', async ()=>{
+    try {
+      const email = document.getElementById('email').textContent.trim();
+      await navigator.clipboard.writeText(email);
+      copyBtn.textContent = 'Copied!';
+      setTimeout(()=> copyBtn.textContent = 'Copy', 1500);
+    } catch (e) {
+      alert('Copy failed. Long-press / right-click to copy.');
+    }
+  });
+}

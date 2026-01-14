@@ -7,17 +7,18 @@
 
   <!-- Fonts & CSS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css" />
 
   <!-- SEO / Social -->
-  <meta name="description" content="Portfolio of Sanjid Hasan — AI/ML · Kaggle · Research · Open Datasets · Community" />
+  <meta name="description" content="Portfolio of Sanjid Hasan — Electrical Engineer · AI/ML · Research · Open Source" />
   <meta property="og:title" content="Sanjid Hasan — Portfolio" />
-  <meta property="og:description" content="AI/ML • Kaggle • Research • Datasets" />
+  <meta property="og:description" content="Electrical Engineer • AI/ML • Research • Open Datasets" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sanjidh090.github.io" />
   <meta property="og:image" content="assets/img/og-cover.png" />
-  <meta name="theme-color" content="#0a0a0a" />
+  <meta name="theme-color" content="#f7f6f3" />
 
   <!-- JSON-LD (Person) -->
   <script type="application/ld+json">
@@ -34,8 +35,8 @@
       "https://dev.to/sanjidh090",
       "https://orcid.org/0009-0006-1271-9786"
     ],
-    "jobTitle":"Student (EEE), KUET",
-    "knowsAbout":["Machine Learning","Data Science","NLP","Computer Vision","Open Source Datasets"]
+    "jobTitle":"Electrical & Electronic Engineer, AI/ML Researcher",
+    "knowsAbout":["Machine Learning","Data Science","NLP","Computer Vision","Embedded Systems"]
   }
   </script>
 </head>
@@ -45,13 +46,15 @@
     <a class="logo" href="#home" aria-label="Home">SH</a>
     <nav>
       <a href="#about">About</a>
-      <a href="#skills">Skills</a>
+      <a href="#highlights">Highlights</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#competitions">Competitions</a>
       <a href="#projects">Projects</a>
-      <a href="#kaggle">Kaggle</a>
-      <a href="#github">GitHub</a>
       <a href="#research">Research</a>
+      <a href="#writing">Writing</a>
+      <a href="#leadership">Leadership</a>
       <a href="#activity">Activity</a>
-      <a href="#socials">Social</a>
       <a href="#contact">Contact</a>
     </nav>
     <button id="themeToggle" aria-label="Toggle theme">🌙</button>
@@ -60,65 +63,234 @@
   <main>
     <!-- HERO -->
     <section id="home" class="hero reveal">
-      <h1>Hi, I’m <span>Sanjid Hasan</span></h1>
-      <p class="tag">AI & ML Enthusiast · Kaggle Expert · Data Curator</p>
-      <div class="badges">
-        <img alt="Kaggle" src="https://img.shields.io/badge/Kaggle-Expert-blue" />
-        <img alt="Datasets" src="https://img.shields.io/badge/Datasets-Expert-1DA1F2" />
-        <img alt="Notebooks" src="https://img.shields.io/badge/Notebooks-Expert-0A66C2" />
-        <img alt="Open Source" src="https://img.shields.io/badge/Open%20Source-Active-brightgreen" />
+      <div class="hero-content">
+        <p class="eyebrow">Electrical & Electronic Engineer · AI/ML · Research</p>
+        <h1>
+          Sanjid Hasan
+          <span>Designing intelligence at the intersection of hardware & software.</span>
+        </h1>
+        <p class="lead">
+          Kaggle Expert, Research Assistant at Hackules Inc., and founder of Team Frozen Voltage. I build
+          applied AI systems, publish open datasets, and teach complex ideas with clarity.
+        </p>
+        <div class="cta">
+          <a class="btn" href="#contact">Book a Collaboration</a>
+          <a class="btn ghost" href="assets/cv/Sanjid_Hasan_CV.pdf" target="_blank" rel="noopener">Download CV</a>
+          <a class="btn ghost" href="https://www.kaggle.com/sanjidh090" target="_blank" rel="noopener">Kaggle Profile</a>
+        </div>
+        <div class="hero-meta">
+          <div>
+            <span class="meta-label">Based in</span>
+            <span class="meta-value">Khulna, Bangladesh</span>
+          </div>
+          <div>
+            <span class="meta-label">Current Focus</span>
+            <span class="meta-value">Generative AI · Edge AI · Robotics</span>
+          </div>
+          <div>
+            <span class="meta-label">Availability</span>
+            <span class="meta-value">Open for research & collaborations</span>
+          </div>
+        </div>
       </div>
-      <div class="cta">
-        <a class="btn" href="#contact">Get in Touch</a>
-        <a class="btn ghost" href="assets/cv/Sanjid_Hasan_CV.pdf" target="_blank" rel="noopener">Download CV</a>
-        <a class="btn ghost" href="https://www.kaggle.com/sanjidh090" target="_blank" rel="noopener">Kaggle Profile</a>
+      <div class="hero-panels">
+        <div class="glass-card">
+          <p class="glass-title">Signature Stack</p>
+          <p class="glass-body">PyTorch · TensorFlow · scikit-learn · OpenCV · Embedded C · Edge Optimization</p>
+          <div class="pill-row">
+            <span class="pill">Kaggle Expert</span>
+            <span class="pill">Local Guide L7</span>
+            <span class="pill">Research Assistant</span>
+          </div>
+        </div>
+        <div class="hero-stat">
+          <p class="stat-value">1000+</p>
+          <p class="stat-label">Maps Contributions</p>
+        </div>
+        <div class="hero-stat">
+          <p class="stat-value">Top 10</p>
+          <p class="stat-label">Datathon Finishes</p>
+        </div>
+        <div class="hero-stat">
+          <p class="stat-value">Open</p>
+          <p class="stat-label">Source Contributor</p>
+        </div>
       </div>
     </section>
 
     <!-- ABOUT -->
     <section id="about" class="reveal">
-      <h2>About</h2>
-      <p>
-        I’m an engineering student at KUET who loves turning raw data into insight. I explore machine learning,
-        NLP, and data products—often publishing datasets and notebooks so others can build on top of them.
-      </p>
-      <p>
-        Recent focus: Bengali/English text analytics (news, reviews, student communities), model ensembling,
-        and reproducible pipelines on Kaggle & GitHub.
-      </p>
-      <div class="quick-cards">
-        <div class="qcard"><strong>Based in:</strong> Khulna, Bangladesh</div>
-        <div class="qcard"><strong>Education:</strong> EEE , KUET</div>
-        <div class="qcard"><strong>Interests:</strong> NLP · CV · Datasets</div>
+      <div class="section-header">
+        <h2>About</h2>
+        <p>Bridging hardware intuition with AI systems engineering.</p>
       </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills" class="reveal">
-      <h2>Skills</h2>
-      <div class="skills-grid">
-        <div class="skill-card">
-          <h3>Languages</h3>
-          <p>Python, C, C++, MATLAB</p>
+      <div class="split">
+        <div>
+          <p>
+            I’m an EEE graduate from KUET who builds machine learning products with rigorous research
+            and production thinking. My work spans generative AI, computer vision, NLP, and embedded systems,
+            with a strong focus on reproducible pipelines and datasets that empower the community.
+          </p>
+          <p>
+            I believe true mastery is demonstrated by the ability to teach. That philosophy drives my writing,
+            workshops, and open-source contributions.
+          </p>
         </div>
-        <div class="skill-card">
-          <h3>AI / ML</h3>
-          <p>PyTorch, TensorFlow, scikit-learn, NLP, Ensembling</p>
-        </div>
-        <div class="skill-card">
-          <h3>Data</h3>
-          <p>Pandas, NumPy, Matplotlib, Data Cleaning, EDA</p>
-        </div>
-        <div class="skill-card">
-          <h3>Tools</h3>
-          <p>GitHub, Kaggle, Google Colab</p>
+        <div class="focus-grid">
+          <div class="focus-card">
+            <h3>Current Focus</h3>
+            <ul>
+              <li>LLM fine-tuning & prompt engineering</li>
+              <li>Vision transformers & edge deployment</li>
+              <li>Robotics + cyber-physical systems</li>
+            </ul>
+          </div>
+          <div class="focus-card">
+            <h3>Education</h3>
+            <p><strong>B.Sc. in Electrical & Electronic Engineering</strong></p>
+            <p>Khulna University of Engineering & Technology (KUET)</p>
+            <p>Bangladesh</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- PROJECTS (GitHub) -->
+    <!-- HIGHLIGHTS -->
+    <section id="highlights" class="reveal">
+      <div class="section-header">
+        <h2>Elite Highlights</h2>
+        <p>Recognition, impact, and community leadership.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <h3>Kaggle Expert</h3>
+          <p>Dataset + Notebook expert status with public benchmarks and curated resources.</p>
+          <a class="card-link" href="https://www.kaggle.com/sanjidh090" target="_blank" rel="noopener">Verified on Kaggle →</a>
+        </article>
+        <article class="card">
+          <h3>Research Assistant</h3>
+          <p>Former research assistant at Hackules Inc. focused on computer vision research.</p>
+          <a class="card-link" href="https://hackules.com/" target="_blank" rel="noopener">Hackules Inc. →</a>
+        </article>
+        <article class="card">
+          <h3>Google Maps Local Guide L7</h3>
+          <p>1,000+ contributions documenting heritage and local spaces.</p>
+          <a class="card-link" href="https://maps.google.com/localguides/profile" target="_blank" rel="noopener">Local Guide Profile →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- EXPERTISE -->
+    <section id="expertise" class="reveal">
+      <div class="section-header">
+        <h2>Technical Expertise</h2>
+        <p>Deep specialization across AI, embedded systems, and applied research.</p>
+      </div>
+      <div class="expertise-grid">
+        <div class="expertise-card">
+          <h3>AI & ML</h3>
+          <p>Deep learning, neural networks, computer vision, NLP, reinforcement learning.</p>
+          <div class="chip-row">
+            <span>PyTorch</span><span>TensorFlow</span><span>scikit-learn</span><span>OpenCV</span><span>Hugging Face</span>
+          </div>
+        </div>
+        <div class="expertise-card">
+          <h3>Data Engineering</h3>
+          <p>EDA, dataset curation, feature engineering, reproducible pipelines.</p>
+          <div class="chip-row">
+            <span>Pandas</span><span>NumPy</span><span>Matplotlib</span><span>Kaggle</span><span>Colab</span>
+          </div>
+        </div>
+        <div class="expertise-card">
+          <h3>Embedded & Edge</h3>
+          <p>Embedded systems, IoT, optimization for constrained hardware.</p>
+          <div class="chip-row">
+            <span>C</span><span>C++</span><span>PCB Design</span><span>IoT</span><span>Edge AI</span>
+          </div>
+        </div>
+        <div class="expertise-card">
+          <h3>Leadership & Education</h3>
+          <p>Technical writing, workshops, public speaking, mentoring.</p>
+          <div class="chip-row">
+            <span>Research</span><span>Teaching</span><span>Open Source</span><span>Community</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section id="achievements" class="reveal">
+      <div class="section-header">
+        <h2>Elite Recognition</h2>
+        <p>Verified impact across research, open-source, and community initiatives.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Achievement</th>
+              <th>Details</th>
+              <th>Proof</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Kaggle Expert</td>
+              <td>Dataset & Notebook Expert</td>
+              <td><a href="https://www.kaggle.com/sanjidh090" target="_blank" rel="noopener">Verified</a></td>
+            </tr>
+            <tr>
+              <td>Local Guide Level 7</td>
+              <td>1,000+ contributions preserving digital heritage</td>
+              <td><a href="https://maps.google.com/localguides/profile" target="_blank" rel="noopener">Verified</a></td>
+            </tr>
+            <tr>
+              <td>Research Assistant</td>
+              <td>Computer vision research at Hackules Inc.</td>
+              <td><a href="https://hackules.com/" target="_blank" rel="noopener">Verified</a></td>
+            </tr>
+            <tr>
+              <td>Open Source Contributor</td>
+              <td>Facebook Research fairseq2, Omnilingual ASR</td>
+              <td><a href="https://github.com/facebookresearch/omnilingual-asr/pulls" target="_blank" rel="noopener">Verified</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- COMPETITIONS -->
+    <section id="competitions" class="reveal">
+      <div class="section-header">
+        <h2>Competition Excellence</h2>
+        <p>Top finishes across national and international datathons.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <h3>First Byte Datathon 2025</h3>
+          <p><strong>8th Place</strong> · Team Frozen Voltage · Nationwide competition</p>
+        </article>
+        <article class="card">
+          <h3>NWU CSE Fest Datathon 2025</h3>
+          <p><strong>4th Place</strong> · 92% Cohen Kappa</p>
+        </article>
+        <article class="card">
+          <h3>CUET CSE Fest 2025</h3>
+          <p><strong>Top 60</strong> · Political meme detection (80% F1)</p>
+        </article>
+        <article class="card">
+          <h3>Legends of Logic 2024</h3>
+          <p><strong>3rd & 5th</strong> · Team Frozen Voltage</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
     <section id="projects" class="reveal">
-      <h2>Projects (GitHub)</h2>
+      <div class="section-header">
+        <h2>Projects & Products</h2>
+        <p>Real-world systems across AI, software engineering, and embedded solutions.</p>
+      </div>
       <div class="cards">
         <article class="card">
           <h3>SmartBuy</h3>
@@ -127,55 +299,112 @@
         </article>
         <article class="card">
           <h3>PDF Tricks</h3>
-          <p>Utilities for creating, splitting, and parsing PDFs.</p>
+          <p>PDF creation, parsing, and automation utilities for rapid documentation.</p>
           <a class="card-link" href="https://github.com/Sanjidh090/PDF_tricks" target="_blank" rel="noopener">View on GitHub →</a>
         </article>
         <article class="card">
-          <h3>Kaggle Notebooks</h3>
-          <p>Assorted EDA & ML experiments, competition work, and templates.</p>
-          <a class="card-link" href="https://github.com/Sanjidh090/Kaggle-Notebooks" target="_blank" rel="noopener">View on GitHub →</a>
+          <h3>Frozen Voltage Labs</h3>
+          <p>Multidisciplinary team building robotics, biomedical engineering, and AI tooling.</p>
+          <a class="card-link" href="https://github.com/Sanjidh090" target="_blank" rel="noopener">Explore Labs →</a>
         </article>
       </div>
     </section>
 
-    <!-- KAGGLE -->
-    <section id="kaggle" class="reveal">
-      <h2>Kaggle Portfolio</h2>
-
-      <div class="k-cols">
-        <div>
-          <h3>🏆 Competitions</h3>
-          <ul class="list">
-            <li><strong>Fragments of Feeling (NLP)</strong> — 2nd place (Runner-up) with <em>KUET_Transformers</em>.</li>
-            <li><strong>Titanic, House Prices, Digit Recognizer</strong> — foundational ML & CV practice.</li>
-          </ul>
-        </div>
-        <div>
-          <h3>📓 Notebooks</h3>
-          <ul class="list">
-            <li><em>Ensemble: TabTransformer + LGBM + XGB + CatBoost + Ridge</em> — stacked/blended models.</li>
-            <li><em>English Newspapers EDA</em> — topic/keyword trends in Bangladeshi news.</li>
-            <li><em>Jobs & Burnouts Insight</em> — exploring remote work burnout factors.</li>
-          </ul>
-        </div>
-        <div>
-          <h3>🗂️ Datasets</h3>
-          <ul class="list">
-            <li><strong>Bangladesh News Articles</strong> — aggregated English newspaper corpus.</li>
-            <li><strong>BUETIAN Rhapsody & KUET Whispers Dataset</strong> — anonymized student community posts.</li>
-            
-          </ul>
-        </div>
+    <!-- RESEARCH -->
+    <section id="research" class="reveal">
+      <div class="section-header">
+        <h2>Research, Datasets & Publications</h2>
+        <p>Open data, applied research, and academic excellence.</p>
       </div>
-
-      <div class="cta center">
-        <a class="btn" href="https://www.kaggle.com/sanjidh090" target="_blank" rel="noopener">See Full Kaggle Profile</a>
+      <div class="cards">
+        <article class="card">
+          <h3>Bangladesh News Dataset</h3>
+          <p>English news corpus for topic modeling, summarization, and NLP experiments.</p>
+          <div class="pill-row">
+            <span class="pill">NLP</span><span class="pill">Open Data</span><span class="pill">Research</span>
+          </div>
+          <a class="card-link" href="https://www.kaggle.com/sanjidh090" target="_blank" rel="noopener">View on Kaggle →</a>
+        </article>
+        <article class="card">
+          <h3>KUET Whispers Dataset</h3>
+          <p>Student community posts for sentiment, moderation, and cultural analysis.</p>
+          <div class="pill-row">
+            <span class="pill">Social Data</span><span class="pill">Bangla</span><span class="pill">Privacy</span>
+          </div>
+          <a class="card-link" href="https://www.kaggle.com/sanjidh090" target="_blank" rel="noopener">Explore Datasets →</a>
+        </article>
+        <article class="card">
+          <h3>Academic Portfolio</h3>
+          <p>Embedded systems, algorithms, and hybrid C/Python coursework projects.</p>
+          <a class="card-link" href="https://github.com/Sanjidh090" target="_blank" rel="noopener">Coursework Repos →</a>
+        </article>
       </div>
     </section>
 
-    <!-- GITHUB STATS -->
-    <section id="github" class="reveal">
-      <h2>GitHub</h2>
+    <!-- WRITING -->
+    <section id="writing" class="reveal">
+      <div class="section-header">
+        <h2>Technical Writing & Thought Leadership</h2>
+        <p>Explainers that bridge theory and real-world engineering practice.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <h3>Painting with Pixels: Style Transfer</h3>
+          <p>Deep dive into Gram matrices and artistic loss functions.</p>
+          <a class="card-link" href="https://medium.com/@sanjidh090/painting-with-pixels-the-mathematics-of-style-transfer-ba9b9dd09d92" target="_blank" rel="noopener">Read on Medium →</a>
+        </article>
+        <article class="card">
+          <h3>What is Invariance?</h3>
+          <p>Translation, rotation, and scaling invariance in CNNs.</p>
+          <a class="card-link" href="https://dev.to/sanjidh090/what-is-invariencewhy-do-we-need-2n5f" target="_blank" rel="noopener">Read on DEV →</a>
+        </article>
+        <article class="card">
+          <h3>Gigabytes vs. Gibibytes</h3>
+          <p>Precision in data measurement: decimal vs. binary standards.</p>
+          <a class="card-link" href="https://dev.to/sanjidh090/gigabytes-vs-gibibytes-understanding-the-difference-in-data-measurement-9d6" target="_blank" rel="noopener">Read on DEV →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- LEADERSHIP -->
+    <section id="leadership" class="reveal">
+      <div class="section-header">
+        <h2>Leadership & Community</h2>
+        <p>Building teams, mentoring engineers, and preserving digital heritage.</p>
+      </div>
+      <div class="split">
+        <div class="leadership-card">
+          <h3>Team Frozen Voltage</h3>
+          <p>
+            Founder and AI lead of a multidisciplinary tech group at KUET. We deliver robotics,
+            biomedical engineering, data science competitions, and public science communication.
+          </p>
+          <ul>
+            <li>Robotics & custom PCB design</li>
+            <li>Adaptive BAMs (biomedical engineering)</li>
+            <li>Top 10 national datathon finishes</li>
+          </ul>
+        </div>
+        <div class="leadership-card">
+          <h3>Digital Citizenship</h3>
+          <p>
+            Level 7 Local Guide with 1,000+ contributions documenting Bangladesh’s cities and communities.
+          </p>
+          <ul>
+            <li>Geospatial archivist for Google Maps</li>
+            <li>Preserving local heritage and memory</li>
+            <li>100+ followers and active community engagement</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACTIVITY / LIVE FEEDS -->
+    <section id="activity" class="reveal">
+      <div class="section-header">
+        <h2>Live Activity</h2>
+        <p>Recent open-source activity and publications.</p>
+      </div>
       <div class="git-grid">
         <img alt="GitHub Stats" loading="lazy"
              src="https://github-readme-stats.vercel.app/api?username=Sanjidh090&show_icons=true&theme=transparent" />
@@ -184,70 +413,8 @@
         <img alt="Contributions Heatmap" loading="lazy"
              src="https://ghchart.rshah.org/2f80ed/Sanjidh090" />
       </div>
-      <p class="muted small">These images are generated by public GitHub stat services.</p>
-    </section>
 
-    <!-- RESEARCH & PUBLICATIONS -->
-    <section id="research" class="reveal">
-      <h2>Research & Publications</h2>
-      <div class="cards">
-        <article class="card">
-          <h3>Bangladeshi English News Articles (Dataset)</h3>
-          <p>Curated English-language news corpus from multiple Bangladeshi newspapers. Great for topic modeling & summarization.</p>
-          <div class="pill-row">
-            <span class="pill">NLP</span><span class="pill">News</span><span class="pill">Open Data</span>
-          </div>
-          <a class="card-link" href="https://www.kaggle.com/datasets/sanjidh090" target="_blank" rel="noopener">View on Kaggle →</a>
-        </article>
-        
-        <article class="card">
-          <h3>Student Community Texts (BUETIAN / KUET Whispers)</h3>
-          <p>Anonymized social datasets enabling research on informal writing, student sentiment, and moderation tools.</p>
-          <div class="pill-row">
-            <span class="pill">Social</span><span class="pill">Bangla</span><span class="pill">Privacy</span>
-          </div>
-          <a class="card-link" href="https://www.kaggle.com/sanjidh090/datasets" target="_blank" rel="noopener">Explore Datasets →</a>
-        </article>
-      </div>
-      <p class="muted small">More:
-        <a href="https://www.researchgate.net/profile/Sanjid-Hasan" target="_blank" rel="noopener">ResearchGate</a> ·
-        <a href="https://medium.com/@sanjidh090" target="_blank" rel="noopener">Medium</a> ·
-        <a href="https://dev.to/sanjidh090" target="_blank" rel="noopener">DEV</a> ·
-        <a href="https://orcid.org/0009-0006-1271-9786" target="_blank" rel="noopener">ORCID</a>
-      </p>
-    </section>
-
-    <!-- ACTIVITY / TIMELINE -->
-    <section id="activity" class="reveal">
-      <h2>Activity & Milestones</h2>
-      <ol class="timeline">
-        <li>
-          <div class="time">2025</div>
-          <div class="event">
-            <strong>Runner-up</strong>, Fragments of Feeling (NLP) — team <em>KUET_Transformers</em>.
-          </div>
-        </li>
-        <li>
-          <div class="time">2025</div>
-        
-        </li>
-        <li>
-          <div class="time">2025</div>
-          <div class="event">
-            Released <strong>Bangladesh News Articles</strong> corpus; EDA notebook featured.
-          </div>
-        </li>
-        <li>
-          <div class="time">2024</div>
-          <div class="event">
-            Consistent Kaggle streak; Datasets & Notebooks <strong>Expert</strong> tiers.
-          </div>
-        </li>
-      </ol>
-
-      <!-- LIVE FEED -->
       <div class="live">
-        <h3>Recent Activity (auto-updates)</h3>
         <div class="live-grid">
           <div class="live-col">
             <h4>GitHub</h4>
@@ -262,63 +429,16 @@
             <ul id="feed-dev" class="feed"></ul>
           </div>
         </div>
-        <p class="muted small">Feeds are fetched live from public sources. Some sources may rate-limit or block previews; if a section is empty, try reloading.</p>
-      </div>
-    </section>
-
-    <!-- SOCIAL / LINKS -->
-    <section id="socials" class="reveal">
-      <h2>Social & Profiles</h2>
-      <div class="cards">
-        <article class="card">
-          <h3>LinkedIn</h3>
-          <p>Professional updates, achievements, and posts.</p>
-          <a class="card-link" href="https://linkedin.com/in/sanjidh090" target="_blank" rel="noopener">Visit LinkedIn →</a>
-        </article>  
-        <article class="card">
-          <h3>GitHub</h3>
-          <p>Open-source code and experiments.</p>
-          <a class="card-link" href="https://github.com/Sanjidh090" target="_blank" rel="noopener">Visit GitHub →</a>
-        </article>
-        <article class="card">
-          <h3>Kaggle</h3>
-          <p>Datasets , Notebooks, Competitions </p>
-          <a class="card-link" href="https://www.kaggle.com/sanjidh090" target="_blank" rel="noopener">Visit Kaggle →</a>
-        </article>
-        <article class="card">
-          <h3>Medium</h3>
-          <p>Explainers on math, AI, and projects.</p>
-          <a class="card-link" href="https://medium.com/@sanjidh090" target="_blank" rel="noopener">Read Posts →</a>
-        </article>
-        <article class="card">
-          <h3>DEV Community</h3>
-          <p>Short reads, notes, and how-tos.</p>
-          <a class="card-link" href="https://dev.to/sanjidh090" target="_blank" rel="noopener">Read Posts →</a>
-        </article>
-        <article class="card">
-          <h3>Google Maps (Local Guides)</h3>
-          <p>Photos, place edits, and community contributions.</p>
-          <a class="card-link" href="https://www.google.com/maps/contrib/107231728338297303607" target="_blank" rel="noopener">See Contributions →</a>
-        </article>
-      </div>
-    </section>
-
-    <!-- MAP / LOCATION -->
-    <section class="reveal">
-      <h2>Location</h2>
-      <!-- OpenStreetMap embed (no API key needed). Adjust bbox if desired. -->
-      <div class="map-wrap">
-        <iframe
-          title="Khulna, Bangladesh"
-          src="https://www.openstreetmap.org/export/embed.html?bbox=89.486%2C22.771%2C89.613%2C22.894&layer=mapnik"
-          style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
+        <p class="muted small">Feeds update live from public sources. If a section is empty, reload to refresh.</p>
       </div>
     </section>
 
     <!-- CONTACT -->
     <section id="contact" class="reveal">
-      <h2>Contact</h2>
+      <div class="section-header">
+        <h2>Let’s Collaborate</h2>
+        <p>Open to research, speaking, and high-impact product collaborations.</p>
+      </div>
       <div class="contact-grid">
         <p><strong>Email:</strong> <a id="email" href="mailto:sanjid9657@gmail.com">sanjid9657@gmail.com</a> <button class="mini" id="copyEmail">Copy</button></p>
         <p><strong>GitHub:</strong> <a href="https://github.com/Sanjidh090" target="_blank" rel="noopener">github.com/Sanjidh090</a></p>
@@ -326,21 +446,20 @@
         <p><strong>Kaggle:</strong> <a href="https://www.kaggle.com/sanjidh090" target="_blank" rel="noopener">kaggle.com/sanjidh090</a></p>
       </div>
 
-      <!-- Formspree contact (live) -->
       <form class="contact-form" action="https://formspree.io/f/mdkwyokg" method="POST">
         <div class="row">
           <input name="name" placeholder="Your name" required />
           <input type="email" name="email" placeholder="Your email" required />
         </div>
         <textarea name="message" rows="5" placeholder="Message" required></textarea>
-        <button class="btn" type="submit">Send</button>
+        <button class="btn" type="submit">Send Message</button>
       </form>
       <p class="muted small">By submitting, you agree to be contacted back by email.</p>
     </section>
   </main>
 
   <footer>
-    <p>© <span id="year"></span> Sanjid Hasan</p>
+    <p>© <span id="year"></span> Sanjid Hasan · Crafted with purpose</p>
   </footer>
 
   <script src="assets/js/script.js"></script>

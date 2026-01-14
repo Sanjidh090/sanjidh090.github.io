@@ -7,7 +7,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
 // theme toggle (persist)
 const root = document.documentElement;
 const themeToggle = document.getElementById('themeToggle');
-const saved = localStorage.getItem('theme') || 'dark';
+const saved = localStorage.getItem('theme') || 'light';
 if (saved === 'light') root.classList.add('light');
 
 function setIcon(){

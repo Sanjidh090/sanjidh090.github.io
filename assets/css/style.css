@@ -4,6 +4,7 @@
   --surface:#f5f5f7;
   --surface-2:#fbfbfd;
   --text:#1d1d1f;
+  --text-inverse:#ffffff;
   --muted:#86868b;
   --accent:#0071e3;
   --accent-hover:#0077ed;
@@ -22,6 +23,7 @@
   --surface:#f5f5f7;
   --surface-2:#fbfbfd;
   --text:#1d1d1f;
+  --text-inverse:#ffffff;
   --muted:#86868b;
   --accent:#0071e3;
   --accent-hover:#0077ed;
@@ -41,6 +43,7 @@
   --surface:#1d1d1f;
   --surface-2:#161617;
   --text:#f5f5f7;
+  --text-inverse:#ffffff;
   --muted:#a1a1a6;
   --accent:#2997ff;
   --accent-hover:#3da1ff;
@@ -271,7 +274,7 @@ main{
 
 .glass-card{
   background:linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.7));
-  color:#1d1d1f;
+  color:var(--text);
   padding:32px;
   border-radius:var(--radius-lg);
   border:1px solid rgba(255,255,255,0.9);
@@ -573,7 +576,7 @@ section:nth-child(even){
 
 .pill:hover{
   background:var(--accent);
-  color:#fff;
+  color:var(--text-inverse);
   border-color:var(--accent);
 }
 
@@ -892,14 +895,14 @@ section:nth-child(even){
 
 .mini:hover{
   background:var(--accent);
-  color:#fff;
+  color:var(--text-inverse);
   border-color:var(--accent);
 }
 
 /* BUTTONS */
 .btn{
   background:var(--accent);
-  color:#fff;
+  color:var(--text-inverse);
   padding:16px 32px;
   border-radius:var(--radius);
   text-decoration:none;
@@ -1139,6 +1142,30 @@ body::after{
 }
 
 @media (max-width:480px){
+  main{
+    padding:0 20px 60px;
+  }
+  
+  .site-nav{
+    padding:12px 20px;
+  }
+  
+  .site-nav nav{
+    width:100%;
+    order:3;
+    flex-basis:100%;
+    gap:12px;
+    margin-top:8px;
+  }
+  
+  .site-nav nav a{
+    font-size:12px;
+  }
+  
+  .hero{
+    padding:60px 0 40px;
+  }
+  
   .hero-content h1{
     font-size:32px;
   }
@@ -1158,9 +1185,5 @@ body::after{
   .btn{
     padding:12px 24px;
     font-size:14px;
-  }
-  
-  .site-nav nav{
-    display:none;
   }
 }

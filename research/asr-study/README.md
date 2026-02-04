@@ -29,6 +29,26 @@ but at the cost of higher latency, whereas CTC/TDT decoders
 offer faster inference with only modest accuracy trade-offs,
 making them attractive for long-form transcription. 
 
-# We will be back with another paper......Au revoir!
+## So, we got a few models from openAI , NVIDIA , Alibaba ,Moonshine and many more foundational models
+Meta's OmniASR is considerably new ,besides it is open weight ,not open source so let's not go with it.
+* Whishper Family ```v3 large``` and ``v3-turbo``
+* Nemo ```canary 1B 2.5B ``` and ```parakeet(CTC) & TDT ```
+* Qwen-Audio `Qwen3-ASR (1.7B)`
+* Moonshine **tiny** **faster** ...boost
+* Firered (SOTA on madarine)
+
+
+| Model Family | Variant | Parameters | Architecture | Est. WER (Bengali) | Est. RTFx (GPU) | Inference Score Potential |
+| :--- | :--- | :---: | :--- | :--- | :---: | :---: |
+| **Parakeet** | TDT | 0.6B | Transducer | Good (~7-8%) | 3386 | 99-100 |
+| **SenseVoice** | Small | N/A | Non-Autoregressive | Good | High (~1500) | 90-95 |
+| **Moonshine** | Tiny | 27M | Enc-Dec | Moderate (~10-12%) | High (CPU) | 85-95 |
+| **Whisper** | v3 Turbo | 809M | Transformer | Very Good (~6%) | 216 | 60-75 |
+| **Canary** | Qwen-2.5B | 2.5B | FastConformer | Excellent (~5%) | 418 | 70-80 |
+| **Whisper** | Large v3 | 1.55B | Transformer | Excellent (~5.5%) | 68 | 30-40 |
+| **FireRedASR** | LLM-L | 8.3B | Adapter-LLM | SOTA (~4.5%) | < 20 | 1-10 |
+
+
+
 
 

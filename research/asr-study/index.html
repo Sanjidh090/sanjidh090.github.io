@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ASR Review Study | Sanjid Hasan</title>
+  
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+  
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <style>
+    /* Specific styles for the reading experience (Typography) */
+    .blog-container {
+      max-width: 800px;
+      margin: 100px auto;
+      padding: 0 20px;
+    }
+
+    /* Markdown Element Styling to match your theme */
+    .markdown-body {
+      color: var(--text-main, #e0e0e0);
+      line-height: 1.8;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .markdown-body h1, .markdown-body h2, .markdown-body h3 {
+      color: var(--text-bright, #ffffff);
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
+    }
+
+    .markdown-body h1 { font-size: 2.5rem; border-bottom: 1px solid var(--border, #333); padding-bottom: 0.3em; }
+    .markdown-body h2 { font-size: 1.8rem; }
+    
+    .markdown-body a { color: var(--accent, #2997ff); text-decoration: none; }
+    .markdown-body a:hover { text-decoration: underline; }
+    
+    .markdown-body code {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9em;
+    }
+    
+    .markdown-body pre {
+      background: #1c1c1e; /* Darker bg for code blocks */
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      border: 1px solid var(--border, #333);
+    }
+    
+    .markdown-body pre code {
+      background: none;
+      padding: 0;
+      color: #a8b1ff;
+    }
+
+    .markdown-body blockquote {
+      border-left: 4px solid var(--accent, #2997ff);
+      margin: 0;
+      padding-left: 1rem;
+      color: var(--muted, #86868b);
+      font-style: italic;
+    }
+    
+    .markdown-body img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-nav">
+    <a class="logo" href="../../index.html">SH</a>
+    <nav>
+      <a href="../../index.html#research">← Back to Research</a>
+    </nav>
+  </header>
+
+  <main class="blog-container">
+    <div id="content" class="markdown-body">
+      <p style="color: var(--muted);">Loading study...</p>
+    </div>
+  </main>
+
+  <script>
+    // 1. Fetch the README.md file
+    fetch('README.md')
+      .then(response => {
+        if (!response.ok) throw new Error("Could not load file");
+        return response.text();
+      })
+      .then(text => {
+        // 2. Convert Markdown to HTML
+        document.getElementById('content').innerHTML = marked.parse(text);
+      })
+      .catch(err => {
+        document.getElementById('content').innerHTML = `
+          <h2>Error loading content</h2>
+          <p>Please make sure <code>README.md</code> exists in this folder.</p>
+        `;
+        console.error(err);
+      });
+  </script>
+
+</body>
+</html>

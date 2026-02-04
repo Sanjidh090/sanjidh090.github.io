@@ -4,7 +4,7 @@
 
 let's talk about evaluation first. 
 # WER (Word Error Rate)
-follow this page in [huggingface](https://huggingface.co/learn/audio-course/chapter5/evaluation)
+follow this page on [huggingface](https://huggingface.co/learn/audio-course/chapter5/evaluation)
 
 ## Paper 01: [OPEN ASR LEADERBOARD](https://arxiv.org/pdf/2510.06961v3)
 As ASR evaluations are saturated with short form English , very few models and papers brings a light of hope. Here, Two metrices  ```word error rate (WER)``` and ```inverse real-time factor (RTFx)```.

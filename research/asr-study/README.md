@@ -2,22 +2,9 @@
 **Author:** Sanjid Hasan  
 **Date:** Feb 2026
 
-## Introduction
-Automatic Speech Recognition (ASR) has evolved from simple Gaussian Mixture Models (GMM) to advanced End-to-End Deep Learning architectures. This study reviews the current state of the art, focusing on **Wav2Vec 2.0** and **Whisper**.
 
-## Key Architectures
+## Paper 01: [OPEN ASR LEADERBOARD](https://arxiv.org/pdf/2510.06961v3)
+As ASR evaluations are saturated with short form English , very few models and papers brings a light of hope. Here, Two metrices  ```word error rate (WER)``` and ```inverse real-time factor (RTFx)```.
 
-### 1. Connectionist Temporal Classification (CTC)
-CTC allows the network to learn the alignment between audio frames and text characters automatically.
-
-### 2. Transformer-based Models
-Models like OpenAI's *Whisper* utilize the transformer architecture to process audio spectrograms...
-
-## Code Snippet (Python)
-Here is how we load a Hugging Face model:
-
-```python
-from transformers import Wav2Vec2ForCTC, Wav2Vec2Processor
-
-model = Wav2Vec2ForCTC.from_pretrained("facebook/wav2vec2-base-960h")
-processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-base-960h")
+Conformer encoders are slow but accurate, CTC and TDT are of better RTXs.However hisper-derived encoders fine-tuned for English improve
+accuracy but often trade off multilingual coverage [[1]](https://arxiv.org/pdf/2510.06961v3)

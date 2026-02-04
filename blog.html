@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog | Sanjid Hasan</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <meta name="description" content="Thoughts, tutorials, and research notes by Sanjid Hasan." />
+</head>
+<body>
+  <header class="site-nav">
+    <a class="logo" href="index.html" aria-label="Home">SH</a>
+    <nav>
+      <a href="index.html#about">About</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#research">Research</a>
+      <a href="blog.html" class="active" style="color: var(--accent);">Blog</a> <a href="index.html#contact">Contact</a>
+    </nav>
+    <button id="themeToggle" aria-label="Toggle theme">🌙</button>
+  </header>
+
+  <main>
+    <section class="hero reveal" style="padding-bottom: 40px; min-height: auto;">
+      <div class="hero-content">
+        <p class="eyebrow">Writing & Thoughts</p>
+        <h1>
+          The Engineering Log
+          <span>Deep dives into AI, hardware, and the space between.</span>
+        </h1>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <div class="cards">
+        
+        <article class="card">
+          <div class="pill-row" style="margin: 0 0 16px;">
+            <span class="pill">Computer Vision</span>
+            <span class="pill">Tutorial</span>
+          </div>
+          <h3>Painting with Pixels: The Math of Style Transfer</h3>
+          <p>A deep dive into Gram matrices, loss functions, and how we can mathematically replicate artistic style using neural networks.</p>
+          <div class="hero-meta" style="margin-top: 0; gap: 12px; border: none; padding: 0;">
+            <span class="meta-value" style="font-size: 14px; color: var(--muted);">Oct 24, 2024</span>
+          </div>
+          <br>
+          <a class="card-link" href="https://medium.com/@sanjidh090/painting-with-pixels-the-mathematics-of-style-transfer-ba9b9dd09d92" target="_blank">Read Article →</a>
+        </article>
+
+        <article class="card">
+          <div class="pill-row" style="margin: 0 0 16px;">
+            <span class="pill">Deep Learning</span>
+            <span class="pill">Theory</span>
+          </div>
+          <h3>Understanding Invariance in CNNs</h3>
+          <p>Why do Convolutional Neural Networks recognize a cat regardless of where it is in the image? Exploring translation, rotation, and scaling.</p>
+          <div class="hero-meta" style="margin-top: 0; gap: 12px; border: none; padding: 0;">
+            <span class="meta-value" style="font-size: 14px; color: var(--muted);">Sep 15, 2024</span>
+          </div>
+          <br>
+          <a class="card-link" href="https://dev.to/sanjidh090/what-is-invariencewhy-do-we-need-2n5f" target="_blank">Read Article →</a>
+        </article>
+
+        <article class="card">
+          <div class="pill-row" style="margin: 0 0 16px;">
+            <span class="pill">Embedded Systems</span>
+            <span class="pill">Guide</span>
+          </div>
+          <h3>Optimizing TensorFlow Lite for Microcontrollers</h3>
+          <p>Notes on shrinking model size without losing accuracy for deployment on ESP32 and Arduino Nano BLE Sense.</p>
+          <div class="hero-meta" style="margin-top: 0; gap: 12px; border: none; padding: 0;">
+            <span class="meta-value" style="font-size: 14px; color: var(--muted);">Coming Soon</span>
+          </div>
+          <br>
+          <span class="card-link" style="color: var(--muted); cursor: default;">Drafting...</span>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="reveal">
+      <div class="glass-card" style="text-align: center; max-width: 600px; margin: 0 auto;">
+        <h3>Stay Updated</h3>
+        <p>I write about once a month. No spam, just engineering.</p>
+        <div class="cta" style="justify-content: center;">
+          <a class="btn" href="https://medium.com/@sanjidh090" target="_blank">Subscribe on Medium</a>
+          <a class="btn ghost" href="index.html#contact">Contact Me</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> Sanjid Hasan · Crafted with purpose</p>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>

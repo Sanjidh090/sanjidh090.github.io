@@ -49,6 +49,6 @@ Meta's OmniASR is considerably new ,besides it is open weight ,not open source s
 | **FireRedASR** | LLM-L | 8.3B | Adapter-LLM | SOTA (~4.5%) | < 20 | 1-10 |
 
 
-
+Source:[https://github.com/Sanjidh090/sanjidh090.github.io/blob/main/research%2Fasr-study%2FASR%20and%20Diarization%20Model%20Comparison.pdf](Goddamn it,You need source!)
 
 

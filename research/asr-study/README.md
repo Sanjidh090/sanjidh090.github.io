@@ -51,4 +51,4 @@ Meta's OmniASR is considerably new ,besides it is open weight ,not open source s
 
 Source:[Goddamnit,You need source!](https://github.com/Sanjidh090/sanjidh090.github.io/blob/main/research%2Fasr-study%2FASR%20and%20Diarization%20Model%20Comparison.pdf)
 
-
+We have tried one model by [Hisab](https://huggingface.co/hishab/titu_stt_bn_fastconformer) the conformer model required a lot of processing and it's vulnerable to echoes and reverbs, We also noticed hallucination loop but somehow it was able to detect words whisper model could not. WER rate was nearly 0.71 at zero shot..Very iconic ,huh?

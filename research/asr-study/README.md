@@ -52,3 +52,17 @@ Meta's OmniASR is considerably new ,besides it is open weight ,not open source s
 Source:[Goddamnit,You need source!](https://github.com/Sanjidh090/sanjidh090.github.io/blob/main/research%2Fasr-study%2FASR%20and%20Diarization%20Model%20Comparison.pdf)
 
 We have tried one model by [Hisab](https://huggingface.co/hishab/titu_stt_bn_fastconformer) the conformer model required a lot of processing and it's vulnerable to echoes and reverbs, We also noticed hallucination loop but somehow it was able to detect words whisper model could not. WER rate was nearly 0.71 at zero shot..Very iconic ,huh?
+
+
+
+Alright, I am making a list on materials I could gather,
+1. https://www.gladia.io/blog/fine-tuning-asr-models
+2. https://apxml.com/courses/applied-speech-recognition/chapter-4-advanced-acoustic-models/practice-finetuning-pretrained-model
+3. https://fxis.ai/edu/how-to-train-and-evaluate-an-automatic-speech-recognition-asr-model/
+4. https://huggingface.co/learn/audio-course/chapter5/asr_models
+5. https://openai.com/index/whisper/ (gold)
+6. https://verbit.ai/transcription/automatic-speech-recognition-asr/
+7. https://eleanorchodroff.com/tutorial/kaldi/introduction.html
+8. http://kaldi-asr.org/doc/kaldi_for_dummies.html
+9. https://www.reddit.com/r/speechtech/comments/mdort1/need_help_with_training_asr_model_from_scratch/
+10. 

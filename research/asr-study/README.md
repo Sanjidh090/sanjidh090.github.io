@@ -67,3 +67,7 @@ Alright, I am making a list on materials I could gather,
 9. https://www.reddit.com/r/speechtech/comments/mdort1/need_help_with_training_asr_model_from_scratch/
 10.https://nextlevel.ai/best-speech-to-text-models
 11.ah,,,i dunnow
+
+
+# Problems
+In our transcription, we are getting a lot of Phonetic confusions , misrecognizing words (listening properly but writing wrong)

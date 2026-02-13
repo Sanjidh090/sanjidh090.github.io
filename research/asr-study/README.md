@@ -71,3 +71,6 @@ Alright, I am making a list on materials I could gather,
 
 # Problems
 In our transcription, we are getting a lot of Phonetic confusions , misrecognizing words (listening properly but writing wrong)
+reverbs, faster words ,slower words , music labeled as music..
+> Fine-tuning helps
+> 

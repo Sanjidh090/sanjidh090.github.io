@@ -73,4 +73,9 @@ Alright, I am making a list on materials I could gather,
 In our transcription, we are getting a lot of Phonetic confusions , misrecognizing words (listening properly but writing wrong)
 reverbs, faster words ,slower words , music labeled as music..
 > Fine-tuning helps
-> 
+> post processing helps
+
+We developed a post processing with normalization,nordig style word correction....which rather became obsolete soon we fine tuned our model with our own data.
+However, there goes an interesting insight,ASR fails to manage the proper mapping of য় এন্ড য ,also we notice a problem with the spelling of named entity.
+Using a NER corpus would reduce it slightly ,but it does not solve the out of distribution names case.
+

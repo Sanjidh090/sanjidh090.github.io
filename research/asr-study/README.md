@@ -79,3 +79,10 @@ We developed a post processing with normalization,nordig style word correction..
 However, there goes an interesting insight,ASR fails to manage the proper mapping of য় এন্ড য ,also we notice a problem with the spelling of named entity.
 Using a NER corpus would reduce it slightly ,but it does not solve the out of distribution names case.
 
+
+We managed to fine tune conformer large of titu ,score increased by 2% by 15 epoch,(see notebook for details),
+also fine tuned moonshine model,which turned out a lesson, only fine tuning is rather devastating, we might need 
+transfer learning or something like that. Model breaks after. It works fro french does not mean it'll work for Bangla,I guess letters are bit same.
+
+
+

@@ -66,6 +66,7 @@ Alright, I am making a list on materials I could gather,
 8. http://kaldi-asr.org/doc/kaldi_for_dummies.html
 9. https://www.reddit.com/r/speechtech/comments/mdort1/need_help_with_training_asr_model_from_scratch/
 10.https://nextlevel.ai/best-speech-to-text-models
+11.https://www.gladia.io/blog/heres-how-we-optimized-whisper-asr-for-scale ( Damn! I became a fan )
 11.ah,,,i dunnow
 
 

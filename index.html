@@ -1,505 +1,309 @@
 <!DOCTYPE html>
 
-<html lang="en" data-theme="dark" style="color-scheme:dark">
+<html lang="en" style="color-scheme:dark">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Sanjid Hasan V15| AI Researcher</title>
+<title>Sanjid Hasan | AI Researcher</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-
-/* ── THEMES ── */
-[data-theme=“dark”]{
-–bg:#080c18;
-–bg2:#0d1224;
-–surface:rgba(255,255,255,0.04);
-–surface2:rgba(255,255,255,0.07);
-–border:rgba(255,255,255,0.09);
-–border-hover:rgba(99,179,237,0.4);
-–text:#f0f4ff;
-–text2:#a0aec0;
-–text3:#64748b;
-–cyan:#38bdf8;
-–purple:#a78bfa;
-–glow-cyan:rgba(56,189,248,0.15);
-–glow-purple:rgba(167,139,250,0.15);
-–nav-bg:rgba(8,12,24,0.75);
-–orb1:rgba(56,189,248,0.18);
-–orb2:rgba(167,139,250,0.14);
+:root{
+  --bg:#06080f;
+  --bg2:#0c0f1d;
+  --s1:rgba(255,255,255,0.04);
+  --s2:rgba(255,255,255,0.07);
+  --s3:rgba(255,255,255,0.11);
+  --b1:rgba(255,255,255,0.08);
+  --b2:rgba(255,255,255,0.14);
+  --bh:rgba(99,179,237,0.5);
+  --t1:#f0f6ff;
+  --t2:#8892a4;
+  --t3:#4a5568;
+  --c1:#38bdf8;
+  --c2:#a78bfa;
+  --c3:#f472b6;
+  --gc:linear-gradient(135deg,var(--c1),var(--c2));
 }
-
 html{scroll-behavior:smooth;color-scheme:dark;}
-body{
-background:var(–bg);
-color:var(–text);
-font-family:‘Inter’,sans-serif;
-overflow-x:hidden;
-}
-
-/* SCROLLBAR */
+body{background:var(--bg);color:var(--t1);font-family:'Inter',sans-serif;overflow-x:hidden;}
 ::-webkit-scrollbar{width:3px;}
-::-webkit-scrollbar-thumb{background:var(–cyan);border-radius:2px;}
+::-webkit-scrollbar-thumb{background:var(--c2);border-radius:2px;}
 
-/* ── NAV ── */
+/* NAV */
 nav{
-position:fixed;top:0;left:0;right:0;z-index:200;
-padding:0 2.5rem;height:64px;
+position:fixed;top:0;left:0;right:0;z-index:1000;
+height:60px;padding:0 2.5rem;
 display:flex;align-items:center;justify-content:space-between;
-background:var(–nav-bg);
-backdrop-filter:blur(24px);
-border-bottom:1px solid var(–border);
-transition:background .4s;
+background:rgba(6,8,15,0.8);
+backdrop-filter:blur(20px);
+border-bottom:1px solid var(–b1);
 }
-.nav-logo{
-font-size:1.05rem;font-weight:800;letter-spacing:-.02em;
-color:var(–text);text-decoration:none;
-}
-.nav-logo span{color:var(–cyan);}
+.logo{font-weight:800;font-size:1.05rem;color:var(–t1);text-decoration:none;letter-spacing:-.02em;}
+.logo span{color:var(–c1);}
 .nav-links{display:flex;gap:2rem;list-style:none;}
-.nav-links a{
-color:var(–text2);text-decoration:none;
-font-size:.875rem;font-weight:500;
-transition:color .2s;
-}
-.nav-links a:hover{color:var(–text);}
-.nav-right{display:flex;align-items:center;gap:.8rem;}
-.theme-toggle{
-background:var(–surface2);border:1px solid var(–border);
-width:36px;height:36px;border-radius:8px;
-cursor:pointer;font-size:.9rem;
-display:flex;align-items:center;justify-content:center;
-transition:border-color .2s;color:var(–text);
-}
-.theme-toggle:hover{border-color:var(–cyan);}
+.nav-links a{color:var(–t2);text-decoration:none;font-size:.83rem;font-weight:500;transition:color .2s;}
+.nav-links a:hover{color:var(–t1);}
 .nav-cta{
-background:var(–cyan);color:#fff;
-padding:.45rem 1.1rem;border-radius:7px;
-font-size:.82rem;font-weight:600;
-text-decoration:none;
-transition:opacity .2s,transform .2s;
-color:#0f172a;
+background:var(–gc);color:#000;
+padding:.4rem 1.1rem;border-radius:6px;
+font-size:.82rem;font-weight:700;
+text-decoration:none;transition:opacity .2s,transform .2s;
 }
-.nav-cta:hover{opacity:.88;transform:translateY(-1px);}
+.nav-cta:hover{opacity:.85;transform:translateY(-1px);}
 
-/* ── HERO ── */
+/* HERO */
 #hero{
-min-height:100vh;
-display:flex;flex-direction:column;
-align-items:center;justify-content:center;
-text-align:center;
-padding:7rem 2rem 5rem;
-position:relative;overflow:hidden;
+position:relative;height:100vh;
+display:flex;align-items:center;justify-content:center;
+text-align:center;overflow:hidden;
 }
+#three-canvas{position:absolute;inset:0;z-index:0;}
+.hero-overlay{
+position:absolute;inset:0;z-index:1;
+background:radial-gradient(ellipse 70% 60% at 50% 50%, transparent 30%, var(–bg) 100%);
+}
+.hero-content{position:relative;z-index:2;padding:0 2rem;max-width:860px;}
 
-/* Background grid */
-.hero-grid{
-position:absolute;inset:0;pointer-events:none;
-background-image:
-linear-gradient(var(–border) 1px, transparent 1px),
-linear-gradient(90deg, var(–border) 1px, transparent 1px);
-background-size:60px 60px;
-mask-image:radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
-opacity:.5;
+.badge{
+display:inline-flex;align-items:center;gap:.45rem;
+background:rgba(167,139,250,0.1);
+border:1px solid rgba(167,139,250,0.25);
+padding:.35rem .9rem;border-radius:999px;
+font-size:.72rem;font-weight:600;
+color:var(–c2);letter-spacing:.04em;
+font-family:‘Fira Code’,monospace;
+margin-bottom:1.8rem;
 }
+.badge-dot{width:5px;height:5px;border-radius:50%;background:var(–c2);animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;};}
 
-canvas#particles{position:absolute;inset:0;pointer-events:none;}
-
-/* Aurora blobs */
-.aurora{position:absolute;inset:0;pointer-events:none;}
-.aurora-blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.18;animation:drift 8s ease-in-out infinite;}
-.a1{width:600px;height:600px;background:radial-gradient(circle,var(–purple),transparent 70%);top:-10%;left:-10%;animation-delay:0s;}
-.a2{width:500px;height:500px;background:radial-gradient(circle,var(–cyan),transparent 70%);bottom:-10%;right:-5%;animation-delay:-3s;}
-.a3{width:380px;height:380px;background:radial-gradient(circle,#f533a8,transparent 70%);top:40%;left:45%;animation-delay:-5s;}
-@keyframes drift{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(30px,-20px) scale(1.06);}66%{transform:translate(-20px,30px) scale(.95);};}
-
-/* Orbs */
-.orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(80px);}
-.orb1{
-width:700px;height:700px;
-background:radial-gradient(circle, var(–orb1), transparent 65%);
-top:-15%;left:50%;transform:translateX(-50%);
-animation:breathe 7s ease-in-out infinite;
+h1{
+font-size:clamp(3.5rem,9vw,7.5rem);
+font-weight:900;letter-spacing:-.04em;
+line-height:1;margin-bottom:1rem;
+color:var(–t1);
 }
-.orb2{
-width:400px;height:400px;
-background:radial-gradient(circle, var(–orb2), transparent 65%);
-bottom:0;right:5%;
-animation:breathe 9s ease-in-out infinite reverse;
+.hero-sub{
+font-size:clamp(.95rem,2vw,1.2rem);
+color:var(–c1);font-weight:500;
+margin-bottom:1rem;min-height:1.8em;
+font-family:‘Fira Code’,monospace;
 }
-@keyframes breathe{
-0%,100%{transform:translateX(-50%) scale(1);}
-50%{transform:translateX(-50%) scale(1.12);}
-}
-.orb2{animation:breathe2 9s ease-in-out infinite reverse;}
-@keyframes breathe2{
-0%,100%{transform:scale(1);}50%{transform:scale(1.1);}
-}
-
-.hero-inner{position:relative;z-index:2;max-width:900px;}
-
-.hero-eyebrow{
-display:inline-flex;align-items:center;gap:.5rem;
-background:var(–surface2);
-border:1px solid var(–border);
-padding:.4rem 1rem;border-radius:999px;
-font-size:.78rem;font-weight:600;color:var(–text);
-margin-bottom:2rem;
-backdrop-filter:blur(12px);
-}
-.hero-eyebrow .dot{
-width:6px;height:6px;border-radius:50%;
-background:var(–cyan);
-animation:ping 2s infinite;
-}
-@keyframes ping{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(1.3);};}
-
-h1.name{
-font-size:clamp(4rem,10vw,8rem);
-font-weight:900;
-letter-spacing:-.04em;
-line-height:1;
-margin-bottom:1.2rem;
-color:var(–text);
-}
-
-.hero-roles{
-font-size:clamp(1rem,2.5vw,1.4rem);
-color:var(–text2);
-font-weight:400;
-margin-bottom:1.5rem;
-min-height:2rem;
-letter-spacing:-.01em;
-}
-.hero-roles .typed{color:var(–cyan);font-weight:600;}
-.cursor{
-display:inline-block;width:2px;height:1.1em;
-background:var(–cyan);margin-left:1px;vertical-align:text-bottom;
-animation:blink .65s infinite;
-}
-@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;};}
-
+.cursor{display:inline-block;width:2px;height:.9em;background:var(–c1);margin-left:2px;vertical-align:middle;animation:cur .65s infinite;}
+@keyframes cur{0%,100%{opacity:1;}50%{opacity:0;};}
 .hero-desc{
-font-size:clamp(1rem,1.8vw,1.15rem);
-color:var(–text);
-opacity:.75;
-line-height:1.75;
-max-width:600px;
-margin:0 auto 2.5rem;
-font-weight:400;
+color:var(–t2);font-size:1rem;line-height:1.75;
+max-width:560px;margin:0 auto 2.5rem;
 }
-
-.hero-btns{
-display:flex;gap:1rem;justify-content:center;
-flex-wrap:wrap;margin-bottom:4rem;
+.hero-btns{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;margin-bottom:3.5rem;}
+.btn-p{
+background:var(–gc);color:#000;
+padding:.75rem 1.7rem;border-radius:8px;
+font-weight:700;font-size:.9rem;text-decoration:none;
+transition:transform .2s,box-shadow .2s;
 }
-.btn-main{
-background:var(–cyan);color:#0f172a;
-padding:.8rem 1.8rem;border-radius:8px;
-font-weight:700;font-size:.95rem;
-text-decoration:none;
-transition:transform .2s,box-shadow .2s,opacity .2s;
-box-shadow:0 0 0 0 var(–glow-cyan);
-}
-.btn-main:hover{
-transform:translateY(-2px);
-box-shadow:0 8px 32px var(–glow-cyan);
-opacity:.92;
-}
-.btn-ghost{
-background:var(–surface2);
-border:1px solid var(–border);
-color:var(–text);
-padding:.8rem 1.8rem;border-radius:8px;
-font-weight:500;font-size:.95rem;
-text-decoration:none;
-backdrop-filter:blur(12px);
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(56,189,248,.25);}
+.btn-g{
+background:var(–s2);border:1px solid var(–b2);
+color:var(–t1);padding:.75rem 1.7rem;border-radius:8px;
+font-weight:500;font-size:.9rem;text-decoration:none;
 transition:border-color .2s,transform .2s;
 }
-.btn-ghost:hover{border-color:var(–cyan);transform:translateY(-2px);}
+.btn-g:hover{border-color:var(–c1);transform:translateY(-2px);}
 
-/* Stats bar */
-.stats-bar{
-display:flex;gap:0;
-background:var(–surface2);
-border:1px solid var(–border);
-border-radius:14px;
-backdrop-filter:blur(16px);
-overflow:hidden;
-max-width:600px;
-margin:0 auto;
+/* Stats */
+.stats{
+display:inline-flex;
+background:var(–s2);border:1px solid var(–b1);
+border-radius:12px;overflow:hidden;
 }
-.stat-item{
-flex:1;padding:1.2rem 1rem;text-align:center;
-border-right:1px solid var(–border);
-}
-.stat-item:last-child{border-right:none;}
-.stat-n{
-font-size:1.5rem;font-weight:800;letter-spacing:-.03em;
-background:linear-gradient(135deg,var(–cyan),var(–purple));
--webkit-background-clip:text;-webkit-text-fill-color:transparent;
+.st{padding:1rem 1.6rem;text-align:center;border-right:1px solid var(–b1);}
+.st:last-child{border-right:none;}
+.st-n{
+font-size:1.4rem;font-weight:800;letter-spacing:-.03em;
+background:var(–gc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
 display:block;
 }
-.stat-l{font-size:.72rem;color:var(–text3);margin-top:.2rem;font-weight:500;}
+.st-l{font-size:.68rem;color:var(–t3);margin-top:.15rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em;}
 
-/* ── SHARED SECTION ── */
-section{
-padding:6rem 2rem;
-max-width:1080px;margin:0 auto;
+/* SECTION BASE */
+.section{padding:8rem 2rem;max-width:1060px;margin:0 auto;}
+.sec-tag{
+font-family:‘Fira Code’,monospace;font-size:.72rem;
+color:var(–c1);letter-spacing:.18em;text-transform:uppercase;
+margin-bottom:.6rem;opacity:.9;
 }
-.sec-label{
-font-size:.72rem;font-weight:600;
-letter-spacing:.15em;text-transform:uppercase;
-color:var(–cyan);font-family:‘Fira Code’,monospace;
-margin-bottom:.7rem;
-}
-.sec-title{
-font-size:clamp(2rem,4vw,3rem);
-font-weight:800;letter-spacing:-.03em;
-line-height:1.15;margin-bottom:.8rem;
-}
-.sec-sub{
-color:var(–text);font-size:1rem;opacity:.7;
-line-height:1.7;max-width:520px;margin-bottom:3rem;
-}
-hr.divider{
-border:none;
-border-top:1px solid var(–border);
-max-width:1080px;margin:0 auto;
-}
+.sec-h{font-size:clamp(2.4rem,5vw,3.6rem);font-weight:800;letter-spacing:-.03em;margin-bottom:.9rem;line-height:1.1;}
+.sec-h em{font-style:normal;background:var(–gc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.sec-p{color:var(–t2);font-size:1rem;line-height:1.75;max-width:500px;margin-bottom:3.5rem;}
 
-/* ── CARDS ── */
+hr.sep{border:none;border-top:1px solid var(–b1);max-width:1060px;margin:0 auto;}
+
+/* CARD */
 .card{
-background:var(–surface);
-border:1px solid var(–border);
-border-radius:16px;
-backdrop-filter:blur(16px);
-transition:border-color .25s,transform .25s,box-shadow .25s;
+background:rgba(255,255,255,0.06);
+border:1px solid rgba(255,255,255,0.11);
+border-radius:18px;
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+transition:border-color .3s,transform .3s,box-shadow .3s,background .3s;
 }
 .card:hover{
-border-color:var(–border-hover);
-transform:translateY(-3px);
-box-shadow:0 16px 40px rgba(0,0,0,.12);
+border-color:rgba(99,179,237,0.45);
+background:rgba(255,255,255,0.09);
+transform:translateY(-4px);
+box-shadow:0 24px 60px rgba(0,0,0,.5), 0 0 0 1px rgba(56,189,248,0.08);
 }
 
-/* ── RESEARCH ── */
-.paper-card{
-padding:2rem 2rem 1.8rem;
-position:relative;overflow:hidden;
-margin-bottom:2rem;
+/* CHIPS */
+.chips{display:flex;flex-wrap:wrap;gap:.35rem;}
+.chip{
+padding:.2rem .6rem;border-radius:999px;
+font-size:.68rem;font-weight:600;letter-spacing:.02em;
+font-family:‘Fira Code’,monospace;border:1px solid;
 }
-.paper-card::after{
-content:’’;position:absolute;
-inset:0;pointer-events:none;
-background:radial-gradient(ellipse 60% 40% at 90% 10%, var(–glow-purple), transparent);
+.cb{background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.2);color:var(–c1);}
+.cp{background:rgba(167,139,250,.08);border-color:rgba(167,139,250,.2);color:var(–c2);}
+.cr{background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.2);color:#f87171;}
+
+/* PAPER */
+.paper{padding:2.2rem 2.2rem 2rem;position:relative;overflow:hidden;margin-bottom:2rem;}
+.paper::before{content:’’;position:absolute;top:0;left:0;right:0;height:2px;background:var(–gc);}
+.paper::after{
+content:’’;position:absolute;top:0;right:0;
+width:350px;height:350px;
+background:radial-gradient(circle,rgba(167,139,250,.07),transparent 65%);
+pointer-events:none;
 }
-.paper-top-bar{
-position:absolute;top:0;left:0;right:0;height:2px;
-background:linear-gradient(90deg,var(–cyan),var(–purple));
-}
-.arxiv-pill{
-display:inline-flex;align-items:center;gap:.35rem;
-background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);
-padding:.25rem .7rem;border-radius:999px;
-font-size:.72rem;font-family:‘Fira Code’,monospace;color:#f87171;
+.paper-label{
+display:inline-flex;align-items:center;gap:.4rem;
+background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);
+padding:.25rem .7rem;border-radius:4px;
+font-size:.68rem;font-family:‘Fira Code’,monospace;color:#f87171;
 margin-bottom:1.1rem;
 }
-.paper-title{
-font-size:1.2rem;font-weight:700;line-height:1.45;
-margin-bottom:.7rem;letter-spacing:-.01em;
+.paper-title{font-size:1.2rem;font-weight:700;line-height:1.45;margin-bottom:.65rem;letter-spacing:-.01em;}
+.paper-title a{color:var(–t1);text-decoration:none;transition:color .2s;}
+.paper-title a:hover{color:var(–c1);}
+.paper-authors{font-size:.75rem;color:var(–t3);font-family:‘Fira Code’,monospace;margin-bottom:1rem;}
+.paper-abs{
+color:var(–t2);font-size:.9rem;line-height:1.75;
+border-left:2px solid var(–c2);padding-left:1.1rem;margin-bottom:1.3rem;
 }
-.paper-title a{color:var(–text);text-decoration:none;}
-.paper-title a:hover{color:var(–cyan);}
-.paper-authors{
-font-size:.8rem;color:var(–text3);
-font-family:‘Fira Code’,monospace;margin-bottom:.9rem;
-}
-.paper-abstract{
-color:var(–text2);font-size:.9rem;line-height:1.7;
-border-left:2px solid var(–purple);
-padding-left:1rem;margin-bottom:1.2rem;
-}
-.chip-row{display:flex;flex-wrap:wrap;gap:.4rem;}
-.chip{
-padding:.22rem .65rem;border-radius:999px;
-font-size:.71rem;font-weight:500;font-family:‘Fira Code’,monospace;
-border:1px solid;
-}
-.chip-cyan{background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.25);color:var(–cyan);}
-.chip-purple{background:rgba(167,139,250,.08);border-color:rgba(167,139,250,.25);color:var(–purple);}
 
-.ds-grid{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
-gap:1rem;
-}
-.ds-card{padding:1.3rem;}
-.ds-name{font-weight:700;font-size:.9rem;margin-bottom:.35rem;}
-.ds-desc{color:var(–text2);font-size:.8rem;line-height:1.55;margin-bottom:.8rem;}
-.ds-link{
-color:var(–cyan);font-size:.76rem;
-font-family:‘Fira Code’,monospace;text-decoration:none;
-}
-.ds-link:hover{text-decoration:underline;}
-
-/* ── COMPETITIONS ── */
-.comp-list{display:flex;flex-direction:column;gap:.75rem;}
-.comp-row{
-padding:1.3rem 1.6rem;border-radius:14px;
-display:grid;
-grid-template-columns:80px 1fr auto;
+/* COMPETITIONS */
+.comp-list{display:flex;flex-direction:column;gap:.8rem;}
+.comp{
+padding:1.4rem 1.8rem;border-radius:16px;
+display:grid;grid-template-columns:72px 1fr auto;
 align-items:center;gap:1.5rem;
 }
-.comp-badge{
+.comp-r{
 font-size:1.6rem;font-weight:900;
 font-family:‘Fira Code’,monospace;
-letter-spacing:-.04em;
-background:linear-gradient(135deg,var(–cyan),var(–purple));
--webkit-background-clip:text;-webkit-text-fill-color:transparent;
-text-align:center;
+background:var(–gc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+text-align:center;line-height:1.2;
 }
-.comp-name{font-weight:700;font-size:.95rem;margin-bottom:.25rem;}
-.comp-detail{color:var(–text2);font-size:.8rem;line-height:1.4;}
-.comp-year{
-color:var(–text3);font-size:.75rem;
-font-family:‘Fira Code’,monospace;white-space:nowrap;
-}
-.highlight-note{
-color:var(–cyan);font-size:.76rem;font-weight:600;
-}
+.comp-n{font-weight:700;font-size:.95rem;margin-bottom:.25rem;letter-spacing:-.01em;}
+.comp-d{color:var(–t2);font-size:.8rem;line-height:1.45;}
+.comp-hl{color:var(–c1);font-size:.76rem;font-weight:600;}
+.comp-y{color:var(–t3);font-size:.72rem;font-family:‘Fira Code’,monospace;white-space:nowrap;}
 
-/* ── PROJECTS ── */
-.proj-grid{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
-gap:1.2rem;
+/* PROJECTS */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.3rem;}
+.proj{padding:1.8rem;position:relative;overflow:hidden;}
+.proj::after{
+content:’’;position:absolute;bottom:0;left:0;right:0;height:1px;
+background:var(–gc);opacity:0;transition:opacity .3s;
 }
-.proj-card{padding:1.6rem;}
-.proj-emoji{font-size:1.8rem;margin-bottom:1rem;display:block;}
-.proj-name{font-weight:700;font-size:1.05rem;margin-bottom:.5rem;letter-spacing:-.01em;}
-.proj-desc{color:var(–text2);font-size:.85rem;line-height:1.65;margin-bottom:1.1rem;}
-.proj-footer{display:flex;justify-content:space-between;align-items:center;}
-.proj-links{display:flex;gap:.9rem;}
-.proj-link{
-color:var(–cyan);font-size:.78rem;
-font-family:‘Fira Code’,monospace;text-decoration:none;
-}
-.proj-link:hover{text-decoration:underline;}
+.proj:hover::after{opacity:1;}
+.proj-ico{font-size:2rem;margin-bottom:1rem;display:block;}
+.proj-n{font-weight:700;font-size:1.05rem;margin-bottom:.5rem;letter-spacing:-.01em;}
+.proj-d{color:var(–t2);font-size:.85rem;line-height:1.65;margin-bottom:1.1rem;}
+.proj-lnks{display:flex;gap:.9rem;}
+.proj-lnk{color:var(–c1);font-size:.76rem;font-family:‘Fira Code’,monospace;text-decoration:none;}
+.proj-lnk:hover{text-decoration:underline;}
 
-/* ── SKILLS ── */
-.skill-grid{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
-gap:1rem;
-}
-.skill-card{padding:1.4rem;}
-.skill-cat{
-font-size:.7rem;font-weight:600;letter-spacing:.12em;
-text-transform:uppercase;color:var(–cyan);
-font-family:‘Fira Code’,monospace;margin-bottom:.6rem;
-}
-.skill-heading{font-weight:700;font-size:.95rem;margin-bottom:.85rem;}
-.skill-pills{display:flex;flex-wrap:wrap;gap:.4rem;}
-.skill-pill{
-background:var(–surface2);border:1px solid var(–border);
-padding:.22rem .6rem;border-radius:6px;
-font-size:.72rem;color:var(–text2);
-}
-
-/* ── WRITING ── */
-.writing-grid{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-gap:1rem;
-}
-.writing-card{
-padding:1.5rem;text-decoration:none;color:var(–text);
-display:block;
-}
-.writing-platform{
-font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-color:var(–text3);font-family:‘Fira Code’,monospace;margin-bottom:.6rem;
-}
-.writing-title{font-weight:700;font-size:.95rem;margin-bottom:.5rem;line-height:1.4;letter-spacing:-.01em;}
-.writing-desc{color:var(–text2);font-size:.82rem;line-height:1.6;}
-
-/* ── ABOUT ── */
-.about-cols{display:grid;grid-template-columns:1.1fr .9fr;gap:2.5rem;align-items:start;}
-.about-body{color:var(–text);font-size:.97rem;line-height:1.8;}
-.about-body p{margin-bottom:1rem;opacity:.85;}
-.about-body strong{color:var(–text);font-weight:700;opacity:1;}
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:start;}
+.about-txt{color:var(–t2);font-size:1rem;line-height:1.85;}
+.about-txt p{margin-bottom:1.1rem;}
+.about-txt strong{color:var(–t1);font-weight:600;}
 .info-stack{display:flex;flex-direction:column;gap:.7rem;}
-.info-tile{
-display:flex;gap:.9rem;align-items:center;
-padding:.9rem 1.1rem;border-radius:12px;
-}
-.info-icon{font-size:1rem;flex-shrink:0;}
-.info-label{font-size:.7rem;color:var(–text3);font-family:‘Fira Code’,monospace;margin-bottom:.15rem;}
-.info-val{font-size:.88rem;font-weight:600;}
+.info-tile{display:flex;gap:.9rem;align-items:center;padding:1rem 1.1rem;border-radius:14px;}
+.info-ico{font-size:1rem;flex-shrink:0;}
+.info-lbl{font-size:.65rem;color:var(–t3);font-family:‘Fira Code’,monospace;margin-bottom:.15rem;}
+.info-val{font-size:.88rem;font-weight:600;color:var(–t1);}
 
-/* ── CONTACT ── */
-.contact-cols{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
-.clink-list{display:flex;flex-direction:column;gap:.6rem;}
-.clink{
-display:flex;align-items:center;gap:1rem;
-padding:.9rem 1.1rem;border-radius:12px;
-text-decoration:none;color:var(–text);
-transition:border-color .2s,transform .2s;
+/* SKILLS */
+.sk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1.1rem;}
+.sk{padding:1.6rem;}
+.sk-cat{font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(–c1);font-family:‘Fira Code’,monospace;margin-bottom:.6rem;}
+.sk-h{font-weight:700;font-size:.95rem;margin-bottom:.9rem;letter-spacing:-.01em;}
+.sk-pills{display:flex;flex-wrap:wrap;gap:.4rem;}
+.sk-p{
+background:rgba(255,255,255,0.07);
+border:1px solid rgba(255,255,255,0.1);
+padding:.22rem .6rem;border-radius:6px;
+font-size:.71rem;color:var(–t2);
+transition:border-color .2s,color .2s;
 }
-.clink:hover{border-color:var(–border-hover);transform:translateX(3px);}
-.clink-icon{
-width:34px;height:34px;border-radius:8px;
-display:flex;align-items:center;justify-content:center;
-font-size:.85rem;flex-shrink:0;
-}
-.clink-platform{font-size:.68rem;color:var(–text3);font-family:‘Fira Code’,monospace;}
-.clink-handle{font-size:.88rem;font-weight:600;}
-.open-card{padding:1.8rem;}
-.open-title{font-weight:700;font-size:1rem;margin-bottom:1.2rem;}
-.open-row{
-display:flex;align-items:center;gap:.75rem;
-padding:.65rem 0;border-bottom:1px solid var(–border);
-font-size:.88rem;color:var(–text2);
-}
-.open-row:last-of-type{border-bottom:none;}
-.open-dot{width:7px;height:7px;border-radius:50%;background:var(–cyan);flex-shrink:0;}
-.location-note{
-margin-top:1.3rem;padding-top:1.1rem;
-border-top:1px solid var(–border);
-font-size:.82rem;color:var(–text2);
-}
+.sk-p:hover{border-color:var(–c1);color:var(–t1);}
 
-/* SCROLL REVEAL */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease;}
+/* WRITING */
+.wr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.1rem;}
+.wr{padding:1.6rem;text-decoration:none;color:var(–t1);display:block;}
+.wr-plat{font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(–t3);font-family:‘Fira Code’,monospace;margin-bottom:.6rem;}
+.wr-t{font-weight:700;font-size:.95rem;margin-bottom:.5rem;line-height:1.4;letter-spacing:-.01em;}
+.wr-d{color:var(–t2);font-size:.82rem;line-height:1.6;}
+
+/* DATASETS */
+.ds-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.1rem;}
+.ds{padding:1.4rem;}
+.ds-name{font-weight:700;font-size:.9rem;margin-bottom:.35rem;}
+.ds-desc{color:var(–t2);font-size:.8rem;line-height:1.55;margin-bottom:.85rem;}
+.ds-lnk{color:var(–c1);font-size:.75rem;font-family:‘Fira Code’,monospace;text-decoration:none;}
+.ds-lnk:hover{text-decoration:underline;}
+
+/* CONTACT */
+.ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+.ct-links{display:flex;flex-direction:column;gap:.65rem;}
+.ct-lnk{display:flex;align-items:center;gap:.9rem;padding:.95rem 1.1rem;border-radius:14px;text-decoration:none;color:var(–t1);transition:border-color .2s,transform .2s;}
+.ct-lnk:hover{border-color:rgba(99,179,237,0.45);transform:translateX(4px);}
+.ct-ico{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0;}
+.ct-plat{font-size:.66rem;color:var(–t3);font-family:‘Fira Code’,monospace;}
+.ct-h{font-size:.88rem;font-weight:600;}
+.open-card{padding:1.9rem;}
+.open-t{font-weight:700;font-size:1rem;margin-bottom:1.2rem;letter-spacing:-.01em;}
+.open-r{display:flex;align-items:center;gap:.75rem;padding:.65rem 0;border-bottom:1px solid rgba(255,255,255,0.07);font-size:.88rem;color:var(–t2);}
+.open-r:last-of-type{border-bottom:none;}
+.open-dot{width:6px;height:6px;border-radius:50%;background:var(–c1);flex-shrink:0;box-shadow:0 0 6px var(–c1);}
+.loc{margin-top:1.3rem;padding-top:1.1rem;border-top:1px solid rgba(255,255,255,0.07);font-size:.82rem;color:var(–t2);line-height:1.6;}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
 .reveal.visible{opacity:1;transform:none;}
 
 /* FOOTER */
-footer{
-text-align:center;padding:2.5rem 2rem;
-border-top:1px solid var(–border);
-color:var(–text3);font-size:.82rem;
-}
-footer a{color:var(–cyan);text-decoration:none;}
+footer{text-align:center;padding:2.5rem;border-top:1px solid var(–b1);color:var(–t3);font-size:.78rem;}
+footer a{color:var(–c1);text-decoration:none;}
 
-/* RESPONSIVE */
 @media(max-width:700px){
 .nav-links{display:none;}
-.about-cols,.contact-cols{grid-template-columns:1fr;}
-.comp-row{grid-template-columns:60px 1fr;}
-.comp-year{display:none;}
-.stats-bar{flex-wrap:wrap;}
-.stat-item{min-width:50%;}
+.about-grid,.ct-grid{grid-template-columns:1fr;}
+.comp{grid-template-columns:55px 1fr;}
+.comp-y{display:none;}
 }
 </style>
 
 </head>
 <body>
 
-<!-- NAV -->
-
 <nav>
-  <a class="nav-logo" href="#hero">Sanjid<span>.</span></a>
+  <a class="logo" href="#hero">Sanjid<span>.</span></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#research">Research</a></li>
@@ -508,472 +312,354 @@ footer a{color:var(–cyan);text-decoration:none;}
     <li><a href="#writing">Writing</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-      <div class="nav-right">
-    <a class="nav-cta" href="mailto:sanjid9657@gmail.com">Let's Talk</a>
-  </div>
+  <a class="nav-cta" href="mailto:sanjid9657@gmail.com">Let's Talk</a>
 </nav>
 
 <!-- HERO -->
 
 <section id="hero">
-  <div class="hero-grid"></div>
-  <canvas id="particles"></canvas>
-  <div class="orb orb1"></div>
-  <div class="orb orb2"></div>
-  <div class="aurora">
-    <div class="aurora-blob a1"></div>
-    <div class="aurora-blob a2"></div>
-    <div class="aurora-blob a3"></div>
-  </div>
-
-  <div class="hero-inner">
-    <div class="hero-eyebrow">
-      <span class="dot"></span>
-      EEE @ KUET · 3rd Year · Khulna, Bangladesh
+  <canvas id="three-canvas"></canvas>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="badge"><span class="badge-dot"></span>EEE @ KUET · 3rd Year · Khulna, Bangladesh</div>
+    <h1>Sanjid Hasan</h1>
+    <div class="hero-sub"><span id="tw"></span><span class="cursor"></span></div>
+    <p class="hero-desc">I build AI systems at the intersection of hardware and software — from Bengali speech research to embedded robotics. Kaggle Expert, arXiv author, and founder of Team Frozen Voltage.</p>
+    <div class="hero-btns">
+      <a class="btn-p" href="#research">View My Work</a>
+      <a class="btn-g" href="assets/cv/Sanjid_Hasan_CV.pdf" target="_blank">Download CV</a>
+      <a class="btn-g" href="mailto:sanjid9657@gmail.com">Let's Talk</a>
     </div>
-
-```
-<h1 class="name">Sanjid Hasan</h1>
-
-<div class="hero-roles">
-  <span class="typed" id="typewriter"></span><span class="cursor"></span>
-</div>
-
-<p class="hero-desc">
-  I build AI systems at the intersection of hardware and software —
-  from Bengali speech research to embedded robotics.
-  Kaggle Expert, arXiv author, and founder of Team Frozen Voltage.
-</p>
-
-<div class="hero-btns">
-  <a class="btn-main" href="#research">View My Work</a>
-  <a class="btn-ghost" href="assets/cv/Sanjid_Hasan_CV.pdf" target="_blank">Download CV</a>
-  <a class="btn-ghost" href="mailto:sanjid9657@gmail.com">Let's Talk</a>
-</div>
-
-<div class="stats-bar">
-  <div class="stat-item">
-    <span class="stat-n">882h</span>
-    <div class="stat-l">Bengali Speech Data</div>
-  </div>
-  <div class="stat-item">
-    <span class="stat-n">Top 10</span>
-    <div class="stat-l">Datathon Finishes</div>
-  </div>
-  <div class="stat-item">
-    <span class="stat-n">1000+</span>
-    <div class="stat-l">Maps Contributions</div>
-  </div>
-  <div class="stat-item">
-    <span class="stat-n">L7</span>
-    <div class="stat-l">Local Guide</div>
-  </div>
-</div>
-```
-
+    <div class="stats">
+      <div class="st"><span class="st-n">882h</span><div class="st-l">Bengali Speech</div></div>
+      <div class="st"><span class="st-n">Top 10</span><div class="st-l">Datathons</div></div>
+      <div class="st"><span class="st-n">1000+</span><div class="st-l">Maps Contributions</div></div>
+      <div class="st"><span class="st-n">L7</span><div class="st-l">Local Guide</div></div>
+    </div>
   </div>
 </section>
 
-<hr class="divider"/>
+<hr class="sep"/>
 
 <!-- ABOUT -->
 
-<section id="about" class="reveal">
-  <div class="sec-label">// who i am</div>
-  <h2 class="sec-title">About Me</h2>
-  <div class="about-cols">
-    <div class="about-body">
+<div class="section reveal" id="about">
+  <div class="sec-tag">// who i am</div>
+  <h2 class="sec-h">About <em>Me</em></h2>
+  <div class="about-grid">
+    <div class="about-txt">
       <p>I'm a <strong>3rd-year Electrical & Electronic Engineering student at KUET</strong>, Bangladesh — building machine learning systems with rigorous research and production-grade thinking.</p>
-      <p>My work spans <strong>Bengali low-resource ASR, computer vision, NLP, and embedded systems</strong>, with a strong focus on reproducible pipelines and open datasets that empower the community.</p>
+      <p>My work spans <strong>Bengali low-resource ASR, computer vision, NLP, and embedded systems</strong>, with a focus on reproducible pipelines and open datasets that empower the community.</p>
       <p>I believe <strong>true mastery is demonstrated by the ability to teach.</strong> That drives my writing, open-source work, and every competition I enter.</p>
-      <div class="chip-row" style="margin-top:1.4rem;">
-        <span class="chip chip-cyan">Bengali ASR</span>
-        <span class="chip chip-cyan">LLM Fine-tuning</span>
-        <span class="chip chip-cyan">Computer Vision</span>
-        <span class="chip chip-purple">Edge AI</span>
-        <span class="chip chip-purple">PCB Design</span>
-        <span class="chip chip-purple">Embedded Systems</span>
+      <div class="chips" style="margin-top:1.3rem;">
+        <span class="chip cb">Bengali ASR</span>
+        <span class="chip cb">LLM Fine-tuning</span>
+        <span class="chip cb">Computer Vision</span>
+        <span class="chip cp">Edge AI</span>
+        <span class="chip cp">PCB Design</span>
+        <span class="chip cp">Embedded Systems</span>
       </div>
     </div>
     <div class="info-stack">
-      <div class="info-tile card">
-        <span class="info-icon">🎓</span>
-        <div><div class="info-label">Education</div><div class="info-val">B.Sc. EEE · KUET · 3rd Year</div></div>
-      </div>
-      <div class="info-tile card">
-        <span class="info-icon">📍</span>
-        <div><div class="info-label">Location</div><div class="info-val">Khulna, Bangladesh</div></div>
-      </div>
-      <div class="info-tile card">
-        <span class="info-icon">🏅</span>
-        <div><div class="info-label">Kaggle</div><div class="info-val">Notebook & Dataset Expert</div></div>
-      </div>
-      <div class="info-tile card">
-        <span class="info-icon">🗺️</span>
-        <div><div class="info-label">Google Maps</div><div class="info-val">Level 7 Local Guide · 1000+ contributions</div></div>
-      </div>
-      <div class="info-tile card">
-        <span class="info-icon">⚡</span>
-        <div><div class="info-label">Team</div><div class="info-val">Founder · Team Frozen Voltage @ KUET</div></div>
-      </div>
+      <div class="info-tile card"><span class="info-ico">🎓</span><div><div class="info-lbl">Education</div><div class="info-val">B.Sc. EEE · KUET · 3rd Year</div></div></div>
+      <div class="info-tile card"><span class="info-ico">📍</span><div><div class="info-lbl">Location</div><div class="info-val">Khulna, Bangladesh</div></div></div>
+      <div class="info-tile card"><span class="info-ico">🏅</span><div><div class="info-lbl">Kaggle</div><div class="info-val">Notebook & Dataset Expert</div></div></div>
+      <div class="info-tile card"><span class="info-ico">🗺️</span><div><div class="info-lbl">Google Maps</div><div class="info-val">Level 7 Local Guide · 1000+ contributions</div></div></div>
+      <div class="info-tile card"><span class="info-ico">⚡</span><div><div class="info-lbl">Team</div><div class="info-val">Founder · Team Frozen Voltage @ KUET</div></div></div>
     </div>
   </div>
-</section>
+</div>
 
-<hr class="divider"/>
+<hr class="sep"/>
 
 <!-- RESEARCH -->
 
-<section id="research" class="reveal">
-  <div class="sec-label">// research & datasets</div>
-  <h2 class="sec-title">Research & Publications</h2>
-  <p class="sec-sub">Open data and applied research on Bengali low-resource speech and NLP.</p>
+<div class="section reveal" id="research">
+  <div class="sec-tag">// research & datasets</div>
+  <h2 class="sec-h"><em>Research</em> & Publications</h2>
+  <p class="sec-p">Open data and applied research on Bengali low-resource speech and NLP.</p>
 
-  <div class="card paper-card">
-    <div class="paper-top-bar"></div>
-    <div class="arxiv-pill">📄 arXiv · 2602.23070 · Feb 2026</div>
-    <div class="paper-title">
-      <a href="https://arxiv.org/abs/2602.23070" target="_blank">
-        Make It Hard to Hear, Easy to Learn: Long-Form Bengali ASR and Speaker Diarization via Extreme Augmentation and Perfect Alignment
-      </a>
-    </div>
+  <div class="card paper">
+    <div class="paper-label">📄 arXiv · 2602.23070 · Feb 2026</div>
+    <div class="paper-title"><a href="https://arxiv.org/abs/2602.23070" target="_blank">Make It Hard to Hear, Easy to Learn: Long-Form Bengali ASR and Speaker Diarization via Extreme Augmentation and Perfect Alignment</a></div>
     <div class="paper-authors">Sanjid Hasan · Risalat Labib · A H M Fuad · Bayazid Hasan</div>
-    <p class="paper-abstract">
-      Introduces Lipi-Ghor-882 — an 882-hour multi-speaker Bengali speech corpus — and demonstrates that targeted fine-tuning with synthetic acoustic degradation outperforms raw data scaling for low-resource ASR. Won 2nd Runner-Up + Best Dataset Award at DL Sprint 4.0, BUET CSE Fest 2026.
-    </p>
-    <div class="chip-row">
-      <span class="chip chip-cyan">Bengali ASR</span>
-      <span class="chip chip-cyan">Speaker Diarization</span>
-      <span class="chip chip-cyan">Whisper</span>
-      <span class="chip chip-purple">882h Dataset</span>
-      <span class="chip chip-purple">Low-Resource NLP</span>
+    <p class="paper-abs">Introduces Lipi-Ghor-882 — an 882-hour multi-speaker Bengali speech corpus — and demonstrates that targeted fine-tuning with synthetic acoustic degradation outperforms raw data scaling for low-resource ASR. Won 2nd Runner-Up + Best Dataset Award at DL Sprint 4.0, BUET CSE Fest 2026.</p>
+    <div class="chips">
+      <span class="chip cb">Bengali ASR</span>
+      <span class="chip cb">Speaker Diarization</span>
+      <span class="chip cb">Whisper</span>
+      <span class="chip cp">882h Dataset</span>
+      <span class="chip cp">Low-Resource NLP</span>
     </div>
   </div>
 
-  <h3 style="font-size:.8rem;color:var(--text3);font-family:'Fira Code',monospace;margin-bottom:1rem;">// public datasets</h3>
+  <p style="font-size:.72rem;color:var(--t3);font-family:'Fira Code',monospace;margin-bottom:1rem;">// public datasets</p>
   <div class="ds-grid">
-    <div class="card ds-card">
+    <div class="card ds">
       <div class="ds-name">Lipi-Ghor-bn-882-SSTT</div>
-      <div class="ds-desc">882-hour multi-speaker Bengali speech corpus for ASR and diarization research.</div>
-      <div class="chip-row" style="margin-bottom:.7rem;"><span class="chip chip-cyan">Speech</span><span class="chip chip-purple">Bengali</span></div>
-      <a class="ds-link" href="https://huggingface.co/datasets/Sanjidh090/Lipi-Ghor-bn-882-SSTT/" target="_blank">HuggingFace →</a>
+      <div class="ds-desc">882-hour multi-speaker Bengali speech corpus for ASR and diarization.</div>
+      <div class="chips" style="margin-bottom:.7rem;"><span class="chip cb">Speech</span><span class="chip cp">Bengali</span></div>
+      <a class="ds-lnk" href="https://huggingface.co/datasets/Sanjidh090/Lipi-Ghor-bn-882-SSTT/" target="_blank">HuggingFace →</a>
     </div>
-    <div class="card ds-card">
+    <div class="card ds">
       <div class="ds-name">Bangladesh News Dataset</div>
-      <div class="ds-desc">English news corpus for topic modeling, summarization, and NLP experiments.</div>
-      <div class="chip-row" style="margin-bottom:.7rem;"><span class="chip chip-cyan">NLP</span><span class="chip chip-purple">Text</span></div>
-      <a class="ds-link" href="https://www.kaggle.com/sanjidh090" target="_blank">Kaggle →</a>
+      <div class="ds-desc">English news corpus for topic modeling, summarization, and NLP.</div>
+      <div class="chips" style="margin-bottom:.7rem;"><span class="chip cb">NLP</span><span class="chip cp">Text</span></div>
+      <a class="ds-lnk" href="https://www.kaggle.com/sanjidh090" target="_blank">Kaggle →</a>
     </div>
-    <div class="card ds-card">
+    <div class="card ds">
       <div class="ds-name">KUET Whispers Dataset</div>
-      <div class="ds-desc">Student community posts for sentiment analysis and cultural NLP research.</div>
-      <div class="chip-row" style="margin-bottom:.7rem;"><span class="chip chip-cyan">Social</span><span class="chip chip-purple">Bangla</span></div>
-      <a class="ds-link" href="https://www.kaggle.com/sanjidh090" target="_blank">Kaggle →</a>
+      <div class="ds-desc">Student community posts for sentiment and cultural NLP research.</div>
+      <div class="chips" style="margin-bottom:.7rem;"><span class="chip cb">Social</span><span class="chip cp">Bangla</span></div>
+      <a class="ds-lnk" href="https://www.kaggle.com/sanjidh090" target="_blank">Kaggle →</a>
     </div>
-    <div class="card ds-card">
+    <div class="card ds">
       <div class="ds-name">Google Maps — Khulna</div>
-      <div class="ds-desc">Geospatial contributions documenting local heritage and city infrastructure.</div>
-      <div class="chip-row" style="margin-bottom:.7rem;"><span class="chip chip-cyan">Geo</span><span class="chip chip-purple">Heritage</span></div>
-      <a class="ds-link" href="https://maps.google.com/localguides/profile" target="_blank">Maps →</a>
+      <div class="ds-desc">Geospatial contributions documenting local heritage and infrastructure.</div>
+      <div class="chips" style="margin-bottom:.7rem;"><span class="chip cb">Geo</span><span class="chip cp">Heritage</span></div>
+      <a class="ds-lnk" href="https://maps.google.com/localguides/profile" target="_blank">Maps →</a>
     </div>
   </div>
-</section>
+</div>
 
-<hr class="divider"/>
+<hr class="sep"/>
 
 <!-- COMPETITIONS -->
 
-<section id="competitions" class="reveal">
-  <div class="sec-label">// competition record</div>
-  <h2 class="sec-title">Competition Results</h2>
-  <p class="sec-sub">National and international datathon finishes — 2025–2026.</p>
+<div class="section reveal" id="competitions">
+  <div class="sec-tag">// competition record</div>
+  <h2 class="sec-h">Competition <em>Results</em></h2>
+  <p class="sec-p">National and international datathon finishes — 2025–2026.</p>
   <div class="comp-list">
-    <div class="card comp-row">
-      <div class="comp-badge">🥉</div>
-      <div>
-        <div class="comp-name">BUET CSE Fest — DL Sprint 4.0</div>
-        <div class="comp-detail">2nd Runner-Up + Best Dataset Award · Team Villagers · National Datathon<br><span class="highlight-note">Linked to arXiv paper & Lipi-Ghor-882</span></div>
-      </div>
-      <div class="comp-year">2026</div>
+    <div class="card comp">
+      <div class="comp-r">🥉</div>
+      <div><div class="comp-n">BUET CSE Fest — DL Sprint 4.0</div><div class="comp-d">2nd Runner-Up + Best Dataset Award · Team Villagers · National<br><span class="comp-hl">Linked to arXiv paper & Lipi-Ghor-882</span></div></div>
+      <div class="comp-y">2026</div>
     </div>
-    <div class="card comp-row">
-      <div class="comp-badge">3rd</div>
-      <div>
-        <div class="comp-name">AgriYield 2025</div>
-        <div class="comp-detail">Crop Yield Prediction · Soil + Weather Features · <span class="highlight-note">Solo submission — no team</span></div>
-      </div>
-      <div class="comp-year">2025</div>
+    <div class="card comp">
+      <div class="comp-r">3rd</div>
+      <div><div class="comp-n">AgriYield 2025</div><div class="comp-d">Crop Yield Prediction · Soil + Weather · <span class="comp-hl">Solo — no team</span></div></div>
+      <div class="comp-y">2025</div>
     </div>
-    <div class="card comp-row">
-      <div class="comp-badge">4th</div>
-      <div>
-        <div class="comp-name">NWU CSE Fest Datathon</div>
-        <div class="comp-detail">Team Maverics · 92% Cohen Kappa · National Competition</div>
-      </div>
-      <div class="comp-year">2025</div>
+    <div class="card comp">
+      <div class="comp-r">4th</div>
+      <div><div class="comp-n">NWU CSE Fest Datathon</div><div class="comp-d">Team Maverics · 92% Cohen Kappa · National</div></div>
+      <div class="comp-y">2025</div>
     </div>
-    <div class="card comp-row">
-      <div class="comp-badge">8th</div>
-      <div>
-        <div class="comp-name">First Byte Datathon</div>
-        <div class="comp-detail">Team Frozen Voltage · Top 10 · Intra-KUET Competition</div>
-      </div>
-      <div class="comp-year">2025</div>
+    <div class="card comp">
+      <div class="comp-r">8th</div>
+      <div><div class="comp-n">First Byte Datathon</div><div class="comp-d">Team Frozen Voltage · Top 10 · Intra-KUET</div></div>
+      <div class="comp-y">2025</div>
     </div>
-    <div class="card comp-row">
-      <div class="comp-badge">Top<br>60</div>
-      <div>
-        <div class="comp-name">CUET CSE Fest 2025</div>
-        <div class="comp-detail">Team Envisage · Political Meme Detection · 80% F1 Score</div>
-      </div>
-      <div class="comp-year">2025</div>
+    <div class="card comp">
+      <div class="comp-r">T60</div>
+      <div><div class="comp-n">CUET CSE Fest 2025</div><div class="comp-d">Team Envisage · Political Meme Detection · 80% F1</div></div>
+      <div class="comp-y">2025</div>
     </div>
-    <div class="card comp-row">
-      <div class="comp-badge">3&5</div>
-      <div>
-        <div class="comp-name">Legends of Logic</div>
-        <div class="comp-detail">Team Frozen Voltage · Math History Chronicles</div>
-      </div>
-      <div class="comp-year">2025</div>
+    <div class="card comp">
+      <div class="comp-r">3&5</div>
+      <div><div class="comp-n">Legends of Logic</div><div class="comp-d">Team Frozen Voltage · Math History Chronicles</div></div>
+      <div class="comp-y">2025</div>
     </div>
   </div>
-</section>
+</div>
 
-<hr class="divider"/>
+<hr class="sep"/>
 
 <!-- PROJECTS -->
 
-<section id="projects" class="reveal">
-  <div class="sec-label">// what i've built</div>
-  <h2 class="sec-title">Featured Projects</h2>
-  <p class="sec-sub">Applied AI systems, open datasets, and embedded engineering.</p>
+<div class="section reveal" id="projects">
+  <div class="sec-tag">// what i've built</div>
+  <h2 class="sec-h">Featured <em>Projects</em></h2>
+  <p class="sec-p">Applied AI systems, open datasets, and embedded engineering.</p>
   <div class="proj-grid">
-    <div class="card proj-card">
-      <span class="proj-emoji">🎙️</span>
-      <div class="proj-name">Bengali ASR Pipeline</div>
-      <div class="proj-desc">Whisper-based long-form ASR with extreme augmentation. Speaker diarization surfacing SOTA failure modes on Bengali data. Core of the arXiv publication.</div>
-      <div class="chip-row" style="margin-bottom:1rem;"><span class="chip chip-cyan">PyTorch</span><span class="chip chip-cyan">Whisper</span><span class="chip chip-purple">ASR</span></div>
-      <div class="proj-links">
-        <a class="proj-link" href="https://arxiv.org/abs/2602.23070" target="_blank">arXiv →</a>
-        <a class="proj-link" href="https://huggingface.co/datasets/Sanjidh090/Lipi-Ghor-bn-882-SSTT/" target="_blank">Dataset →</a>
-      </div>
+    <div class="card proj">
+      <span class="proj-ico">🎙️</span>
+      <div class="proj-n">Bengali ASR Pipeline</div>
+      <div class="proj-d">Whisper-based long-form ASR with extreme augmentation. Speaker diarization revealing SOTA failure modes on Bengali. Core of the arXiv publication.</div>
+      <div class="chips" style="margin-bottom:.9rem;"><span class="chip cb">PyTorch</span><span class="chip cb">Whisper</span><span class="chip cp">ASR</span></div>
+      <div class="proj-lnks"><a class="proj-lnk" href="https://arxiv.org/abs/2602.23070" target="_blank">arXiv →</a><a class="proj-lnk" href="https://huggingface.co/datasets/Sanjidh090/Lipi-Ghor-bn-882-SSTT/" target="_blank">Dataset →</a></div>
     </div>
-    <div class="card proj-card">
-      <span class="proj-emoji">🌾</span>
-      <div class="proj-name">AgriYield Prediction</div>
-      <div class="proj-desc">Crop yield prediction using soil and weather features. 3rd place as a solo submission — no team, no shortcuts. Full feature engineering pipeline.</div>
-      <div class="chip-row" style="margin-bottom:1rem;"><span class="chip chip-cyan">scikit-learn</span><span class="chip chip-purple">Tabular ML</span></div>
-      <div class="proj-links"><a class="proj-link" href="https://www.kaggle.com/sanjidh090" target="_blank">Kaggle →</a></div>
+    <div class="card proj">
+      <span class="proj-ico">🌾</span>
+      <div class="proj-n">AgriYield Prediction</div>
+      <div class="proj-d">Crop yield prediction via soil and weather features. 3rd place as a solo submission — no team, no shortcuts.</div>
+      <div class="chips" style="margin-bottom:.9rem;"><span class="chip cb">scikit-learn</span><span class="chip cp">Tabular ML</span></div>
+      <div class="proj-lnks"><a class="proj-lnk" href="https://www.kaggle.com/sanjidh090" target="_blank">Kaggle →</a></div>
     </div>
-    <div class="card proj-card">
-      <span class="proj-emoji">🗳️</span>
-      <div class="proj-name">Political Meme Detection</div>
-      <div class="proj-desc">Multimodal NLP + vision classifier. 80% F1 score, Top 60 nationally at CUET CSE Fest 2025.</div>
-      <div class="chip-row" style="margin-bottom:1rem;"><span class="chip chip-cyan">Transformers</span><span class="chip chip-purple">Multimodal</span></div>
-      <div class="proj-links"><a class="proj-link" href="https://github.com/Sanjidh090" target="_blank">GitHub →</a></div>
+    <div class="card proj">
+      <span class="proj-ico">🗳️</span>
+      <div class="proj-n">Political Meme Detection</div>
+      <div class="proj-d">Multimodal NLP + vision classifier. 80% F1 score, Top 60 nationally at CUET CSE Fest 2025.</div>
+      <div class="chips" style="margin-bottom:.9rem;"><span class="chip cb">Transformers</span><span class="chip cp">Multimodal</span></div>
+      <div class="proj-lnks"><a class="proj-lnk" href="https://github.com/Sanjidh090" target="_blank">GitHub →</a></div>
     </div>
-    <div class="card proj-card">
-      <span class="proj-emoji">🤖</span>
-      <div class="proj-name">Line-Following Robot</div>
-      <div class="proj-desc">Custom PCB design and fabrication with embedded C firmware. Hardware meets software under Team Frozen Voltage at KUET.</div>
-      <div class="chip-row" style="margin-bottom:1rem;"><span class="chip chip-purple">Embedded C</span><span class="chip chip-purple">PCB</span></div>
-      <div class="proj-links"><a class="proj-link" href="https://github.com/Sanjidh090" target="_blank">GitHub →</a></div>
+    <div class="card proj">
+      <span class="proj-ico">🤖</span>
+      <div class="proj-n">Line-Following Robot</div>
+      <div class="proj-d">Custom PCB design and fabrication with embedded C firmware. Team Frozen Voltage at KUET — hardware meets software.</div>
+      <div class="chips" style="margin-bottom:.9rem;"><span class="chip cp">Embedded C</span><span class="chip cp">PCB</span></div>
+      <div class="proj-lnks"><a class="proj-lnk" href="https://github.com/Sanjidh090" target="_blank">GitHub →</a></div>
     </div>
-    <div class="card proj-card">
-      <span class="proj-emoji">🎨</span>
-      <div class="proj-name">Neural Style Transfer</div>
-      <div class="proj-desc">Gram matrix-based artistic style transfer implementation, paired with a published technical deep-dive on the mathematics behind it.</div>
-      <div class="chip-row" style="margin-bottom:1rem;"><span class="chip chip-cyan">PyTorch</span><span class="chip chip-purple">CNN</span></div>
-      <div class="proj-links"><a class="proj-link" href="https://medium.com/@sanjidh090/painting-with-pixels-the-mathematics-of-style-transfer-ba9b9dd09d92" target="_blank">Article →</a></div>
+    <div class="card proj">
+      <span class="proj-ico">🎨</span>
+      <div class="proj-n">Neural Style Transfer</div>
+      <div class="proj-d">Gram matrix-based artistic style transfer, paired with a published technical deep-dive on the mathematics.</div>
+      <div class="chips" style="margin-bottom:.9rem;"><span class="chip cb">PyTorch</span><span class="chip cp">CNN</span></div>
+      <div class="proj-lnks"><a class="proj-lnk" href="https://medium.com/@sanjidh090/painting-with-pixels-the-mathematics-of-style-transfer-ba9b9dd09d92" target="_blank">Article →</a></div>
     </div>
-    <div class="card proj-card">
-      <span class="proj-emoji">📚</span>
-      <div class="proj-name">DSA & Embedded Coursework</div>
-      <div class="proj-desc">Week-by-week DSA in C++ and a hybrid C/Python embedded billing system with custom PCB design.</div>
-      <div class="chip-row" style="margin-bottom:1rem;"><span class="chip chip-purple">C++</span><span class="chip chip-purple">C</span></div>
-      <div class="proj-links">
-        <a class="proj-link" href="https://github.com/Sanjidh090/CSE-2132" target="_blank">DSA →</a>
-        <a class="proj-link" href="https://github.com/Sanjidh090/EE-1222" target="_blank">Embedded →</a>
-      </div>
+    <div class="card proj">
+      <span class="proj-ico">📚</span>
+      <div class="proj-n">DSA & Embedded Coursework</div>
+      <div class="proj-d">Week-by-week DSA in C++ and a hybrid C/Python embedded billing system with custom PCB design.</div>
+      <div class="chips" style="margin-bottom:.9rem;"><span class="chip cp">C++</span><span class="chip cp">C</span></div>
+      <div class="proj-lnks"><a class="proj-lnk" href="https://github.com/Sanjidh090/CSE-2132" target="_blank">DSA →</a><a class="proj-lnk" href="https://github.com/Sanjidh090/EE-1222" target="_blank">Embedded →</a></div>
     </div>
   </div>
-</section>
+</div>
 
-<hr class="divider"/>
+<hr class="sep"/>
 
 <!-- SKILLS -->
 
-<section id="skills" class="reveal">
-  <div class="sec-label">// technical stack</div>
-  <h2 class="sec-title">Technical Expertise</h2>
-  <div class="skill-grid">
-    <div class="card skill-card">
-      <div class="skill-cat">AI / ML</div>
-      <div class="skill-heading">Deep Learning & Research</div>
-      <div class="skill-pills">
-        <span class="skill-pill">PyTorch</span><span class="skill-pill">TensorFlow</span>
-        <span class="skill-pill">Keras</span><span class="skill-pill">Hugging Face</span>
-        <span class="skill-pill">Whisper</span><span class="skill-pill">BERT</span>
-      </div>
-    </div>
-    <div class="card skill-card">
-      <div class="skill-cat">Data Science</div>
-      <div class="skill-heading">Analytics & Engineering</div>
-      <div class="skill-pills">
-        <span class="skill-pill">Pandas</span><span class="skill-pill">NumPy</span>
-        <span class="skill-pill">scikit-learn</span><span class="skill-pill">OpenCV</span>
-        <span class="skill-pill">Matplotlib</span><span class="skill-pill">Kaggle</span>
-      </div>
-    </div>
-    <div class="card skill-card">
-      <div class="skill-cat">Languages</div>
-      <div class="skill-heading">Programming</div>
-      <div class="skill-pills">
-        <span class="skill-pill">Python</span><span class="skill-pill">C</span>
-        <span class="skill-pill">C++</span><span class="skill-pill">JavaScript</span>
-        <span class="skill-pill">HTML / CSS</span>
-      </div>
-    </div>
-    <div class="card skill-card">
-      <div class="skill-cat">Hardware</div>
-      <div class="skill-heading">Embedded & Edge</div>
-      <div class="skill-pills">
-        <span class="skill-pill">PCB Design</span><span class="skill-pill">Embedded C</span>
-        <span class="skill-pill">IoT</span><span class="skill-pill">Edge AI</span>
-        <span class="skill-pill">Robotics</span>
-      </div>
-    </div>
+<div class="section reveal" id="skills">
+  <div class="sec-tag">// technical stack</div>
+  <h2 class="sec-h">Technical <em>Expertise</em></h2>
+  <div class="sk-grid">
+    <div class="card sk"><div class="sk-cat">AI / ML</div><div class="sk-h">Deep Learning</div><div class="sk-pills"><span class="sk-p">PyTorch</span><span class="sk-p">TensorFlow</span><span class="sk-p">Keras</span><span class="sk-p">Hugging Face</span><span class="sk-p">Whisper</span><span class="sk-p">BERT</span></div></div>
+    <div class="card sk"><div class="sk-cat">Data Science</div><div class="sk-h">Analytics</div><div class="sk-pills"><span class="sk-p">Pandas</span><span class="sk-p">NumPy</span><span class="sk-p">scikit-learn</span><span class="sk-p">OpenCV</span><span class="sk-p">Matplotlib</span></div></div>
+    <div class="card sk"><div class="sk-cat">Languages</div><div class="sk-h">Programming</div><div class="sk-pills"><span class="sk-p">Python</span><span class="sk-p">C</span><span class="sk-p">C++</span><span class="sk-p">JavaScript</span><span class="sk-p">HTML/CSS</span></div></div>
+    <div class="card sk"><div class="sk-cat">Hardware</div><div class="sk-h">Embedded & Edge</div><div class="sk-pills"><span class="sk-p">PCB Design</span><span class="sk-p">Embedded C</span><span class="sk-p">IoT</span><span class="sk-p">Edge AI</span><span class="sk-p">Robotics</span></div></div>
   </div>
-</section>
+</div>
 
-<hr class="divider"/>
+<hr class="sep"/>
 
 <!-- WRITING -->
 
-<section id="writing" class="reveal">
-  <div class="sec-label">// thought leadership</div>
-  <h2 class="sec-title">Technical Writing</h2>
-  <p class="sec-sub">Deconstructing complex ideas for everyone. Published on Medium and DEV.to.</p>
-  <div class="writing-grid">
-    <a class="card writing-card" href="https://medium.com/@sanjidh090/painting-with-pixels-the-mathematics-of-style-transfer-ba9b9dd09d92" target="_blank">
-      <div class="writing-platform">Medium</div>
-      <div class="writing-title">Painting with Pixels: The Mathematics of Style Transfer</div>
-      <div class="writing-desc">Gram matrices, loss functions, and how AI learns to paint like Studio Ghibli.</div>
-    </a>
-    <a class="card writing-card" href="https://dev.to/sanjidh090/what-is-invariencewhy-do-we-need-2n5f" target="_blank">
-      <div class="writing-platform">DEV.to</div>
-      <div class="writing-title">What is Invariance?</div>
-      <div class="writing-desc">Why CNNs recognize objects regardless of position — translation, rotation, scale.</div>
-    </a>
-    <a class="card writing-card" href="https://dev.to/sanjidh090/gigabytes-vs-gibibytes-understanding-the-difference-in-data-measurement-9d6" target="_blank">
-      <div class="writing-platform">DEV.to</div>
-      <div class="writing-title">Gigabytes vs. Gibibytes</div>
-      <div class="writing-desc">Decimal vs. binary storage standards — precision matters in engineering.</div>
-    </a>
-    <a class="card writing-card" href="https://dev.to/sanjidh090/the-enigma-of-analyzing-angle-brackets-and-chevrons-in-coding-culture-1l2k" target="_blank">
-      <div class="writing-platform">DEV.to</div>
-      <div class="writing-title">The Enigma of &lt;/&gt;</div>
-      <div class="writing-desc">The semiotics and philosophy behind coding symbols and culture.</div>
-    </a>
+<div class="section reveal" id="writing">
+  <div class="sec-tag">// thought leadership</div>
+  <h2 class="sec-h">Technical <em>Writing</em></h2>
+  <p class="sec-p">Deconstructing complex ideas for everyone. Published on Medium and DEV.to.</p>
+  <div class="wr-grid">
+    <a class="card wr" href="https://medium.com/@sanjidh090/painting-with-pixels-the-mathematics-of-style-transfer-ba9b9dd09d92" target="_blank"><div class="wr-plat">Medium</div><div class="wr-t">Painting with Pixels: The Mathematics of Style Transfer</div><div class="wr-d">Gram matrices, loss functions, and how AI learns to paint like Studio Ghibli.</div></a>
+    <a class="card wr" href="https://dev.to/sanjidh090/what-is-invariencewhy-do-we-need-2n5f" target="_blank"><div class="wr-plat">DEV.to</div><div class="wr-t">What is Invariance?</div><div class="wr-d">Why CNNs recognize objects regardless of position — translation, rotation, scale.</div></a>
+    <a class="card wr" href="https://dev.to/sanjidh090/gigabytes-vs-gibibytes-understanding-the-difference-in-data-measurement-9d6" target="_blank"><div class="wr-plat">DEV.to</div><div class="wr-t">Gigabytes vs. Gibibytes</div><div class="wr-d">Decimal vs. binary storage — precision matters in engineering.</div></a>
+    <a class="card wr" href="https://dev.to/sanjidh090/the-enigma-of-analyzing-angle-brackets-and-chevrons-in-coding-culture-1l2k" target="_blank"><div class="wr-plat">DEV.to</div><div class="wr-t">The Enigma of &lt;/&gt;</div><div class="wr-d">Semiotics and philosophy behind coding symbols and culture.</div></a>
   </div>
-</section>
+</div>
 
-<hr class="divider"/>
+<hr class="sep"/>
 
 <!-- CONTACT -->
 
-<section id="contact" class="reveal">
-  <div class="sec-label">// let's work together</div>
-  <h2 class="sec-title">Get In Touch</h2>
-  <p class="sec-sub">Open to research collaborations, internships, freelance work, and full-time roles post-graduation.</p>
-  <div class="contact-cols">
-    <div class="clink-list">
-      <a class="card clink" href="mailto:sanjid9657@gmail.com">
-        <div class="clink-icon" style="background:rgba(239,68,68,.1);">📧</div>
-        <div><div class="clink-platform">Email</div><div class="clink-handle">sanjid9657@gmail.com</div></div>
-      </a>
-      <a class="card clink" href="https://github.com/Sanjidh090" target="_blank">
-        <div class="clink-icon" style="background:rgba(255,255,255,.05);">🐙</div>
-        <div><div class="clink-platform">GitHub</div><div class="clink-handle">github.com/Sanjidh090</div></div>
-      </a>
-      <a class="card clink" href="https://linkedin.com/in/sanjidh090" target="_blank">
-        <div class="clink-icon" style="background:rgba(37,99,235,.1);">💼</div>
-        <div><div class="clink-platform">LinkedIn</div><div class="clink-handle">linkedin.com/in/sanjidh090</div></div>
-      </a>
-      <a class="card clink" href="https://www.kaggle.com/sanjidh090" target="_blank">
-        <div class="clink-icon" style="background:rgba(32,190,255,.08);">📊</div>
-        <div><div class="clink-platform">Kaggle</div><div class="clink-handle">kaggle.com/sanjidh090</div></div>
-      </a>
-      <a class="card clink" href="https://arxiv.org/abs/2602.23070" target="_blank">
-        <div class="clink-icon" style="background:rgba(239,68,68,.1);">📄</div>
-        <div><div class="clink-platform">arXiv Paper</div><div class="clink-handle">2602.23070</div></div>
-      </a>
+<div class="section reveal" id="contact">
+  <div class="sec-tag">// let's work together</div>
+  <h2 class="sec-h">Get In <em>Touch</em></h2>
+  <p class="sec-p">Open to research collaborations, internships, freelance work, and full-time roles post-graduation.</p>
+  <div class="ct-grid">
+    <div class="ct-links">
+      <a class="card ct-lnk" href="mailto:sanjid9657@gmail.com"><div class="ct-ico" style="background:rgba(239,68,68,.1);">📧</div><div><div class="ct-plat">Email</div><div class="ct-h">sanjid9657@gmail.com</div></div></a>
+      <a class="card ct-lnk" href="https://github.com/Sanjidh090" target="_blank"><div class="ct-ico" style="background:rgba(255,255,255,.05);">🐙</div><div><div class="ct-plat">GitHub</div><div class="ct-h">github.com/Sanjidh090</div></div></a>
+      <a class="card ct-lnk" href="https://linkedin.com/in/sanjidh090" target="_blank"><div class="ct-ico" style="background:rgba(37,99,235,.1);">💼</div><div><div class="ct-plat">LinkedIn</div><div class="ct-h">linkedin.com/in/sanjidh090</div></div></a>
+      <a class="card ct-lnk" href="https://www.kaggle.com/sanjidh090" target="_blank"><div class="ct-ico" style="background:rgba(32,190,255,.08);">📊</div><div><div class="ct-plat">Kaggle</div><div class="ct-h">kaggle.com/sanjidh090</div></div></a>
+      <a class="card ct-lnk" href="https://arxiv.org/abs/2602.23070" target="_blank"><div class="ct-ico" style="background:rgba(239,68,68,.1);">📄</div><div><div class="ct-plat">arXiv</div><div class="ct-h">2602.23070</div></div></a>
     </div>
     <div class="card open-card">
-      <div class="open-title">Currently Open To</div>
-      <div class="open-row"><div class="open-dot"></div>Research collaborations</div>
-      <div class="open-row"><div class="open-dot"></div>Internships (AI/ML, NLP, Embedded)</div>
-      <div class="open-row"><div class="open-dot"></div>Freelance & contract work</div>
-      <div class="open-row"><div class="open-dot"></div>Full-time roles (post-graduation)</div>
-      <div class="open-row"><div class="open-dot"></div>Technical writing & workshops</div>
-      <div class="location-note">
-        📍 Khulna, Bangladesh 🇧🇩<br>
-        <span style="color:var(--text3);font-size:.78rem;">Remote-friendly · Open to relocation</span>
-      </div>
+      <div class="open-t">Currently Open To</div>
+      <div class="open-r"><div class="open-dot"></div>Research collaborations</div>
+      <div class="open-r"><div class="open-dot"></div>Internships (AI/ML, NLP, Embedded)</div>
+      <div class="open-r"><div class="open-dot"></div>Freelance & contract work</div>
+      <div class="open-r"><div class="open-dot"></div>Full-time roles (post-graduation)</div>
+      <div class="open-r"><div class="open-dot"></div>Technical writing & workshops</div>
+      <div class="loc">📍 Khulna, Bangladesh 🇧🇩<br><span style="color:var(--t3);font-size:.75rem;">Remote-friendly · Open to relocation</span></div>
     </div>
   </div>
-</section>
+</div>
 
-<footer>
-  <p>Crafted with ❤️ by <a href="https://github.com/Sanjidh090">Sanjid Hasan</a> · Updated March 2026</p>
-</footer>
+<footer><p>Crafted with ❤️ by <a href="https://github.com/Sanjidh090">Sanjid Hasan</a> · Updated March 2026</p></footer>
 
 <script>
+// THREE.JS — Neural network particle field
+const canvas = document.getElementById('three-canvas');
+const renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
 
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 1000);
+camera.position.z = 5;
 
-// PARTICLES
-const canvas = document.getElementById('particles');
-const ctx = canvas.getContext('2d');
-let pts = [];
-function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
-resize();
-window.addEventListener('resize',resize);
-for(let i=0;i<80;i++){
-  pts.push({
-    x:Math.random()*window.innerWidth,
-    y:Math.random()*window.innerHeight,
-    r:Math.random()*1.4+.3,
-    dx:(Math.random()-.5)*.25,
-    dy:(Math.random()-.5)*.25,
-    o:Math.random()*.5+.15
+// Particles
+const count = 200;
+const geo = new THREE.BufferGeometry();
+const pos = new Float32Array(count * 3);
+const vel = [];
+for(let i = 0; i < count; i++){
+  pos[i*3]   = (Math.random() - 0.5) * 14;
+  pos[i*3+1] = (Math.random() - 0.5) * 8;
+  pos[i*3+2] = (Math.random() - 0.5) * 4;
+  vel.push({
+    x: (Math.random() - 0.5) * 0.003,
+    y: (Math.random() - 0.5) * 0.003
   });
 }
-function drawP(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  pts.forEach(p=>{
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    ctx.fillStyle=`rgba(56,189,248,${p.o})`;
-    ctx.fill();
-    p.x+=p.dx;p.y+=p.dy;
-    if(p.x<0||p.x>canvas.width)p.dx*=-1;
-    if(p.y<0||p.y>canvas.height)p.dy*=-1;
-  });
-  requestAnimationFrame(drawP);
+geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+const mat = new THREE.PointsMaterial({color:0x38bdf8, size:0.04, transparent:true, opacity:0.6});
+const points = new THREE.Points(geo, mat);
+scene.add(points);
+
+// Lines between nearby particles
+const lineMat = new THREE.LineBasicMaterial({color:0x38bdf8, transparent:true, opacity:0.08});
+let lineObj = null;
+
+function updateLines(){
+  if(lineObj) scene.remove(lineObj);
+  const lineGeo = new THREE.BufferGeometry();
+  const linePos = [];
+  const p = geo.attributes.position.array;
+  for(let i = 0; i < count; i++){
+    for(let j = i+1; j < count; j++){
+      const dx = p[i*3]-p[j*3], dy = p[i*3+1]-p[j*3+1], dz = p[i*3+2]-p[j*3+2];
+      const d = Math.sqrt(dx*dx+dy*dy+dz*dz);
+      if(d < 1.8){
+        linePos.push(p[i*3],p[i*3+1],p[i*3+2]);
+        linePos.push(p[j*3],p[j*3+1],p[j*3+2]);
+      }
+    }
+  }
+  lineGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(linePos), 3));
+  lineObj = new THREE.LineSegments(lineGeo, lineMat);
+  scene.add(lineObj);
 }
-drawP();
+
+let frame = 0;
+function animate(){
+  requestAnimationFrame(animate);
+  const p = geo.attributes.position.array;
+  for(let i = 0; i < count; i++){
+    p[i*3]   += vel[i].x;
+    p[i*3+1] += vel[i].y;
+    if(Math.abs(p[i*3])   > 7) vel[i].x *= -1;
+    if(Math.abs(p[i*3+1]) > 4) vel[i].y *= -1;
+  }
+  geo.attributes.position.needsUpdate = true;
+  if(++frame % 3 === 0) updateLines();
+  points.rotation.y += 0.0005;
+  renderer.render(scene, camera);
+}
+animate();
+
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
 
 // TYPEWRITER
-const roles = [
-  'AI / ML Engineer',
-  'Deep Learning Researcher',
-  'Founder · Team Frozen Voltage ❄️🔥',
-  'Kaggle Notebook & Dataset Expert',
-  'Bengali Speech & NLP Builder',
-  'Bridging Hardware & Software 🌉'
-];
+const roles = ['AI / ML Engineer','Deep Learning Researcher','Founder · Team Frozen Voltage ❄️🔥','Kaggle Notebook & Dataset Expert','Bengali Speech & NLP Builder','Bridging Hardware & Software 🌉'];
 let ri=0,ci=0,del=false;
-const tw = document.getElementById('typewriter');
+const tw=document.getElementById('tw');
 function type(){
   const cur=roles[ri];
   if(!del){tw.textContent=cur.slice(0,++ci);if(ci===cur.length){del=true;setTimeout(type,2000);return;}}
@@ -983,9 +669,7 @@ function type(){
 type();
 
 // SCROLL REVEAL
-const obs=new IntersectionObserver(es=>{
-  es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
-},{threshold:0.08});
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 

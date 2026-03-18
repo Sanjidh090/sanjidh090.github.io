@@ -1,505 +1,631 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sanjid Hasan | Portfolio</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Sanjid Hasan | AI Researcher & EEE Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#080b12;--bg2:#0d1117;--bg3:#111827;
+  --cyan:#00d9ff;--purple:#9745f5;--pink:#f533a8;
+  --text:#e2e8f0;--muted:#8892a4;--card:rgba(255,255,255,0.04);
+  --border:rgba(255,255,255,0.08);--blur:blur(20px);
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',sans-serif;overflow-x:hidden;}
 
-  <!-- Fonts & CSS -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css" />
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(–bg);}
+::-webkit-scrollbar-thumb{background:var(–purple);border-radius:2px;}
 
-  <!-- SEO / Social -->
-  <meta name="description" content="Portfolio of Sanjid Hasan — 3rd-year EEE @ KUET · arXiv Researcher · Kaggle Expert · Bengali ASR · Computer Vision · Edge AI" />
-  <meta property="og:title" content="Sanjid Hasan — Portfolio" />
-  <meta property="og:description" content="Electrical Engineer • AI/ML • Research • Open Datasets" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://sanjidh090.github.io" />
-  <meta property="og:image" content="assets/img/og-cover.png" />
-  <meta name="theme-color" content="#f7f6f3" />
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;background:rgba(8,11,18,0.7);backdrop-filter:var(–blur);border-bottom:1px solid var(–border);transition:all .3s;}
+.nav-logo{font-size:1.1rem;font-weight:700;background:linear-gradient(135deg,var(–cyan),var(–purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.nav-links{display:flex;gap:1.8rem;list-style:none;}
+.nav-links a{color:var(–muted);text-decoration:none;font-size:.85rem;font-weight:500;transition:color .2s;}
+.nav-links a:hover{color:var(–cyan);}
+.nav-cta{background:linear-gradient(135deg,var(–cyan),var(–purple));color:#000;padding:.45rem 1.1rem;border-radius:6px;font-size:.82rem;font-weight:600;text-decoration:none;transition:opacity .2s;}
+.nav-cta:hover{opacity:.85;}
 
-  <!-- JSON-LD (Person) -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Person",
-    "name":"Sanjid Hasan",
-    "url":"https://sanjidh090.github.io",
-    "sameAs":[
-      "https://github.com/Sanjidh090",
-      "https://www.kaggle.com/sanjidh090",
-      "https://linkedin.com/in/sanjidh090",
-      "https://medium.com/@sanjidh090",
-      "https://dev.to/sanjidh090",
-      "https://orcid.org/0009-0006-1271-9786"
-    ],
-    "jobTitle":"Electrical & Electronic Engineer, AI/ML Researcher",
-    "knowsAbout":["Machine Learning","Data Science","NLP","Computer Vision","Embedded Systems"]
-  }
-  </script>
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:6rem 2rem 4rem;}
+.aurora{position:absolute;inset:0;pointer-events:none;}
+.aurora-blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.25;animation:drift 8s ease-in-out infinite;}
+.a1{width:600px;height:600px;background:radial-gradient(circle,var(–purple),transparent 70%);top:-10%;left:-10%;animation-delay:0s;}
+.a2{width:500px;height:500px;background:radial-gradient(circle,var(–cyan),transparent 70%);bottom:-10%;right:-5%;animation-delay:-3s;}
+.a3{width:400px;height:400px;background:radial-gradient(circle,var(–pink),transparent 70%);top:40%;left:40%;animation-delay:-5s;}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(30px,-20px) scale(1.05);}66%{transform:translate(-20px,30px) scale(.95);};}
+
+canvas#particles{position:absolute;inset:0;pointer-events:none;}
+
+.hero-content{position:relative;z-index:2;max-width:780px;text-align:center;}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(151,69,245,.15);border:1px solid rgba(151,69,245,.3);padding:.35rem .9rem;border-radius:20px;font-size:.78rem;color:var(–purple);font-family:‘Fira Code’,monospace;margin-bottom:1.5rem;}
+.hero-badge::before{content:’’;width:6px;height:6px;border-radius:50%;background:var(–purple);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;};}
+h1.hero-name{font-size:clamp(2.8rem,7vw,5.5rem);font-weight:700;line-height:1.1;margin-bottom:.8rem;background:linear-gradient(135deg,#fff 30%,var(–cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-title{font-family:‘Fira Code’,monospace;font-size:clamp(.9rem,2vw,1.15rem);color:var(–cyan);margin-bottom:1rem;min-height:1.6em;}
+.cursor{display:inline-block;width:2px;height:1em;background:var(–cyan);margin-left:2px;animation:blink .7s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;};}
+.hero-desc{color:var(–muted);font-size:1rem;line-height:1.7;max-width:560px;margin:0 auto 2rem;}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem;}
+.btn-primary{background:linear-gradient(135deg,var(–cyan),var(–purple));color:#000;padding:.7rem 1.6rem;border-radius:8px;font-weight:700;font-size:.9rem;text-decoration:none;transition:transform .2s,box-shadow .2s;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,217,255,.3);}
+.btn-secondary{border:1px solid var(–border);color:var(–text);padding:.7rem 1.6rem;border-radius:8px;font-weight:500;font-size:.9rem;text-decoration:none;background:var(–card);backdrop-filter:var(–blur);transition:border-color .2s,transform .2s;}
+.btn-secondary:hover{border-color:var(–cyan);transform:translateY(-2px);}
+.hero-stats{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;}
+.stat{text-align:center;}
+.stat-num{font-size:1.6rem;font-weight:700;background:linear-gradient(135deg,var(–cyan),var(–purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.stat-label{font-size:.75rem;color:var(–muted);margin-top:.2rem;}
+
+/* SECTIONS */
+section{padding:5rem 2rem;max-width:1100px;margin:0 auto;}
+.section-tag{font-family:‘Fira Code’,monospace;font-size:.8rem;color:var(–cyan);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.6rem;}
+.section-title{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;margin-bottom:.8rem;}
+.section-title span{background:linear-gradient(135deg,var(–cyan),var(–purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.section-sub{color:var(–muted);font-size:.95rem;max-width:540px;line-height:1.6;margin-bottom:3rem;}
+.divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(–border),transparent);margin:0 auto;}
+
+/* CARDS */
+.glass{background:var(–card);border:1px solid var(–border);border-radius:16px;backdrop-filter:var(–blur);transition:border-color .3s,transform .3s,box-shadow .3s;}
+.glass:hover{border-color:rgba(0,217,255,.25);transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.3);}
+
+/* RESEARCH */
+.research-featured{padding:2rem;margin-bottom:1.5rem;position:relative;overflow:hidden;}
+.research-featured::before{content:’’;position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(–cyan),var(–purple));}
+.arxiv-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(179,27,27,.15);border:1px solid rgba(179,27,27,.3);padding:.25rem .7rem;border-radius:4px;font-size:.72rem;font-family:‘Fira Code’,monospace;color:#ff6b6b;margin-bottom:1rem;}
+.research-title{font-size:1.15rem;font-weight:600;margin-bottom:.8rem;line-height:1.4;}
+.research-title a{color:var(–text);text-decoration:none;transition:color .2s;}
+.research-title a:hover{color:var(–cyan);}
+.research-meta{color:var(–muted);font-size:.82rem;margin-bottom:1rem;font-family:‘Fira Code’,monospace;}
+.research-abstract{color:var(–muted);font-size:.88rem;line-height:1.65;margin-bottom:1.2rem;border-left:2px solid var(–purple);padding-left:1rem;}
+.tag-row{display:flex;gap:.5rem;flex-wrap:wrap;}
+.tag{background:rgba(151,69,245,.12);border:1px solid rgba(151,69,245,.2);color:var(–purple);padding:.2rem .6rem;border-radius:4px;font-size:.72rem;font-family:‘Fira Code’,monospace;}
+.tag.cyan{background:rgba(0,217,255,.08);border-color:rgba(0,217,255,.2);color:var(–cyan);}
+.dataset-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;}
+.dataset-card{padding:1.2rem;border-radius:12px;}
+.dataset-name{font-weight:600;font-size:.9rem;margin-bottom:.4rem;}
+.dataset-desc{color:var(–muted);font-size:.8rem;line-height:1.5;margin-bottom:.8rem;}
+.dataset-link{color:var(–cyan);font-size:.78rem;text-decoration:none;font-family:‘Fira Code’,monospace;}
+.dataset-link:hover{text-decoration:underline;}
+
+/* COMPETITIONS */
+.comp-grid{display:grid;gap:1rem;}
+.comp-card{padding:1.4rem 1.6rem;border-radius:12px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1.5rem;}
+.comp-rank{font-size:1.8rem;font-weight:700;background:linear-gradient(135deg,var(–cyan),var(–purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-family:‘Fira Code’,monospace;min-width:60px;text-align:center;}
+.comp-name{font-weight:600;font-size:.95rem;margin-bottom:.3rem;}
+.comp-detail{color:var(–muted);font-size:.8rem;}
+.comp-year{color:var(–muted);font-size:.78rem;font-family:‘Fira Code’,monospace;white-space:nowrap;}
+
+/* PROJECTS */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.2rem;}
+.proj-card{padding:1.5rem;border-radius:14px;}
+.proj-icon{font-size:1.6rem;margin-bottom:.8rem;}
+.proj-name{font-weight:600;font-size:1rem;margin-bottom:.5rem;}
+.proj-desc{color:var(–muted);font-size:.85rem;line-height:1.6;margin-bottom:1rem;}
+.proj-links{display:flex;gap:.8rem;}
+.proj-link{color:var(–cyan);font-size:.78rem;text-decoration:none;font-family:‘Fira Code’,monospace;transition:opacity .2s;}
+.proj-link:hover{opacity:.7;}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem;}
+.skill-card{padding:1.4rem;border-radius:14px;}
+.skill-category{font-size:.78rem;font-family:‘Fira Code’,monospace;color:var(–cyan);margin-bottom:.7rem;text-transform:uppercase;letter-spacing:.1em;}
+.skill-name{font-weight:600;font-size:.95rem;margin-bottom:.8rem;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:.4rem;}
+.skill-tag{background:rgba(255,255,255,.05);border:1px solid var(–border);padding:.2rem .55rem;border-radius:4px;font-size:.72rem;color:var(–muted);}
+
+/* WRITING */
+.writing-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.2rem;}
+.writing-card{padding:1.4rem;border-radius:14px;text-decoration:none;color:var(–text);display:block;}
+.writing-platform{font-size:.72rem;font-family:‘Fira Code’,monospace;color:var(–muted);margin-bottom:.6rem;text-transform:uppercase;}
+.writing-title{font-weight:600;font-size:.95rem;margin-bottom:.5rem;line-height:1.4;}
+.writing-desc{color:var(–muted);font-size:.82rem;line-height:1.55;}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;}
+@media(max-width:680px){.about-grid{grid-template-columns:1fr;}.comp-card{grid-template-columns:1fr;}.nav-links{display:none;}}
+.about-text{color:var(–muted);font-size:.95rem;line-height:1.75;margin-bottom:1.2rem;}
+.about-text strong{color:var(–text);}
+.info-row{display:flex;flex-direction:column;gap:.8rem;}
+.info-item{display:flex;align-items:flex-start;gap:.8rem;padding:.9rem;border-radius:10px;background:var(–card);border:1px solid var(–border);}
+.info-icon{font-size:1.1rem;margin-top:1px;}
+.info-label{font-size:.72rem;color:var(–muted);font-family:‘Fira Code’,monospace;margin-bottom:.2rem;}
+.info-value{font-size:.88rem;font-weight:500;}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+@media(max-width:680px){.contact-grid{grid-template-columns:1fr;}}
+.contact-links{display:flex;flex-direction:column;gap:.8rem;}
+.contact-link{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;border-radius:12px;text-decoration:none;color:var(–text);transition:border-color .2s,transform .2s;}
+.contact-link:hover{border-color:rgba(0,217,255,.3);transform:translateX(4px);}
+.contact-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;}
+.contact-platform{font-size:.72rem;color:var(–muted);font-family:‘Fira Code’,monospace;}
+.contact-handle{font-size:.9rem;font-weight:500;}
+.open-to{padding:1.8rem;border-radius:16px;}
+.open-to-title{font-weight:600;font-size:1rem;margin-bottom:1.2rem;}
+.open-item{display:flex;align-items:center;gap:.7rem;padding:.7rem 0;border-bottom:1px solid var(–border);font-size:.88rem;color:var(–muted);}
+.open-item:last-child{border-bottom:none;}
+.open-dot{width:8px;height:8px;border-radius:50%;background:var(–cyan);flex-shrink:0;}
+
+/* SCROLL ANIMATIONS */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+/* FOOTER */
+footer{text-align:center;padding:2rem;color:var(–muted);font-size:.8rem;border-top:1px solid var(–border);}
+footer span{background:linear-gradient(135deg,var(–cyan),var(–purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+</style>
+
 </head>
 <body>
-  <!-- NAV -->
-  <header class="site-nav">
-    <a class="logo" href="#home" aria-label="Home">SH</a>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#research">Research</a>
-      <a href="#competitions">Competitions</a>
-      <a href="#projects">Projects</a>
-      <a href="#writing">Writing</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <button id="themeToggle" aria-label="Toggle theme">🌙</button>
-  </header>
 
-  <main>
-    <!-- HERO -->
-    <section id="home" class="hero reveal">
-      <div class="hero-content">
-        <p class="eyebrow">3rd-year EEE @ KUET · arXiv Researcher · Kaggle Expert</p>
-        <h1>
-          Sanjid Hasan
-          <span>Bengali ASR · Computer Vision · Edge AI</span>
-        </h1>
-        <p class="lead">
-          Kaggle Expert, arXiv author (Feb 2026), and founder of Team Frozen Voltage. I build
-          applied AI systems, publish open datasets, and teach complex ideas with clarity.
-        </p>
-        <div class="cta">
-          <a class="btn" href="#contact">Book a Collaboration</a>
-          <a class="btn ghost" href="assets/cv/Sanjid_Hasan_CV.pdf" target="_blank" rel="noopener">Download CV</a>
-          <a class="btn ghost" href="https://www.kaggle.com/sanjidh090" target="_blank" rel="noopener">Kaggle Profile</a>
-        </div>
-        <div class="hero-meta">
-          <div>
-            <span class="meta-label">Based in</span>
-            <span class="meta-value">Khulna, Bangladesh</span>
-          </div>
-          <div>
-            <span class="meta-label">Current Focus</span>
-            <span class="meta-value">Generative AI · Edge AI · Robotics</span>
-          </div>
-          <div>
-            <span class="meta-label">Availability</span>
-            <span class="meta-value">Open to research, internships & freelance work</span>
-          </div>
-        </div>
-      </div>
-      <div class="hero-panels">
-        <div class="glass-card">
-          <p class="glass-title">Signature Stack</p>
-          <p class="glass-body">PyTorch · TensorFlow · scikit-learn · OpenCV · Embedded C · Edge Optimization</p>
-          <div class="pill-row">
-            <span class="pill">Kaggle Expert</span>
-            <span class="pill">Local Guide L7</span>
-            <span class="pill">arXiv Author</span>
-          </div>
-        </div>
-        <div class="hero-stat">
-          <p class="stat-value">1000+</p>
-          <p class="stat-label">Maps Contributions</p>
-        </div>
-        <div class="hero-stat">
-          <p class="stat-value">Top 10</p>
-          <p class="stat-label">Datathon Finishes</p>
-        </div>
-        <div class="hero-stat">
-          <p class="stat-value">882h</p>
-          <p class="stat-label">Bengali Speech Data</p>
-        </div>
-      </div>
-    </section>
+<!-- NAV -->
 
-    <!-- ABOUT -->
-    <section id="about" class="reveal">
-      <div class="section-header">
-        <h2>About</h2>
-        <p>Bridging hardware intuition with AI systems engineering.</p>
-      </div>
-      <div class="split">
-        <div>
-          <p>
-            I’m a 3rd-year EEE student at KUET who builds machine learning products with rigorous research
-            and production thinking. My work spans generative AI, computer vision, NLP, and embedded systems,
-            with a strong focus on reproducible pipelines and datasets that empower the community.
-          </p>
-          <p>
-            I believe true mastery is demonstrated by the ability to teach. That philosophy drives my writing,
-            workshops, and open-source contributions.
-          </p>
-        </div>
-        <div class="focus-grid">
-          <div class="focus-card">
-            <h3>Current Focus</h3>
-            <ul>
-              <li>LLM fine-tuning & prompt engineering</li>
-              <li>Vision transformers & edge deployment</li>
-              <li>Robotics + cyber-physical systems</li>
-            </ul>
-          </div>
-          <div class="focus-card">
-            <h3>Education</h3>
-            <p><strong>B.Sc. in Electrical & Electronic Engineering</strong></p>
-            <p>Khulna University of Engineering & Technology (KUET)</p>
-            <p>Bangladesh</p>
-          </div>
-        </div>
-      </div>
-    </section>
+<nav>
+  <a class="nav-logo" href="#hero">SH</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#competitions">Competitions</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#writing">Writing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="mailto:sanjid9657@gmail.com">Let's Talk</a>
+</nav>
 
-    <!-- EXPERTISE -->
-    <section id="expertise" class="reveal">
-      <div class="section-header">
-        <h2>Technical Expertise</h2>
-        <p>Deep specialization across AI, embedded systems, and applied research.</p>
-      </div>
-      <div class="expertise-grid">
-        <div class="expertise-card">
-          <h3>AI & ML</h3>
-          <p>Deep learning, neural networks, computer vision, NLP, reinforcement learning.</p>
-          <div class="chip-row">
-            <span>PyTorch</span><span>TensorFlow</span><span>scikit-learn</span><span>OpenCV</span><span>Hugging Face</span>
-          </div>
-        </div>
-        <div class="expertise-card">
-          <h3>Data Engineering</h3>
-          <p>EDA, dataset curation, feature engineering, reproducible pipelines.</p>
-          <div class="chip-row">
-            <span>Pandas</span><span>NumPy</span><span>Matplotlib</span><span>Kaggle</span><span>Colab</span>
-          </div>
-        </div>
-        <div class="expertise-card">
-          <h3>Embedded & Edge</h3>
-          <p>Embedded systems, IoT, optimization for constrained hardware.</p>
-          <div class="chip-row">
-            <span>C</span><span>C++</span><span>PCB Design</span><span>IoT</span><span>Edge AI</span>
-          </div>
-        </div>
-        <div class="expertise-card">
-          <h3>Leadership & Education</h3>
-          <p>Technical writing, workshops, public speaking, mentoring.</p>
-          <div class="chip-row">
-            <span>Research</span><span>Teaching</span><span>Open Source</span><span>Community</span>
-          </div>
-        </div>
-      </div>
-    </section>
+<!-- HERO -->
 
-    <!-- ACHIEVEMENTS -->
-    <section id="achievements" class="reveal">
-      <div class="section-header">
-        <h2>Elite Recognition</h2>
-        <p>Verified impact across research, open-source, and community initiatives.</p>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Achievement</th>
-              <th>Details</th>
-              <th>Proof</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Kaggle Expert</td>
-              <td>Dataset & Notebook Expert</td>
-              <td><a href="https://www.kaggle.com/sanjidh090" target="_blank" rel="noopener">Verified</a></td>
-            </tr>
-            <tr>
-              <td>Local Guide Level 7</td>
-              <td>1,000+ contributions preserving digital heritage</td>
-              <td><a href="https://maps.google.com/localguides/profile" target="_blank" rel="noopener">Verified</a></td>
-            </tr>
-            <tr>
-              <td>Former Research Assistant</td>
-              <td>Computer vision research at Hackules Inc. (past role)</td>
-              <td><a href="https://hackules.com/" target="_blank" rel="noopener">Verified</a></td>
-            </tr>
-            <tr>
-              <td>Open Source Contributor</td>
-              <td>Facebook Research fairseq2, Omnilingual ASR</td>
-              <td><a href="https://github.com/facebookresearch/omnilingual-asr/pulls" target="_blank" rel="noopener">Verified</a></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+<div id="hero">
+  <canvas id="particles"></canvas>
+  <div class="aurora">
+    <div class="aurora-blob a1"></div>
+    <div class="aurora-blob a2"></div>
+    <div class="aurora-blob a3"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">📄 arXiv Published · Feb 2026</div>
+    <h1 class="hero-name">Sanjid Hasan</h1>
+    <div class="hero-title"><span id="typewriter"></span><span class="cursor"></span></div>
+    <p class="hero-desc">3rd-year EEE student at KUET building AI systems at the intersection of hardware and software. Kaggle Expert, arXiv researcher, and founder of Team Frozen Voltage.</p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="https://arxiv.org/abs/2602.23070" target="_blank">📄 View Research</a>
+      <a class="btn-secondary" href="https://www.kaggle.com/sanjidh090" target="_blank">Kaggle Profile</a>
+      <a class="btn-secondary" href="assets/cv/Sanjid_Hasan_CV.pdf" target="_blank">Download CV</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">882h</div><div class="stat-label">Bengali Speech Data</div></div>
+      <div class="stat"><div class="stat-num">Top 10</div><div class="stat-label">Datathon Finishes</div></div>
+      <div class="stat"><div class="stat-num">1000+</div><div class="stat-label">Maps Contributions</div></div>
+      <div class="stat"><div class="stat-num">L7</div><div class="stat-label">Local Guide</div></div>
+    </div>
+  </div>
+</div>
 
-    <!-- COMPETITIONS -->
-    <section id="competitions" class="reveal">
-      <div class="section-header">
-        <h2>Competition Excellence</h2>
-        <p>Top finishes across national and international datathons.</p>
-      </div>
-      <div class="cards">
-        <article class="card">
-          <h3>BUET CSE Fest — DL Sprint 4.0 · 2026</h3>
-          <p><strong>2nd Runner-Up + Best Dataset Award</strong> · Team Villagers · National Datathon</p>
-          <p>Dataset: <a href="https://arxiv.org/abs/2602.23070" target="_blank" rel="noopener">Lipi-Ghor-882</a></p>
-        </article>
-        <article class="card">
-          <h3>First Byte Datathon 2025</h3>
-          <p><strong>8th Place</strong> · Team Frozen Voltage · Nationwide competition</p>
-        </article>
-        <article class="card">
-          <h3>NWU CSE Fest Datathon 2025</h3>
-          <p><strong>4th Place</strong> · 92% Cohen Kappa</p>
-        </article>
-        <article class="card">
-          <h3>CUET CSE Fest 2025</h3>
-          <p><strong>Top 60</strong> · Political meme detection (80% F1)</p>
-        </article>
-        <article class="card">
-          <h3>AgriYield Crop Prediction</h3>
-          <p><strong>3rd Place</strong> · Solo submission · Soil + weather feature engineering</p>
-        </article>
-        <article class="card">
-          <h3>Legends of Logic 2024</h3>
-          <p><strong>3rd & 5th</strong> · Team Frozen Voltage</p>
-        </article>
-      </div>
-    </section>
+<div class="divider"></div>
 
-    <!-- PROJECTS -->
-    <section id="projects" class="reveal">
-      <div class="section-header">
-        <h2>Projects & Products</h2>
-        <p>Real-world systems across AI, speech, and embedded solutions.</p>
-      </div>
-      <div class="cards">
-        <article class="card">
-          <h3>Lipi-Ghor-882 Bengali Speech Corpus</h3>
-          <p>882-hour multi-speaker Bengali speech dataset powering arXiv-published ASR research. The largest open Bengali speech corpus at time of publication.</p>
-          <div class="pill-row">
-            <span class="pill">Speech</span><span class="pill">Bengali</span><span class="pill">ASR</span><span class="pill">Open Data</span>
-          </div>
-          <a class="card-link" href="https://arxiv.org/abs/2602.23070" target="_blank" rel="noopener">arXiv Paper →</a>
-        </article>
-        <article class="card">
-          <h3>Bengali ASR Pipeline (Whisper Fine-tuning)</h3>
-          <p>Extreme augmentation strategy for low-resource Bengali automatic speech recognition with speaker diarization component.</p>
-          <div class="pill-row">
-            <span class="pill">Whisper</span><span class="pill">ASR</span><span class="pill">Diarization</span>
-          </div>
-          <a class="card-link" href="https://arxiv.org/abs/2602.23070" target="_blank" rel="noopener">arXiv Paper →</a>
-        </article>
-        <article class="card">
-          <h3>Political Meme Detection</h3>
-          <p>Multimodal NLP + vision classifier for Bengali political memes. Achieved 80% F1 Score, Top 60 nationally at CUET CSE Fest 2025.</p>
-          <div class="pill-row">
-            <span class="pill">NLP</span><span class="pill">Computer Vision</span><span class="pill">Multimodal</span>
-          </div>
-        </article>
-        <article class="card">
-          <h3>AgriYield Crop Prediction</h3>
-          <p>3rd Place solo submission. Soil and weather feature engineering for crop yield prediction across diverse agricultural conditions.</p>
-          <div class="pill-row">
-            <span class="pill">ML</span><span class="pill">Agriculture</span><span class="pill">Solo</span>
-          </div>
-        </article>
-        <article class="card">
-          <h3>Line-Following Robot</h3>
-          <p>Custom PCB design and fabrication with Embedded C. Built with Team Frozen Voltage for robotics competitions.</p>
-          <div class="pill-row">
-            <span class="pill">Embedded C</span><span class="pill">PCB Design</span><span class="pill">Robotics</span>
-          </div>
-        </article>
-        <article class="card">
-          <h3>Frozen Voltage Labs</h3>
-          <p>Multidisciplinary team building robotics, biomedical engineering, and AI tooling.</p>
-          <a class="card-link" href="https://github.com/Sanjidh090" target="_blank" rel="noopener">Explore Labs →</a>
-        </article>
-      </div>
+<!-- ABOUT -->
 
-      <div class="section-header" style="margin-top:64px;">
-        <h2 style="font-size:28px;">Coursework Projects</h2>
-        <p>Utility tools built during coursework.</p>
+<section id="about" class="reveal">
+  <div class="section-tag">// who i am</div>
+  <h2 class="section-title">About <span>Me</span></h2>
+  <div class="about-grid">
+    <div>
+      <p class="about-text">I'm a <strong>3rd-year Electrical & Electronic Engineering student at KUET</strong>, Bangladesh, building machine learning systems with rigorous research and production thinking.</p>
+      <p class="about-text">My work spans <strong>Bengali speech recognition, computer vision, NLP, and embedded systems</strong> — with a strong focus on reproducible pipelines and open datasets that empower the community.</p>
+      <p class="about-text">I believe <strong>true mastery is demonstrated by the ability to teach.</strong> That philosophy drives my writing, open-source work, and community contributions.</p>
+      <div class="tag-row" style="margin-top:1.2rem;">
+        <span class="tag cyan">LLM Fine-tuning</span>
+        <span class="tag cyan">Bengali ASR</span>
+        <span class="tag cyan">Computer Vision</span>
+        <span class="tag">Edge AI</span>
+        <span class="tag">PCB Design</span>
+        <span class="tag">Embedded Systems</span>
       </div>
-      <div class="cards">
-        <article class="card">
-          <h3>SmartBuy</h3>
-          <p>CLI product order management system built with Python and C.</p>
-          <a class="card-link" href="https://github.com/Sanjidh090/SmartBuy" target="_blank" rel="noopener">View on GitHub →</a>
-        </article>
-        <article class="card">
-          <h3>PDF Tricks</h3>
-          <p>PDF creation, parsing, and automation utilities for rapid documentation.</p>
-          <a class="card-link" href="https://github.com/Sanjidh090/PDF_tricks" target="_blank" rel="noopener">View on GitHub →</a>
-        </article>
+    </div>
+    <div class="info-row">
+      <div class="info-item">
+        <span class="info-icon">🎓</span>
+        <div><div class="info-label">Education</div><div class="info-value">B.Sc. EEE · KUET · 3rd Year</div></div>
       </div>
-    </section>
+      <div class="info-item">
+        <span class="info-icon">📍</span>
+        <div><div class="info-label">Location</div><div class="info-value">Khulna, Bangladesh</div></div>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">🏅</span>
+        <div><div class="info-label">Kaggle</div><div class="info-value">Notebook & Dataset Expert</div></div>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">🗺️</span>
+        <div><div class="info-label">Google Maps</div><div class="info-value">Level 7 Local Guide · 1000+ contributions</div></div>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">⚡</span>
+        <div><div class="info-label">Team</div><div class="info-value">Founder, Team Frozen Voltage @ KUET</div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- RESEARCH -->
-    <section id="research" class="reveal">
-      <div class="section-header">
-        <h2>Research, Datasets & Publications</h2>
-        <p>Open data, applied research, and academic excellence.</p>
-      </div>
-      <div class="cards">
-        <article class="card">
-          <div class="pill-row">
-            <span class="pill">arXiv</span><span class="pill">Feb 2026</span><span class="pill">Publication</span>
-          </div>
-          <h3>Make It Hard to Hear, Easy to Listen: Long-Form Bengali ASR and Speaker Diarization via Extreme Augmentation and Perfect Alignment</h3>
-          <p>Co-authors: Risalat Labib, A H M Fuad, Bayazid Hasan · Dataset: Lipi-Ghor-882 (882-hour multi-speaker Bengali speech corpus)</p>
-          <a class="card-link" href="https://arxiv.org/abs/2602.23070" target="_blank" rel="noopener">Read on arXiv →</a>
-        </article>
-        <article class="card">
-          <h3>Lipi-Ghor-882 Bengali Speech Corpus</h3>
-          <p>882-hour multi-speaker Bengali speech dataset. Used in the arXiv-published ASR research above.</p>
-          <div class="pill-row">
-            <span class="pill">Speech</span><span class="pill">Bengali</span><span class="pill">ASR</span><span class="pill">Open Data</span>
-          </div>
-          <a class="card-link" href="https://arxiv.org/abs/2602.23070" target="_blank" rel="noopener">Linked to arXiv Paper →</a>
-        </article>
-        <article class="card">
-          <h3>Bangladesh News Dataset</h3>
-          <p>English news corpus for topic modeling, summarization, and NLP experiments.</p>
-          <div class="pill-row">
-            <span class="pill">NLP</span><span class="pill">Open Data</span><span class="pill">Research</span>
-          </div>
-          <a class="card-link" href="https://www.kaggle.com/sanjidh090" target="_blank" rel="noopener">View on Kaggle →</a>
-        </article>
-        <article class="card">
-          <h3>KUET Whispers Dataset</h3>
-          <p>Student community posts for sentiment, moderation, and cultural analysis.</p>
-          <div class="pill-row">
-            <span class="pill">Social Data</span><span class="pill">Bangla</span><span class="pill">Privacy</span>
-          </div>
-          <a class="card-link" href="https://www.kaggle.com/sanjidh090" target="_blank" rel="noopener">Explore Datasets →</a>
-        </article>
-        <article class="card">
-          <h3>Academic Portfolio</h3>
-          <p>Embedded systems, algorithms, and hybrid C/Python coursework projects.</p>
-          <a class="card-link" href="https://github.com/Sanjidh090" target="_blank" rel="noopener">Coursework Repos →</a>
-        </article>
-      </div>
-    </section>
+<div class="divider"></div>
 
-    <!-- WRITING -->
-    <section id="writing" class="reveal">
-      <div class="section-header">
-        <h2>Technical Writing & Thought Leadership</h2>
-        <p>Explainers that bridge theory and real-world engineering practice.</p>
-      </div>
-      <div class="cards">
-        <article class="card">
-          <h3>Painting with Pixels: Style Transfer</h3>
-          <p>Deep dive into Gram matrices and artistic loss functions.</p>
-          <a class="card-link" href="https://medium.com/@sanjidh090/painting-with-pixels-the-mathematics-of-style-transfer-ba9b9dd09d92" target="_blank" rel="noopener">Read on Medium →</a>
-        </article>
-        <article class="card">
-          <h3>What is Invariance?</h3>
-          <p>Translation, rotation, and scaling invariance in CNNs.</p>
-          <a class="card-link" href="https://dev.to/sanjidh090/what-is-invariencewhy-do-we-need-2n5f" target="_blank" rel="noopener">Read on DEV →</a>
-        </article>
-        <article class="card">
-          <h3>Gigabytes vs. Gibibytes</h3>
-          <p>Precision in data measurement: decimal vs. binary standards.</p>
-          <a class="card-link" href="https://dev.to/sanjidh090/gigabytes-vs-gibibytes-understanding-the-difference-in-data-measurement-9d6" target="_blank" rel="noopener">Read on DEV →</a>
-        </article>
-      </div>
-    </section>
+<!-- RESEARCH -->
 
-    <!-- LEADERSHIP -->
-    <section id="leadership" class="reveal">
-      <div class="section-header">
-        <h2>Leadership & Community</h2>
-        <p>Building teams, mentoring engineers, and preserving digital heritage.</p>
-      </div>
-      <div class="split">
-        <div class="leadership-card">
-          <h3>Team Frozen Voltage</h3>
-          <p>
-            Founder and AI lead of a multidisciplinary tech group at KUET. We deliver robotics,
-            biomedical engineering, data science competitions, and public science communication.
-          </p>
-          <ul>
-            <li>Robotics & custom PCB design</li>
-            <li>Adaptive BAMs (biomedical engineering)</li>
-            <li>Top 10 national datathon finishes</li>
-          </ul>
-        </div>
-        <div class="leadership-card">
-          <h3>Digital Citizenship</h3>
-          <p>
-            Level 7 Local Guide with 1,000+ contributions documenting Bangladesh’s cities and communities.
-          </p>
-          <ul>
-            <li>Geospatial archivist for Google Maps</li>
-            <li>Preserving local heritage and memory</li>
-            <li>100+ followers and active community engagement</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+<section id="research" class="reveal">
+  <div class="section-tag">// research & datasets</div>
+  <h2 class="section-title"><span>Research</span> & Publications</h2>
+  <p class="section-sub">Open data and applied research on Bengali low-resource speech and NLP.</p>
 
-    <!-- ACTIVITY / LIVE FEEDS -->
-    <section id="activity" class="reveal">
-      <div class="section-header">
-        <h2>Live Activity</h2>
-        <p>Recent open-source activity and publications.</p>
-      </div>
-      <div class="git-grid">
-        <img alt="GitHub Stats" loading="lazy"
-             src="https://github-readme-stats.vercel.app/api?username=Sanjidh090&show_icons=true&theme=transparent" />
-        <img alt="Top Languages" loading="lazy"
-             src="https://github-readme-stats.vercel.app/api/top-langs/?username=Sanjidh090&layout=compact&theme=transparent" />
-        <img alt="Contributions Heatmap" loading="lazy"
-             src="https://ghchart.rshah.org/2f80ed/Sanjidh090" />
-      </div>
+  <!-- Featured paper -->
 
-      <div class="live">
-        <div class="live-grid">
-          <div class="live-col">
-            <h4>GitHub</h4>
-            <ul id="feed-github" class="feed"></ul>
-          </div>
-          <div class="live-col">
-            <h4>Medium</h4>
-            <ul id="feed-medium" class="feed"></ul>
-          </div>
-          <div class="live-col">
-            <h4>DEV</h4>
-            <ul id="feed-dev" class="feed"></ul>
-          </div>
-        </div>
-        <p class="muted small">Feeds update live from public sources. If a section is empty, reload to refresh.</p>
+  <div class="glass research-featured" style="margin-bottom:2rem;">
+    <div class="arxiv-badge">arXiv · 2602.23070 · Feb 2026</div>
+    <div class="research-title">
+      <a href="https://arxiv.org/abs/2602.23070" target="_blank">
+        Make It Hard to Hear, Easy to Learn: Long-Form Bengali ASR and Speaker Diarization via Extreme Augmentation and Perfect Alignment
+      </a>
+    </div>
+    <div class="research-meta">Sanjid Hasan · Risalat Labib · A H M Fuad · Bayazid Hasan</div>
+    <p class="research-abstract">Introduces Lipi-Ghor-882, an 882-hour multi-speaker Bengali speech corpus, and demonstrates that targeted fine-tuning with synthetic acoustic degradation outperforms raw data scaling for low-resource ASR. Presented at DL Sprint 4.0, BUET CSE Fest 2026 — 2nd Runner-Up + Best Dataset Award.</p>
+    <div class="tag-row">
+      <span class="tag cyan">Bengali ASR</span>
+      <span class="tag cyan">Speaker Diarization</span>
+      <span class="tag cyan">Whisper</span>
+      <span class="tag">882h Dataset</span>
+      <span class="tag">Low-Resource NLP</span>
+    </div>
+  </div>
+
+  <h3 style="font-size:1rem;color:var(--muted);margin-bottom:1rem;font-family:'Fira Code',monospace;">// public datasets</h3>
+  <div class="dataset-grid">
+    <div class="glass dataset-card">
+      <div class="dataset-name">Lipi-Ghor-bn-882-SSTT</div>
+      <div class="dataset-desc">882-hour multi-speaker Bengali speech corpus for ASR and diarization research.</div>
+      <div class="tag-row" style="margin-bottom:.8rem;"><span class="tag cyan">Speech</span><span class="tag">Bengali</span></div>
+      <a class="dataset-link" href="https://huggingface.co/datasets/Sanjidh090/Lipi-Ghor-bn-882-SSTT/" target="_blank">HuggingFace →</a>
+    </div>
+    <div class="glass dataset-card">
+      <div class="dataset-name">Bangladesh News Dataset</div>
+      <div class="dataset-desc">English news corpus for topic modeling, summarization, and NLP experiments.</div>
+      <div class="tag-row" style="margin-bottom:.8rem;"><span class="tag">NLP</span><span class="tag">Text</span></div>
+      <a class="dataset-link" href="https://www.kaggle.com/sanjidh090" target="_blank">Kaggle →</a>
+    </div>
+    <div class="glass dataset-card">
+      <div class="dataset-name">KUET Whispers Dataset</div>
+      <div class="dataset-desc">Student community posts for sentiment analysis and cultural NLP research.</div>
+      <div class="tag-row" style="margin-bottom:.8rem;"><span class="tag">Social</span><span class="tag">Bangla</span></div>
+      <a class="dataset-link" href="https://www.kaggle.com/sanjidh090" target="_blank">Kaggle →</a>
+    </div>
+    <div class="glass dataset-card">
+      <div class="dataset-name">Google Maps Dataset — Khulna</div>
+      <div class="dataset-desc">Geospatial contributions documenting local heritage and city infrastructure.</div>
+      <div class="tag-row" style="margin-bottom:.8rem;"><span class="tag">Geo</span><span class="tag">Heritage</span></div>
+      <a class="dataset-link" href="https://maps.google.com/localguides/profile" target="_blank">Maps →</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- COMPETITIONS -->
+
+<section id="competitions" class="reveal">
+  <div class="section-tag">// competition record</div>
+  <h2 class="section-title">Competition <span>Results</span></h2>
+  <p class="section-sub">National and international datathon finishes — 2025–2026.</p>
+  <div class="comp-grid">
+    <div class="glass comp-card">
+      <div class="comp-rank">🥉</div>
+      <div>
+        <div class="comp-name">BUET CSE Fest — DL Sprint 4.0</div>
+        <div class="comp-detail">2nd Runner-Up + Best Dataset Award · Team Villagers · National Datathon<br><span style="color:var(--cyan);font-size:.78rem;">Linked to arXiv paper & Lipi-Ghor-882 dataset</span></div>
       </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="reveal">
-      <div class="section-header">
-        <h2>Let’s Collaborate</h2>
-        <p>Open to research, speaking, and high-impact product collaborations.</p>
+      <div class="comp-year">2026</div>
+    </div>
+    <div class="glass comp-card">
+      <div class="comp-rank">3rd</div>
+      <div>
+        <div class="comp-name">AgriYield 2025</div>
+        <div class="comp-detail">Crop Yield Prediction · Soil + Weather Features · <strong style="color:var(--cyan);">Solo submission</strong></div>
       </div>
-      <div class="contact-grid">
-        <p><strong>Email:</strong> <a id="email" href="mailto:sanjid9657@gmail.com">sanjid9657@gmail.com</a> <button class="mini" id="copyEmail">Copy</button></p>
-        <p><strong>GitHub:</strong> <a href="https://github.com/Sanjidh090" target="_blank" rel="noopener">github.com/Sanjidh090</a></p>
-        <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/sanjidh090" target="_blank" rel="noopener">linkedin.com/in/sanjidh090</a></p>
-        <p><strong>Kaggle:</strong> <a href="https://www.kaggle.com/sanjidh090" target="_blank" rel="noopener">kaggle.com/sanjidh090</a></p>
+      <div class="comp-year">2025</div>
+    </div>
+    <div class="glass comp-card">
+      <div class="comp-rank">4th</div>
+      <div>
+        <div class="comp-name">NWU CSE Fest Datathon</div>
+        <div class="comp-detail">Team Maverics · 92% Cohen Kappa · National Competition</div>
       </div>
+      <div class="comp-year">2025</div>
+    </div>
+    <div class="glass comp-card">
+      <div class="comp-rank">8th</div>
+      <div>
+        <div class="comp-name">First Byte Datathon</div>
+        <div class="comp-detail">Team Frozen Voltage · Intra-KUET Competition</div>
+      </div>
+      <div class="comp-year">2025</div>
+    </div>
+    <div class="glass comp-card">
+      <div class="comp-rank">Top<br>60</div>
+      <div>
+        <div class="comp-name">CUET CSE Fest 2025</div>
+        <div class="comp-detail">Team Envisage · Political Meme Detection · 80% F1 Score</div>
+      </div>
+      <div class="comp-year">2025</div>
+    </div>
+    <div class="glass comp-card">
+      <div class="comp-rank">3&5</div>
+      <div>
+        <div class="comp-name">Legends of Logic</div>
+        <div class="comp-detail">Team Frozen Voltage · Math History Chronicles</div>
+      </div>
+      <div class="comp-year">2025</div>
+    </div>
+  </div>
+</section>
 
-      <form class="contact-form" action="https://formspree.io/f/mdkwyokg" method="POST">
-        <div class="row">
-          <input name="name" placeholder="Your name" required />
-          <input type="email" name="email" placeholder="Your email" required />
-        </div>
-        <textarea name="message" rows="5" placeholder="Message" required></textarea>
-        <button class="btn" type="submit">Send Message</button>
-      </form>
-    </section>
-  </main>
+<div class="divider"></div>
 
-  <footer>
-    <p>© <span id="year"></span> Sanjid Hasan · Crafted with purpose</p>
-  </footer>
+<!-- PROJECTS -->
 
-  <script src="assets/js/script.js"></script>
+<section id="projects" class="reveal">
+  <div class="section-tag">// what i've built</div>
+  <h2 class="section-title">Featured <span>Projects</span></h2>
+  <p class="section-sub">Applied AI systems, open datasets, and embedded engineering.</p>
+  <div class="proj-grid">
+    <div class="glass proj-card">
+      <div class="proj-icon">🎙️</div>
+      <div class="proj-name">Bengali ASR Pipeline</div>
+      <div class="proj-desc">Whisper-based long-form ASR with extreme augmentation strategy. Speaker diarization revealing failure modes of SOTA models on Bengali. Core of the arXiv-published research.</div>
+      <div class="tag-row" style="margin-bottom:1rem;"><span class="tag cyan">PyTorch</span><span class="tag cyan">Whisper</span><span class="tag">ASR</span></div>
+      <div class="proj-links">
+        <a class="proj-link" href="https://arxiv.org/abs/2602.23070" target="_blank">arXiv →</a>
+        <a class="proj-link" href="https://huggingface.co/datasets/Sanjidh090/Lipi-Ghor-bn-882-SSTT/" target="_blank">Dataset →</a>
+      </div>
+    </div>
+    <div class="glass proj-card">
+      <div class="proj-icon">🌾</div>
+      <div class="proj-name">AgriYield Prediction (Solo)</div>
+      <div class="proj-desc">Crop yield prediction pipeline using soil composition and weather features. 3rd place finish as a solo submission — no team, no shortcuts.</div>
+      <div class="tag-row" style="margin-bottom:1rem;"><span class="tag cyan">scikit-learn</span><span class="tag">Feature Eng.</span><span class="tag">Tabular</span></div>
+      <div class="proj-links"><a class="proj-link" href="https://www.kaggle.com/sanjidh090" target="_blank">Kaggle →</a></div>
+    </div>
+    <div class="glass proj-card">
+      <div class="proj-icon">🗳️</div>
+      <div class="proj-name">Political Meme Detection</div>
+      <div class="proj-desc">Multimodal NLP + vision classifier for political meme detection. Achieved 80% F1 score, Top 60 nationally at CUET CSE Fest 2025.</div>
+      <div class="tag-row" style="margin-bottom:1rem;"><span class="tag cyan">Transformers</span><span class="tag cyan">Vision</span><span class="tag">NLP</span></div>
+      <div class="proj-links"><a class="proj-link" href="https://github.com/Sanjidh090" target="_blank">GitHub →</a></div>
+    </div>
+    <div class="glass proj-card">
+      <div class="proj-icon">🤖</div>
+      <div class="proj-name">Line-Following Robot</div>
+      <div class="proj-desc">Custom PCB design and fabrication with embedded C firmware. Built under Team Frozen Voltage at KUET — hardware meets software.</div>
+      <div class="tag-row" style="margin-bottom:1rem;"><span class="tag">Embedded C</span><span class="tag">PCB Design</span><span class="tag">Robotics</span></div>
+      <div class="proj-links"><a class="proj-link" href="https://github.com/Sanjidh090" target="_blank">GitHub →</a></div>
+    </div>
+    <div class="glass proj-card">
+      <div class="proj-icon">🎨</div>
+      <div class="proj-name">Neural Style Transfer</div>
+      <div class="proj-desc">Deep dive implementation of Gram matrix-based artistic style transfer. Accompanied by a published technical article on the mathematics behind it.</div>
+      <div class="tag-row" style="margin-bottom:1rem;"><span class="tag cyan">PyTorch</span><span class="tag">CNN</span><span class="tag">Vision</span></div>
+      <div class="proj-links"><a class="proj-link" href="https://medium.com/@sanjidh090/painting-with-pixels-the-mathematics-of-style-transfer-ba9b9dd09d92" target="_blank">Article →</a></div>
+    </div>
+    <div class="glass proj-card">
+      <div class="proj-icon">📚</div>
+      <div class="proj-name">DSA & Embedded Coursework</div>
+      <div class="proj-desc">Week-by-week DSA implementations in C++ (CSE-2132) and hybrid C/Python embedded billing system with custom PCB (EE-1222).</div>
+      <div class="tag-row" style="margin-bottom:1rem;"><span class="tag">C++</span><span class="tag">C</span><span class="tag">Algorithms</span></div>
+      <div class="proj-links">
+        <a class="proj-link" href="https://github.com/Sanjidh090/CSE-2132" target="_blank">DSA →</a>
+        <a class="proj-link" href="https://github.com/Sanjidh090/EE-1222" target="_blank">Embedded →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+
+<section id="skills" class="reveal">
+  <div class="section-tag">// technical stack</div>
+  <h2 class="section-title">Technical <span>Expertise</span></h2>
+  <div class="skills-grid">
+    <div class="glass skill-card">
+      <div class="skill-category">AI / ML</div>
+      <div class="skill-name">Deep Learning & Research</div>
+      <div class="skill-tags">
+        <span class="skill-tag">PyTorch</span><span class="skill-tag">TensorFlow</span><span class="skill-tag">Keras</span>
+        <span class="skill-tag">Hugging Face</span><span class="skill-tag">Whisper</span><span class="skill-tag">BERT</span>
+      </div>
+    </div>
+    <div class="glass skill-card">
+      <div class="skill-category">Data Science</div>
+      <div class="skill-name">Analytics & Engineering</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Pandas</span><span class="skill-tag">NumPy</span><span class="skill-tag">scikit-learn</span>
+        <span class="skill-tag">Matplotlib</span><span class="skill-tag">OpenCV</span><span class="skill-tag">Kaggle</span>
+      </div>
+    </div>
+    <div class="glass skill-card">
+      <div class="skill-category">Languages</div>
+      <div class="skill-name">Programming</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span><span class="skill-tag">C</span><span class="skill-tag">C++</span>
+        <span class="skill-tag">JavaScript</span><span class="skill-tag">HTML/CSS</span>
+      </div>
+    </div>
+    <div class="glass skill-card">
+      <div class="skill-category">Hardware</div>
+      <div class="skill-name">Embedded & Edge</div>
+      <div class="skill-tags">
+        <span class="skill-tag">PCB Design</span><span class="skill-tag">Embedded C</span><span class="skill-tag">IoT</span>
+        <span class="skill-tag">Edge AI</span><span class="skill-tag">Robotics</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WRITING -->
+
+<section id="writing" class="reveal">
+  <div class="section-tag">// thought leadership</div>
+  <h2 class="section-title">Technical <span>Writing</span></h2>
+  <p class="section-sub">Deconstructing complex ideas for everyone. Published on Medium and DEV.to.</p>
+  <div class="writing-grid">
+    <a class="glass writing-card" href="https://medium.com/@sanjidh090/painting-with-pixels-the-mathematics-of-style-transfer-ba9b9dd09d92" target="_blank">
+      <div class="writing-platform">Medium</div>
+      <div class="writing-title">Painting with Pixels: The Mathematics of Style Transfer</div>
+      <div class="writing-desc">Gram matrices, loss functions, and how AI learns to paint like Studio Ghibli.</div>
+    </a>
+    <a class="glass writing-card" href="https://dev.to/sanjidh090/what-is-invariencewhy-do-we-need-2n5f" target="_blank">
+      <div class="writing-platform">DEV.to</div>
+      <div class="writing-title">What is Invariance?</div>
+      <div class="writing-desc">Why CNNs recognize objects regardless of position — translation, rotation, scale.</div>
+    </a>
+    <a class="glass writing-card" href="https://dev.to/sanjidh090/gigabytes-vs-gibibytes-understanding-the-difference-in-data-measurement-9d6" target="_blank">
+      <div class="writing-platform">DEV.to</div>
+      <div class="writing-title">Gigabytes vs. Gibibytes</div>
+      <div class="writing-desc">The decimal vs. binary storage standards debate — precision matters in engineering.</div>
+    </a>
+    <a class="glass writing-card" href="https://dev.to/sanjidh090/the-enigma-of-analyzing-angle-brackets-and-chevrons-in-coding-culture-1l2k" target="_blank">
+      <div class="writing-platform">DEV.to</div>
+      <div class="writing-title">The Enigma of &lt;/&gt;</div>
+      <div class="writing-desc">Cultural analysis of coding symbols — the semiotics and philosophy of programming.</div>
+    </a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+
+<section id="contact" class="reveal">
+  <div class="section-tag">// let's work together</div>
+  <h2 class="section-title">Get In <span>Touch</span></h2>
+  <p class="section-sub">Open to research collaborations, internships, freelance work, and full-time opportunities post-graduation.</p>
+  <div class="contact-grid">
+    <div class="contact-links">
+      <a class="glass contact-link" href="mailto:sanjid9657@gmail.com">
+        <div class="contact-icon" style="background:rgba(234,67,53,.15);">📧</div>
+        <div><div class="contact-platform">Email</div><div class="contact-handle">sanjid9657@gmail.com</div></div>
+      </a>
+      <a class="glass contact-link" href="https://github.com/Sanjidh090" target="_blank">
+        <div class="contact-icon" style="background:rgba(255,255,255,.05);">🐙</div>
+        <div><div class="contact-platform">GitHub</div><div class="contact-handle">github.com/Sanjidh090</div></div>
+      </a>
+      <a class="glass contact-link" href="https://linkedin.com/in/sanjidh090" target="_blank">
+        <div class="contact-icon" style="background:rgba(0,119,181,.15);">💼</div>
+        <div><div class="contact-platform">LinkedIn</div><div class="contact-handle">linkedin.com/in/sanjidh090</div></div>
+      </a>
+      <a class="glass contact-link" href="https://www.kaggle.com/sanjidh090" target="_blank">
+        <div class="contact-icon" style="background:rgba(32,190,255,.1);">📊</div>
+        <div><div class="contact-platform">Kaggle</div><div class="contact-handle">kaggle.com/sanjidh090</div></div>
+      </a>
+      <a class="glass contact-link" href="https://arxiv.org/abs/2602.23070" target="_blank">
+        <div class="contact-icon" style="background:rgba(179,27,27,.15);">📄</div>
+        <div><div class="contact-platform">arXiv</div><div class="contact-handle">arxiv.org/abs/2602.23070</div></div>
+      </a>
+    </div>
+    <div class="glass open-to" style="padding:1.8rem;">
+      <div class="open-to-title">Currently Open To</div>
+      <div class="open-item"><div class="open-dot"></div>Research collaborations</div>
+      <div class="open-item"><div class="open-dot"></div>Internships (AI/ML, NLP, Embedded)</div>
+      <div class="open-item"><div class="open-dot"></div>Freelance & contract work</div>
+      <div class="open-item"><div class="open-dot"></div>Full-time roles (post-graduation)</div>
+      <div class="open-item"><div class="open-dot"></div>Technical writing & workshops</div>
+      <div style="margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid var(--border);">
+        <div style="font-size:.75rem;color:var(--muted);margin-bottom:.5rem;font-family:'Fira Code',monospace;">// based in</div>
+        <div style="font-size:.9rem;">Khulna, Bangladesh 🇧🇩</div>
+        <div style="font-size:.78rem;color:var(--muted);margin-top:.3rem;">Remote-friendly · Open to relocation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Crafted with ❤️ by <span>Sanjid Hasan</span> · Updated March 2026</p>
+</footer>
+
+<script>
+// PARTICLES
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+for (let i = 0; i < 60; i++) {
+  particles.push({
+    x: Math.random() * window.innerWidth,
+    y: Math.random() * window.innerHeight,
+    r: Math.random() * 1.5 + .3,
+    dx: (Math.random() - .5) * .3,
+    dy: (Math.random() - .5) * .3,
+    o: Math.random() * .4 + .1
+  });
+}
+
+function drawParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(0,217,255,${p.o})`;
+    ctx.fill();
+    p.x += p.dx; p.y += p.dy;
+    if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+    if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+  });
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+// TYPEWRITER
+const roles = [
+  'AI / ML Engineer',
+  'Bengali ASR Researcher',
+  'Kaggle Expert',
+  'EEE @ KUET · 3rd Year',
+  'Team Frozen Voltage ❄️🔥'
+];
+let ri = 0, ci = 0, del = false;
+const el = document.getElementById('typewriter');
+
+function type() {
+  const cur = roles[ri];
+  if (!del) {
+    el.textContent = cur.slice(0, ++ci);
+    if (ci === cur.length) { del = true; setTimeout(type, 1800); return; }
+  } else {
+    el.textContent = cur.slice(0, --ci);
+    if (ci === 0) { del = false; ri = (ri + 1) % roles.length; }
+  }
+  setTimeout(type, del ? 40 : 70);
+}
+type();
+
+// SCROLL REVEAL
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
 </body>
 </html>

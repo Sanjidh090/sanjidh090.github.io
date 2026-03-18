@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Sanjid Hasan | AI Researcher</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -28,7 +28,7 @@
   --gc:linear-gradient(135deg,var(--c1),var(--c2));
 }
 html{scroll-behavior:smooth;color-scheme:dark;}
-body{background:var(--bg);color:var(--t1);font-family:'Inter',sans-serif;overflow-x:hidden;}
+body{background:var(--bg);color:var(--t1);font-family:'Plus Jakarta Sans',sans-serif;overflow-x:hidden;}
 ::-webkit-scrollbar{width:3px;}
 ::-webkit-scrollbar-thumb{background:var(--c2);border-radius:2px;}
 
@@ -129,16 +129,21 @@ display:block;
 }
 .st-l{font-size:.68rem;color:var(–t3);margin-top:.15rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em;}
 
-/* SECTION BASE */
-.section{padding:8rem 2rem;max-width:1060px;margin:0 auto;}
+.section{padding:5rem 2rem;max-width:1060px;margin:0 auto;}
 .sec-tag{
-font-family:‘Fira Code’,monospace;font-size:.72rem;
-color:var(–c1);letter-spacing:.18em;text-transform:uppercase;
-margin-bottom:.6rem;opacity:.9;
+font-family:‘Fira Code’,monospace;font-size:.7rem;
+color:var(–c1);letter-spacing:.15em;text-transform:uppercase;
+margin-bottom:.5rem;opacity:.9;
 }
-.sec-h{font-size:clamp(2.4rem,5vw,3.6rem);font-weight:800;letter-spacing:-.03em;margin-bottom:.9rem;line-height:1.1;}
+.sec-h{
+font-size:clamp(1.8rem,4vw,2.8rem);
+font-weight:800;letter-spacing:-.02em;
+margin-bottom:.7rem;line-height:1.15;
+word-break:break-word;
+overflow-wrap:break-word;
+}
 .sec-h em{font-style:normal;background:var(–gc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.sec-p{color:var(–t2);font-size:1rem;line-height:1.75;max-width:500px;margin-bottom:3.5rem;}
+.sec-p{color:var(–t2);font-size:.95rem;line-height:1.7;max-width:500px;margin-bottom:2rem;}
 
 hr.sep{border:none;border-top:1px solid var(–b1);max-width:1060px;margin:0 auto;}
 
@@ -185,7 +190,7 @@ padding:.25rem .7rem;border-radius:4px;
 font-size:.68rem;font-family:‘Fira Code’,monospace;color:#f87171;
 margin-bottom:1.1rem;
 }
-.paper-title{font-size:1.2rem;font-weight:700;line-height:1.45;margin-bottom:.65rem;letter-spacing:-.01em;}
+.paper-title{font-size:1.1rem;font-weight:700;line-height:1.5;margin-bottom:.65rem;letter-spacing:-.01em;color:var(–t1);}
 .paper-title a{color:var(–t1);text-decoration:none;transition:color .2s;}
 .paper-title a:hover{color:var(–c1);}
 .paper-authors{font-size:.75rem;color:var(–t3);font-family:‘Fira Code’,monospace;margin-bottom:1rem;}

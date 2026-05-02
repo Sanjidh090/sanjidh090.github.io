@@ -67,7 +67,9 @@ Alright, I am making a list on materials I could gather,
 9. https://www.reddit.com/r/speechtech/comments/mdort1/need_help_with_training_asr_model_from_scratch
 10. https://nextlevel.ai/best-speech-to-text-models
 11. https://www.gladia.io/blog/heres-how-we-optimized-whisper-asr-for-scale ( Damn! I became a fan )
-12. .ah,,,i dunnow
+12. https://www.diabolocom.com/research/whisper-explained/
+13. https://www.diabolocom.com/research/fine-tuning-asr-focus-on-whisper/
+14. .ah,,,i dunnow
 
 
 # Problems

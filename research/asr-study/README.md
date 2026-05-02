@@ -31,8 +31,8 @@ making them attractive for long-form transcription.
 
 ## So, we got a few models from openAI , NVIDIA , Alibaba ,Moonshine and many more foundational models
 Meta's OmniASR is considerably new ,besides it is open weight ,not open source so let's not go with it.
-* Whishper Family ```v3 large``` and ``v3-turbo``
-* Nemo ```canary 1B 2.5B ``` and ```parakeet(CTC) & TDT ```
+* Whishper Family ```v3 large``` and ``v3-turbo`` ,```faster-whisper-medium```
+* Nemo ```canary 1B 2.5B ``` and ```parakeet(CTC) & TDT ```, ```titu-conformer```
 * Qwen-Audio `Qwen3-ASR (1.7B)`
 * Moonshine **tiny** **faster** ...boost
 * Firered (SOTA on madarine)
@@ -52,6 +52,9 @@ Meta's OmniASR is considerably new ,besides it is open weight ,not open source s
 Source:[Goddamnit,You need source!](https://github.com/Sanjidh090/sanjidh090.github.io/blob/main/research%2Fasr-study%2FASR%20and%20Diarization%20Model%20Comparison.pdf)
 
 We have tried one model by [Hisab](https://huggingface.co/hishab/titu_stt_bn_fastconformer) the conformer model required a lot of processing and it's vulnerable to echoes and reverbs, We also noticed hallucination loop but somehow it was able to detect words whisper model could not. WER rate was nearly 0.71 at zero shot..Very iconic ,huh?
+
+After a little bit of finetuning and beam search using confomrer large by hishab, we managed to Bring the WER to .40 ...But faster whisper model remained invincible.
+Even raw data scaling wasn't good enough. Models needed fuzzy matched curated data, corrupted and mixed noise data like underwater sound, echo,hall efftect, spectrogram, hall effect and so on.
 
 
 

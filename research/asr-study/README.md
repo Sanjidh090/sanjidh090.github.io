@@ -72,7 +72,9 @@ Alright, I am making a list on materials I could gather,
 11. https://www.gladia.io/blog/heres-how-we-optimized-whisper-asr-for-scale ( Damn! I became a fan )
 12. https://www.diabolocom.com/research/whisper-explained/
 13. https://www.diabolocom.com/research/fine-tuning-asr-focus-on-whisper/
-14. .ah,,,i dunnow
+14. https://github.com/vasistalodagala/whisper-finetune
+15. https://github.com/Vaibhavs10/fast-whisper-finetuning
+16. .ah,,,i dunnow
 
 
 # Problems

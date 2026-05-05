@@ -93,4 +93,4 @@ also fine tuned moonshine model,which turned out a lesson, only fine tuning is r
 transfer learning or something like that. Model breaks after. It works fro french does not mean it'll work for Bangla,I guess letters are bit same in two but not for bangla
 
 
-
+We found a freaking fast model ,way smaller than moonshine and much better effort score .....it makes moonshile irrelavant (- _ -)

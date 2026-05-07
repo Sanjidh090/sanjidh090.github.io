@@ -74,7 +74,10 @@ Alright, I am making a list on materials I could gather,
 13. https://www.diabolocom.com/research/fine-tuning-asr-focus-on-whisper/
 14. https://github.com/vasistalodagala/whisper-finetune
 15. https://github.com/Vaibhavs10/fast-whisper-finetuning
-16. .ah,,,i dunnow
+16. https://learn.nvidia.com/courses/course-detail?course_id=course-v1:DLI+S-FX-04+V2
+17. https://docs.nvidia.com/deeplearning/riva/user-guide/docs/tutorials/asr-wordboosting.html (Keep in mind WORD_BOOSTING)
+18. https://github.com/NVIDIA-NeMo/NeMo/blob/main/tutorials/asr/ASR_with_Subword_Tokenization.ipynb (at the end, a lot of resources are there)
+19. .ah,,,i dunnow
 
 
 # Problems

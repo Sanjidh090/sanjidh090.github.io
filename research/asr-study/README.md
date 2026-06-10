@@ -77,7 +77,8 @@ Alright, I am making a list on materials I could gather,
 16. https://learn.nvidia.com/courses/course-detail?course_id=course-v1:DLI+S-FX-04+V2
 17. https://docs.nvidia.com/deeplearning/riva/user-guide/docs/tutorials/asr-wordboosting.html (Keep in mind WORD_BOOSTING)
 18. https://github.com/NVIDIA-NeMo/NeMo/blob/main/tutorials/asr/ASR_with_Subword_Tokenization.ipynb (at the end, a lot of resources are there)
-19. .ah,,,i dunnow
+19.https://openai.com/index/introducing-our-next-generation-audio-models/
+ .ah,,,i dunnow
 
 
 # Problems

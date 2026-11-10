@@ -1,109 +1,1121 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sanjid Hasan — speech AI and embedded systems</title>
-<meta name="description" content="Sanjid Hasan is an AI researcher at KUET working on edge-efficient Bengali speech recognition, accessible speech and embedded systems.">
-<meta property="og:title" content="Sanjid Hasan — speech AI and embedded systems">
-<meta property="og:description" content="Edge-efficient Bengali ASR, accessible speech recognition and embedded hardware.">
-<meta property="og:image" content="https://sanjidh090.github.io/assets/img/og-cover.png">
-<meta name="theme-color" content="#0b0f14">
+<title>Sanjid Hasan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap">
-<link rel="stylesheet" href="assets/site.css">
-</head>
-<body>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-<!-- The text on this page comes from content.js. Edit that file, not this one. -->
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --fg: #111111;
+    --accent: #111111;
+    --accent-soft: #444444;
+    --muted: #666666;
+    --link: #111111;
+    --hr: #DDDDDD;
+    --tag-bg: #F4F4F4;
+    --tag-fg: #111111;
+    --tag-border: #CCCCCC;
+    --border-line: #BBBBBB;
+    --timeline-dot: #111111;
+    --box-bg: #F9F9F9;
+    --box-border: #E5E5E5;
+    --scroll-bg: #F5F5F5;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0C0B1A;
+      --fg: #E5E0FF;
+      --accent: #818CF8;
+      --accent-soft: #A5B4FC;
+      --muted: #9490C8;
+      --link: #A5B4FC;
+      --hr: #2D2B4E;
+      --tag-bg: #1E1B3A;
+      --tag-fg: #A5B4FC;
+      --tag-border: #3730A3;
+      --border-line: #818CF8;
+      --timeline-dot: #818CF8;
+      --box-bg: #111128;
+      --box-border: #2D2B4E;
+      --scroll-bg: #0F0E1C;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0C0B1A;
+    --fg: #E5E0FF;
+    --accent: #818CF8;
+    --accent-soft: #A5B4FC;
+    --muted: #9490C8;
+    --link: #A5B4FC;
+    --hr: #2D2B4E;
+    --tag-bg: #1E1B3A;
+    --tag-fg: #A5B4FC;
+    --tag-border: #3730A3;
+    --border-line: #818CF8;
+    --timeline-dot: #818CF8;
+    --box-bg: #111128;
+    --box-border: #2D2B4E;
+    --scroll-bg: #0F0E1C;
+    color-scheme: dark;
+  }
 
-<header class="wrap top">
-  <a class="logo" href="#top" data-logo>sanjid-hasan</a>
-  <nav aria-label="Sections">
-    <a href="#research">research</a>
-    <a href="#builds">builds</a>
-    <a href="#notes-block">notes</a>
-    <a href="#path-sec">path</a>
-    <a href="#results-sec">results</a>
-    <a href="#writing-sec">writing</a>
-    <a class="cta" href="#contact" data-mail>contact</a>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Lora', Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+    line-height: 1.72;
+    margin: 0;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: env(safe-area-inset-top, 0px) env(safe-area-inset-bottom, 0px);
+  }
+
+  a { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
+  a:hover { color: var(--accent-soft); }
+
+  /* ─── Layout container ─── */
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  @media (min-width: 1200px) {
+    .container {
+      margin-left: 18.5%;
+      max-width: 58%;
+    }
+  }
+
+  /* ─── Top navigation ─── */
+  .top-nav {
+    padding: 48px 0 28px;
+    overflow: hidden;
+  }
+  #author-name {
+    float: left;
+    line-height: 1.35;
+  }
+  #author-name .name {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.15em;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    display: block;
+  }
+  #author-name .subtitle {
+    font-size: 0.85em;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .nav-links {
+    float: right;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88em;
+    padding-top: 2px;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--fg);
+    font-weight: 500;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links .cv-btn {
+    background: var(--accent);
+    color: white !important;
+    padding: 2px 10px;
+    border-radius: 4px;
+  }
+  .nav-links .cv-btn:hover { background: var(--accent-soft); }
+
+  /* ─── Profile initials avatar ─── */
+  .profile-avatar {
+    float: right;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    margin: 4px 0 20px 24px;
+    border: 3px solid var(--border-line);
+    background: var(--tag-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Lora', serif;
+    font-size: 2.4em;
+    font-weight: 600;
+    color: var(--accent);
+    flex-shrink: 0;
+    user-select: none;
+  }
+
+  /* ─── Bio area ─── */
+  .content { padding-bottom: 60px; }
+  .bio-name {
+    font-size: 1.75em;
+    font-weight: 600;
+    margin: 0 0 2px;
+    font-family: 'Lora', serif;
+  }
+  .bio-eyebrow {
+    color: var(--muted);
+    font-size: 0.93em;
+    margin-bottom: 14px;
+    font-style: italic;
+  }
+
+  h2 {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin: 36px 0 6px;
+    font-family: 'Lora', serif;
+  }
+  h2 + hr { margin-top: 2px; }
+  hr { border: none; border-top: 1px solid var(--hr); margin: 24px 0; }
+
+  /* ─── Research interests ─── */
+  .interests {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+    counter-reset: interest;
+  }
+  .interests li {
+    counter-increment: interest;
+    padding: 2px 0 2px 28px;
+    position: relative;
+    font-size: 0.95em;
+  }
+  .interests li::before {
+    content: counter(interest) ".";
+    position: absolute;
+    left: 0;
+    font-weight: 600;
+    color: var(--accent);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9em;
+  }
+
+  /* ─── Social badges row (CSS shields.io style) ─── */
+  .badges-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 22px 0 32px;
+  }
+  .badges-row a { text-decoration: none; line-height: 1; }
+  .shb {
+    display: inline-flex;
+    font-family: 'Inter', Verdana, sans-serif;
+    font-size: 11px;
+    line-height: 20px;
+    border-radius: 3px;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+  .shb-lbl { padding: 0 6px; background: #555; color: #fff; }
+  .shb-val { padding: 0 7px; color: #fff; }
+
+  /* ─── Scroll box (news) ─── */
+  .scroll-box {
+    max-height: 210px;
+    overflow-y: auto;
+    border: 1px solid var(--box-border);
+    border-radius: 6px;
+    padding: 8px 14px;
+    background: var(--scroll-bg);
+    margin: 10px 0 24px;
+    font-size: 0.91em;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-line) transparent;
+  }
+  .scroll-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .scroll-box ul li {
+    padding: 7px 0;
+    border-bottom: 1px solid var(--hr);
+    line-height: 1.55;
+  }
+  .scroll-box ul li:last-child { border-bottom: none; }
+
+  /* ─── Stats box ─── */
+  .outer-box {
+    border: 1px solid var(--box-border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin: 0 0 36px;
+    background: var(--box-bg);
+  }
+  .outer-box-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72em;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .inner-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .inner-box {
+    flex: 1;
+    min-width: 110px;
+    padding: 10px 12px;
+    background: var(--scroll-bg);
+    border-radius: 6px;
+    border: 1px solid var(--box-border);
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 1.55em;
+    font-weight: 700;
+    color: var(--accent);
+    font-family: 'Inter', sans-serif;
+    display: block;
+    line-height: 1.1;
+  }
+  .stat-lbl {
+    font-size: 0.72em;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    font-family: 'Inter', sans-serif;
+    display: block;
+    margin-top: 2px;
+  }
+  .tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 8px;
+    justify-content: center;
+  }
+  .tag {
+    background: var(--tag-bg);
+    color: var(--tag-fg);
+    border: 1px solid var(--tag-border);
+    border-radius: 20px;
+    padding: 1px 9px;
+    font-size: 0.72em;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+  }
+
+  /* ─── Papers ─── */
+  .paper {
+    margin: 18px 0;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--hr);
+  }
+  .paper:last-child { border-bottom: none; padding-bottom: 0; }
+  .paper-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 8px;
+  }
+  .badge {
+    padding: 2px 9px;
+    border-radius: 20px;
+    font-size: 0.73em;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .b-solid   { background: var(--accent); color: #fff; }
+  .b-amber   { background: #B45309; color: #fff; }
+  .b-amber-o { border: 1px solid #D97706; color: #D97706; }
+  .b-outline { border: 1px solid var(--hr); color: var(--muted); }
+  .paper-title {
+    font-weight: 600;
+    font-size: 0.98em;
+    line-height: 1.5;
+    margin-bottom: 3px;
+  }
+  .paper-title a { color: var(--fg); text-decoration: underline; text-underline-offset: 3px; }
+  .paper-title a:hover { color: var(--accent); }
+  .paper-authors {
+    font-size: 0.86em;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 7px;
+    font-family: 'Inter', sans-serif;
+  }
+  .paper-summary {
+    font-size: 0.92em;
+    margin-bottom: 8px;
+  }
+  .paper-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.84em;
+  }
+  .paper-links a { font-weight: 500; }
+
+  /* ─── Builds grid ─── */
+  .builds-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 12px;
+    margin: 14px 0;
+  }
+  .build-card {
+    background: var(--box-bg);
+    border: 1px solid var(--box-border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .build-kind {
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+  }
+  .build-kind.hw { color: #D97706; }
+  .build-title {
+    font-weight: 600;
+    font-size: 0.93em;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.35;
+  }
+  .build-title a { color: var(--fg); text-decoration: none; }
+  .build-title a:hover { color: var(--accent); text-decoration: underline; }
+  .build-text {
+    font-size: 0.86em;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ─── Timeline ─── */
+  .timeline {
+    margin: 14px 0 14px 10px;
+  }
+  .tl-item {
+    position: relative;
+    border-left: 2px solid var(--border-line);
+    padding: 0 0 24px 20px;
+    margin-left: 4px;
+  }
+  .tl-item:last-child { padding-bottom: 0; border-left-color: transparent; }
+  .tl-item::before {
+    content: '';
+    width: 11px; height: 11px;
+    background: var(--timeline-dot);
+    border-radius: 50%;
+    position: absolute;
+    left: -6.5px;
+    top: 5px;
+    box-shadow: 0 0 0 3px var(--bg);
+    transition: box-shadow 0.2s;
+  }
+  .tl-item.current::before {
+    box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--accent-soft);
+  }
+  .tl-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2px 10px;
+    margin-bottom: 2px;
+  }
+  .tl-role {
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95em;
+  }
+  .tl-when {
+    font-size: 0.8em;
+    color: var(--muted);
+    font-family: 'Inter', sans-serif;
+    white-space: nowrap;
+  }
+  .tl-text {
+    font-size: 0.9em;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.55;
+  }
+
+  /* ─── Results ─── */
+  .results-list {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0;
+  }
+  .results-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--hr);
+    flex-wrap: wrap;
+    font-size: 0.93em;
+  }
+  .results-list li:last-child { border-bottom: none; }
+  .res-rank {
+    font-weight: 700;
+    color: var(--accent);
+    font-family: 'Inter', sans-serif;
+    min-width: 110px;
+    flex-shrink: 0;
+  }
+  .res-event { flex: 1; min-width: 120px; }
+  .res-meta {
+    font-size: 0.84em;
+    color: var(--muted);
+    font-family: 'Inter', sans-serif;
+    white-space: nowrap;
+  }
+
+  /* ─── Writing ─── */
+  .writing-list {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0;
+  }
+  .writing-list li {
+    padding: 7px 0;
+    border-bottom: 1px solid var(--hr);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-size: 0.93em;
+  }
+  .writing-list li:last-child { border-bottom: none; }
+  .writing-where {
+    font-size: 0.72em;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--muted);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    min-width: 48px;
+    flex-shrink: 0;
+  }
+
+  /* ─── About ─── */
+  .about-paras p { margin: 0 0 12px; }
+
+  /* ─── Contact / footer ─── */
+  .footer {
+    padding: 36px 0 48px;
+    border-top: 1px solid var(--hr);
+    margin-top: 20px;
+  }
+  .footer-email {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88em;
+    color: var(--muted);
+    margin-top: 10px;
+  }
+  .footer-profiles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88em;
+  }
+  .footer-profiles a { text-decoration: none; color: var(--muted); }
+  .footer-profiles a:hover { color: var(--accent); }
+
+  /* ─── Right fixed section nav ─── */
+  #side-nav {
+    display: none;
+    position: fixed;
+    top: 50%;
+    right: 24px;
+    transform: translateY(-50%);
+    font-family: 'Inter', sans-serif;
+    z-index: 100;
+  }
+  @media (min-width: 1200px) {
+    #side-nav { display: block; }
+  }
+  #side-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  #side-nav ul li { margin-bottom: 8px; }
+  #side-nav ul li a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.8em;
+    transition: color 0.15s;
+    display: block;
+  }
+  #side-nav ul li a:hover, #side-nav ul li a.active {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* ─── Clearfix & utils ─── */
+  .cf::after { content: ''; display: table; clear: both; }
+
+  /* ─── Palette picker ─── */
+  .palette-picker {
+    position: fixed;
+    bottom: 28px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 200;
+    background: var(--box-bg);
+    padding: 9px 7px;
+    border-radius: 20px;
+    border: 1px solid var(--box-border);
+    box-shadow: 0 2px 12px rgba(0,0,0,.14);
+  }
+  .palette-swatch {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    border: 2.5px solid transparent;
+    cursor: pointer;
+    transition: transform .15s, border-color .15s;
+    padding: 0;
+    display: block;
+  }
+  .palette-swatch:hover { transform: scale(1.3); }
+  .palette-swatch.active {
+    border-color: var(--fg);
+    box-shadow: 0 0 0 2px var(--bg);
+    transform: scale(1.1);
+  }
+
+  /* ─── Mobile ─── */
+  @media (max-width: 600px) {
+    .top-nav { padding: 24px 0 18px; }
+    .top-nav .cf { display: flex; flex-direction: column; gap: 12px; }
+    #author-name { float: none; }
+    .nav-links { float: none; justify-content: flex-start; gap: 12px; flex-wrap: wrap; }
+    .profile-avatar { width: 100px; height: 100px; font-size: 1.8em; margin-left: 14px; }
+    .builds-grid { grid-template-columns: 1fr; }
+    .tl-head { flex-direction: column; gap: 0; }
+  }
+</style>
+
+<!-- ═══════════════════════════════════════════════════
+     MAIN CONTAINER
+══════════════════════════════════════════════════════ -->
+<div class="container">
+
+  <!-- ── Top Navigation ── -->
+  <nav class="top-nav">
+    <div class="cf">
+      <div id="author-name">
+        <span class="name">Sanjid Hasan</span>
+        <span class="subtitle">EEE · KUET · class of 2027</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#builds">Projects</a></li>
+        <li><a href="#path">Journey</a></li>
+        <li><a href="#writing">Writing</a></li>
+        <li><a href="assets/cv/Sanjid_Hasan_CV.pdf" class="cv-btn">CV</a></li>
+      </ul>
+    </div>
   </nav>
-</header>
 
-<main>
-  <section id="top" class="hero dots">
-    <div class="wrap hero-in">
-      <div class="hero-text" id="hero-text"></div>
-      <div class="term">
-        <div class="term-bar"><i></i><i></i><i></i><span>sanjid@kuet: ~</span></div>
-        <div class="term-body" id="term-body"></div>
+  <!-- ── Main Content ── -->
+  <div class="content">
+
+    <!-- Profile + Bio -->
+    <div class="cf">
+      <div class="profile-avatar" aria-label="Sanjid Hasan initials">SH</div>
+
+      <h1 class="bio-name">Sanjid Hasan</h1>
+      <p class="bio-eyebrow">EEE @ KUET &middot; class of 2027 &middot; Khulna, Bangladesh</p>
+
+      <p>I adapt compact speech models to Bangla and to speakers mainstream systems miss, and I build the hardware side too. Currently finishing my undergraduate degree at KUET while running NLP mentorship and an open speech corpus used in real research.</p>
+
+      <p><strong>Research interests:</strong></p>
+      <ol class="interests">
+        <li><strong>Edge-efficient ASR</strong> &mdash; making compact recognisers like Moonshine work outside English.</li>
+        <li><strong>Accessible speech</strong> &mdash; streaming recognition for dysarthric speakers, running on a CPU.</li>
+        <li><strong>Low-resource Bangla NLP</strong> &mdash; corpora, diarization and fine-tuning for a language of 230 million.</li>
+        <li><strong>Embedded hardware</strong> &mdash; PCB design, ESP32 prototypes and the robots they go into.</li>
+      </ol>
+    </div>
+
+    <!-- Social badges (CSS flat-square style) -->
+    <div class="badges-row">
+      <a href="https://github.com/Sanjidh090" target="_blank" rel="noopener">
+        <span class="shb"><span class="shb-lbl">GitHub</span><span class="shb-val" style="background:#360893">Sanjidh090</span></span>
+      </a>
+      <a href="https://huggingface.co/Sanjidh090" target="_blank" rel="noopener">
+        <span class="shb"><span class="shb-lbl">🤗 HuggingFace</span><span class="shb-val" style="background:#FF9D00;color:#000">Sanjidh090</span></span>
+      </a>
+      <a href="https://www.kaggle.com/sanjidh090" target="_blank" rel="noopener">
+        <span class="shb"><span class="shb-lbl">Kaggle</span><span class="shb-val" style="background:#20BEFF">sanjidh090</span></span>
+      </a>
+      <a href="https://www.linkedin.com/in/sanjidh090/" target="_blank" rel="noopener">
+        <span class="shb"><span class="shb-lbl">LinkedIn</span><span class="shb-val" style="background:#0A66C2">sanjidh090</span></span>
+      </a>
+      <a href="https://orcid.org/0009-0006-1271-9786" target="_blank" rel="noopener">
+        <span class="shb"><span class="shb-lbl">ORCID</span><span class="shb-val" style="background:#A6CE39;color:#000">0009-0006-1271-9786</span></span>
+      </a>
+      <a href="https://medium.com/@sanjidh090" target="_blank" rel="noopener">
+        <span class="shb"><span class="shb-lbl">Medium</span><span class="shb-val" style="background:#12100E">@sanjidh090</span></span>
+      </a>
+      <a href="https://dev.to/sanjidh090" target="_blank" rel="noopener">
+        <span class="shb"><span class="shb-lbl">Dev.to</span><span class="shb-val" style="background:#0A0A0A">sanjidh090</span></span>
+      </a>
+    </div>
+
+    <!-- ── News & Updates ── -->
+    <h2 id="news">📰 News &amp; Updates</h2>
+    <hr>
+    <div class="scroll-box">
+      <ul>
+        <li><span style="font-weight:600">Dec 11, 2026</span>: 🎤 Giving a talk at <strong>NeurIPS 2026</strong> in Sydney — "Beyond Recognition Accuracy: Efficient CPU Streaming ASR for Dysarthric Speech."</li>
+        <li><span style="font-weight:600">Oct 2026</span>: 📄 "Lipi-Ghor" corpus paper published at <strong>EMNLP 2026 SALMA Workshop</strong> (pp. 190–201). Dataset at HuggingFace.</li>
+        <li><span style="font-weight:600">Sep 2026</span>: Elected <strong>Technical Secretary</strong> of IEEE Student Branch KUET. Organising seminars and industrial visits.</li>
+        <li><span style="font-weight:600">Jul 2026</span>: 📄 "Tokenizer Transplantation" accepted at <strong>ICML 2026 Workshop</strong> (Muslims in ML poster). Also won <strong>2nd prize</strong> at KUET University Day technical segment.</li>
+        <li><span style="font-weight:600">Jun 2026</span>: NeurIPS 2026 Competition Track entry accepted — KMinds team (Speech Accessibility Project Challenge 2).</li>
+        <li><span style="font-weight:600">Feb 2026</span>: 📄 New arXiv preprint: "Make It Hard to Hear, Easy to Learn" — extreme augmentation for Bangla ASR (<a href="https://arxiv.org/abs/2602.23070">2602.23070</a>).</li>
+        <li><span style="font-weight:600">2026</span>: 🏆 <strong>2nd runner-up + Dataset Prize</strong> at DL Sprint 4.0, BUET CSE Fest with Team Villagers.</li>
+        <li><span style="font-weight:600">Oct 2025</span>: Co-founded <strong>KMinds</strong>, KUET's student-led AI research community. Now mentoring NLP and speech projects.</li>
+        <li><span style="font-weight:600">2025</span>: Released <a href="https://huggingface.co/Sanjidh090/moonshine-base-bn">moonshine-base-bn</a> — 21.54% WER on Bangla ASR with ~61M parameters.</li>
+      </ul>
+    </div>
+
+    <!-- Publication stats box -->
+    <div class="outer-box">
+      <div class="outer-box-label">At a glance</div>
+      <div class="inner-row">
+        <div class="inner-box">
+          <span class="stat-num">5</span>
+          <span class="stat-lbl">Papers</span>
+          <div class="tags-row">
+            <span class="tag">ICML WS</span>
+            <span class="tag">EMNLP WS</span>
+            <span class="tag">NeurIPS Comp</span>
+            <span class="tag">IEEE</span>
+          </div>
+        </div>
+        <div class="inner-box">
+          <span class="stat-num">21.54%</span>
+          <span class="stat-lbl">WER on Bangla</span>
+          <div class="tags-row">
+            <span class="tag">~61M params</span>
+            <span class="tag">RTF 0.0053</span>
+          </div>
+        </div>
+        <div class="inner-box">
+          <span class="stat-num">882 h</span>
+          <span class="stat-lbl">Open speech data</span>
+          <div class="tags-row">
+            <span class="tag">CC BY 4.0</span>
+            <span class="tag">diarized</span>
+          </div>
+        </div>
+        <div class="inner-box">
+          <span class="stat-num">9.16→1.30</span>
+          <span class="stat-lbl">Tokens per Bengali word</span>
+          <div class="tags-row">
+            <span class="tag">85.8% shorter</span>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="wrap wave" id="wave" aria-hidden="true"></div>
-  </section>
 
-  <section class="wrap" aria-label="At a glance" style="padding-top:56px">
-    <div class="grid" id="stats"></div>
-  </section>
+    <!-- ── Research ── -->
+    <h2 id="research">📄 Research</h2>
+    <hr>
 
-  <section class="wrap focus" id="focus" aria-label="Focus areas"></section>
-
-  <section class="wrap block" id="research">
-    <div class="head"><p class="tag">// research</p><h2>Papers</h2></div>
-    <div class="grid" id="papers"></div>
-  </section>
-
-  <section class="wrap block" id="builds">
-    <div class="head" id="builds-head"><p class="tag">// builds</p><h2>Models, tools and hardware</h2></div>
-    <div class="grid" id="builds-grid"></div>
-  </section>
-
-  <section class="wrap block" id="notes-block">
-    <div class="head"><p class="tag">// notes</p><h2>Research notes</h2><p class="muted" id="notes-intro"></p></div>
-    <div class="grid" id="notes"></div>
-  </section>
-
-  <section class="wrap block split" id="path-sec">
-    <div class="side">
-      <p class="tag">// path</p>
-      <h2>Roles and community</h2>
-      <p id="path-intro"></p>
+    <div class="paper">
+      <div class="paper-badges">
+        <span class="badge b-solid">ICML 2026 Workshop</span>
+        <span class="badge b-outline">Muslims in ML · poster</span>
+        <span class="badge b-amber-o">2nd prize, KUET University Day</span>
+      </div>
+      <div class="paper-title">
+        <a href="https://arxiv.org/abs/2607.09598" target="_blank" rel="noopener">
+          Tokenizer Transplantation: Mitigating Autoregressive Collapse in Edge-Efficient Bengali ASR
+        </a>
+      </div>
+      <div class="paper-authors">Sanjid Hasan, Md. Abdur Rahman &middot; July 2026</div>
+      <div class="paper-summary">
+        Moonshine breaks down on Bengali because its English byte-level tokenizer shatters each word. Replacing the decoder vocabulary with BanglaBERT's WordPiece removes the instability and cuts decoding by 85.8%.
+      </div>
+      <div class="paper-links">
+        <a href="https://arxiv.org/abs/2607.09598" target="_blank" rel="noopener">arXiv 2607.09598</a>
+        <a href="https://github.com/Sanjidh090/moonshine-base-bn" target="_blank" rel="noopener">code</a>
+        <a href="https://huggingface.co/Sanjidh090/moonshine-base-bn" target="_blank" rel="noopener">model</a>
+      </div>
     </div>
-    <div class="timeline" id="path"></div>
-  </section>
 
-  <section class="wrap block" id="results-sec">
-    <div class="head"><p class="tag">// results</p><h2>Competitions</h2></div>
-    <div class="grid" id="results"></div>
-  </section>
-
-  <section class="wrap block two">
-    <div id="writing-sec">
-      <div class="head"><p class="tag">// writing</p><h2 class="sm">Explainers</h2></div>
-      <div class="list" id="writing"></div>
+    <div class="paper">
+      <div class="paper-badges">
+        <span class="badge b-amber">NeurIPS 2026 Competition Track</span>
+        <span class="badge b-outline">talk · non-archival</span>
+      </div>
+      <div class="paper-title">
+        <a href="https://neurips.cc/virtual/2026/181064" target="_blank" rel="noopener">
+          Beyond Recognition Accuracy: Efficient CPU Streaming ASR for Dysarthric Speech
+        </a>
+      </div>
+      <div class="paper-authors">Sanjid Hasan, Zaina Rahman, Suhita Islam Aurthi, MD Rashaduzzaman Rakib, Sadia Jahan Turabe, Md. Wasif Rahman</div>
+      <div class="paper-summary">
+        I led the six-member KMinds team behind this entry to the Speech Accessibility Project Challenge 2.
+      </div>
+      <div class="paper-links">
+        <a href="https://neurips.cc/virtual/2026/181064" target="_blank" rel="noopener">NeurIPS page</a>
+      </div>
     </div>
-    <div id="about-block">
-      <div class="head"><p class="tag">// about</p><h2 class="sm">Off the clock</h2></div>
-      <div class="about" id="about"></div>
-    </div>
-  </section>
-</main>
 
-<footer id="contact" class="dots">
-  <div class="wrap foot">
-    <p class="tag">$ contact --open</p>
-    <h2 id="contact-headline"></h2>
-    <div class="row">
-      <a class="btn primary mail" data-mail href="#"><span id="mail-text"></span></a>
-      <a class="btn ghost" data-cv href="#">Download CV</a>
+    <div class="paper">
+      <div class="paper-badges">
+        <span class="badge b-solid">EMNLP 2026 Workshop</span>
+        <span class="badge b-outline">SALMA · pp. 190–201</span>
+      </div>
+      <div class="paper-title">
+        <a href="https://arxiv.org/abs/2610.36184" target="_blank" rel="noopener">
+          Lipi-Ghor: A Large-Scale, Diarized, Multi-Domain Bengali Speech Corpus and a Scalable Pipeline for Building It
+        </a>
+      </div>
+      <div class="paper-authors">Sanjid Hasan, A H M Fuad, Risalat Labib, Bayazid Hasan Simon</div>
+      <div class="paper-summary">
+        A speaker-labelled Bengali speech corpus and the pipeline for building more like it. 882 hours released under CC BY 4.0.
+      </div>
+      <div class="paper-links">
+        <a href="https://arxiv.org/abs/2610.36184" target="_blank" rel="noopener">arXiv 2610.36184</a>
+        <a href="https://huggingface.co/datasets/Sanjidh090/Lipi-Ghor-bn-882-SSTT" target="_blank" rel="noopener">dataset</a>
+      </div>
     </div>
-    <nav class="profiles" id="profiles" aria-label="Profiles"></nav>
-  </div>
-</footer>
 
-<noscript><p style="padding:24px">This site needs JavaScript to show its content.</p></noscript>
-<script src="content.js"></script>
-<script src="assets/site.js"></script>
-</body>
-</html>
+    <div class="paper">
+      <div class="paper-badges">
+        <span class="badge b-outline">arXiv preprint · Feb 2026</span>
+        <span class="badge b-amber-o">DL Sprint 4.0 podium</span>
+      </div>
+      <div class="paper-title">
+        <a href="https://arxiv.org/abs/2602.23070" target="_blank" rel="noopener">
+          Make It Hard to Hear, Easy to Learn: Long-Form Bengali ASR and Speaker Diarization via Extreme Augmentation and Perfect Alignment
+        </a>
+      </div>
+      <div class="paper-authors">Sanjid Hasan, Risalat Labib, A H M Fuad, Bayazid Hasan</div>
+      <div class="paper-summary">
+        Training on deliberately degraded audio beats adding more data. The pipeline runs at about 0.019 real-time factor.
+      </div>
+      <div class="paper-links">
+        <a href="https://arxiv.org/abs/2602.23070" target="_blank" rel="noopener">arXiv 2602.23070</a>
+        <a href="https://github.com/Sanjidh090/DL_Sprint_4.0_Solution" target="_blank" rel="noopener">code</a>
+      </div>
+    </div>
+
+    <div class="paper">
+      <div class="paper-badges">
+        <span class="badge b-outline">IEEE COMPAS 2025</span>
+        <span class="badge b-outline">computational biology</span>
+      </div>
+      <div class="paper-title">
+        KSiFoldNet: A K-Symplectic Integrated Transformer Network for RNA Structural Prediction with AdamW Optimization
+      </div>
+      <div class="paper-authors">A E Evan, A Hassan, R H Tenis, S Singha, E A Rajon, S Hasan</div>
+      <div class="paper-summary">
+        A transformer network for predicting RNA secondary structure.
+      </div>
+    </div>
+
+    <!-- ── Projects & Builds ── -->
+    <h2 id="builds">🔧 Projects &amp; Builds</h2>
+    <hr>
+    <div class="builds-grid">
+      <div class="build-card">
+        <div class="build-kind">model</div>
+        <div class="build-title">
+          <a href="https://huggingface.co/Sanjidh090/moonshine-base-bn" target="_blank" rel="noopener">moonshine-base-bn</a>
+        </div>
+        <div class="build-text">A Bangla speech recogniser small enough for edge devices, trained on 1.43M clips.</div>
+      </div>
+      <div class="build-card">
+        <div class="build-kind">demo</div>
+        <div class="build-title">
+          <a href="https://huggingface.co/spaces/Sanjidh090/moonshine-model-3d-explorer" target="_blank" rel="noopener">Model 3D Explorer</a>
+        </div>
+        <div class="build-text">Walk through a speech model's weights as an interactive 3D grid.</div>
+      </div>
+      <div class="build-card">
+        <div class="build-kind hw">hardware</div>
+        <div class="build-title">
+          <a href="https://github.com/Sanjidh090/Low-cost-ECG-Monitoring" target="_blank" rel="noopener">Low-cost ECG monitor</a>
+        </div>
+        <div class="build-text">ESP32 + AD8232 heart monitor streaming to a live Streamlit dashboard.</div>
+      </div>
+      <div class="build-card">
+        <div class="build-kind hw">hardware</div>
+        <div class="build-title">Line-following robot</div>
+        <div class="build-text">Custom PCB designed and etched in-house, running embedded C firmware.</div>
+      </div>
+      <div class="build-card">
+        <div class="build-kind">dataset</div>
+        <div class="build-title">
+          <a href="https://huggingface.co/datasets/Sanjidh090/Lipi-Ghor-bn-882-SSTT" target="_blank" rel="noopener">Lipi-Ghor</a>
+        </div>
+        <div class="build-text">882 hours of Bengali speech with speaker turns and transcripts. CC BY 4.0.</div>
+      </div>
+      <div class="build-card">
+        <div class="build-kind">dataset</div>
+        <div class="build-title">
+          <a href="https://data.mendeley.com/datasets/zhv9jjv3n6/1" target="_blank" rel="noopener">KUET Whispers</a>
+        </div>
+        <div class="build-text">2,485 anonymised Bangla and English student posts for sentiment research.</div>
+      </div>
+    </div>
+
+    <!-- ── Journey / Experience ── -->
+    <h2 id="path">🧭 Journey</h2>
+    <hr>
+    <p style="font-size:0.93em;color:var(--muted);font-style:italic;margin:0 0 16px">Most of what I know I learned by teaching it, so I spend a lot of time running workshops, paper readings and teams at KUET.</p>
+    <div class="timeline">
+      <div class="tl-item current">
+        <div class="tl-head">
+          <span class="tl-role">Technical Secretary, IEEE Student Branch KUET</span>
+          <span class="tl-when">Sep 2026 – now</span>
+        </div>
+        <div class="tl-text">Seminars, industrial visits and the branch's official communications.</div>
+      </div>
+      <div class="tl-item current">
+        <div class="tl-head">
+          <span class="tl-role">Assistant Domain Lead for NLP, KMinds</span>
+          <span class="tl-when">Oct 2025 – now</span>
+        </div>
+        <div class="tl-text">KUET's student-led AI research community. I mentor NLP and speech projects and led our NeurIPS challenge team.</div>
+      </div>
+      <div class="tl-item current">
+        <div class="tl-head">
+          <span class="tl-role">Founder, Team Frozen Voltage</span>
+          <span class="tl-when">2025 – now</span>
+        </div>
+        <div class="tl-text">Electronics, AI and robotics projects, plus a free PCB design and etching workshop for the 2K24 batch.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-role">Research Assistant, Hackules Institute for Advanced Research</span>
+          <span class="tl-when">Jan – Aug 2025</span>
+        </div>
+        <div class="tl-text">Computer vision, generative AI and AI-based skeletal diagnostics.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-role">Techforge KUET &amp; campus ambassador work</span>
+          <span class="tl-when">2024 – 2026</span>
+        </div>
+        <div class="tl-text">Organised Circuit Master 1.0 and hardware workshops. Best Campus Ambassador at SciBlitz 1.0.</div>
+      </div>
+    </div>
+
+    <!-- ── Competition Results ── -->
+    <h2 id="results">🏆 Competition Results</h2>
+    <hr>
+    <ul class="results-list">
+      <li>
+        <span class="res-rank">2nd runner-up + Dataset Prize</span>
+        <span class="res-event">DL Sprint 4.0, BUET CSE Fest</span>
+        <span class="res-meta">Team Villagers · 2026</span>
+      </li>
+      <li>
+        <span class="res-rank">2nd prize</span>
+        <span class="res-event">KUET University Day poster</span>
+        <span class="res-meta">technical segment · 2026</span>
+      </li>
+      <li>
+        <span class="res-rank">3rd</span>
+        <span class="res-event">AgriYield 2025</span>
+        <span class="res-meta">solo entry</span>
+      </li>
+      <li>
+        <span class="res-rank">4th</span>
+        <span class="res-event">NWU CSE Fest Datathon</span>
+        <span class="res-meta">Team Maverics · 2025</span>
+      </li>
+      <li>
+        <span class="res-rank">8th</span>
+        <span class="res-event">First Byte Datathon</span>
+        <span class="res-meta">Team Frozen Voltage · 2025</span>
+      </li>
+      <li>
+        <span class="res-rank">Best ambassador</span>
+        <span class="res-event">SciBlitz 1.0</span>
+        <span class="res-meta">campus ambassador</span>
+      </li>
+    </ul>
+
+    <!-- ── About ── -->
+    <h2 id="about">🧑 About</h2>
+    <hr>
+    <div class="about-paras">
+      <p>I study Electrical and Electronic Engineering at KUET and graduate in October 2027.</p>
+      <p>I'm a Level 7 Google Maps Local Guide with over 1,000 contributions, which I treat as an archive of places in Khulna before they change.</p>
+      <p>Kaggle Datasets Expert. I speak Bangla and English, and a little Arabic.</p>
+    </div>
+
+    <!-- ── Writing ── -->
+    <h2 id="writing">✍️ Writing</h2>
+    <hr>
+    <ul class="writing-list">
+      <li>
+        <span class="writing-where">Medium</span>
+        <a href="https://medium.com/@sanjidh090/painting-with-pixels-the-mathematics-of-style-transfer-ba9b9dd09d92" target="_blank" rel="noopener">
+          Painting with Pixels: The Mathematics of Style Transfer
+        </a>
+      </li>
+      <li>
+        <span class="writing-where">Dev</span>
+        <a href="https://dev.to/sanjidh090/what-is-invariencewhy-do-we-need-2n5f" target="_blank" rel="noopener">
+          What Is Invariance?
+        </a>
+      </li>
+      <li>
+        <span class="writing-where">Dev</span>
+        <a href="https://dev.to/sanjidh090/gigabytes-vs-gibibytes-understanding-the-difference-in-data-measurement-9d6" target="_blank" rel="noopener">
+          Gigabytes vs. Gibibytes
+        </a>
+      </li>
+      <li>
+        <span class="writing-where">Dev</span>
+        <a href="https://dev.to/sanjidh090/the-enigma-of-analyzing-angle-brackets-and-chevrons-in-coding-culture-1l2k" target="_blank" rel="noopener">
+          The Enigma of Angle Brackets in Coding Culture
+        </a>
+      </li>
+    </ul>
+
+    <!-- ── Contact / Footer ── -->
+    <div class="footer">
+      <p>Have a speech problem that needs a small model? Write to me.</p>
+      <div class="footer-email">sanjid9657@gmail.com</div>
+      <div class="footer-profiles">
+        <a href="https://github.com/Sanjidh090" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://huggingface.co/Sanjidh090" target="_blank" rel="noopener">HuggingFace</a>
+        <a href="https://www.kaggle.com/sanjidh090" target="_blank" rel="noopener">Kaggle</a>
+        <a href="https://www.linkedin.com/in/sanjidh090/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://orcid.org/0009-0006-1271-9786" target="_blank" rel="noopener">ORCID</a>
+        <a href="https://medium.com/@sanjidh090" target="_blank" rel="noopener">Medium</a>
+        <a href="https://dev.to/sanjidh090" target="_blank" rel="noopener">Dev.to</a>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /container -->
+
+<!-- ═══════════════════════════════════════════════════
+     RIGHT FIXED SECTION NAV (1200px+ only)
+══════════════════════════════════════════════════════ -->
+<nav id="side-nav" aria-label="Section navigation">
+  <ul>
+    <li><a href="#news">📰 News</a></li>
+    <li><a href="#research">📄 Research</a></li>
+    <li><a href="#builds">🔧 Projects</a></li>
+    <li><a href="#path">🧭 Journey</a></li>
+    <li><a href="#results">🏆 Results</a></li>
+    <li><a href="#about">🧑 About</a></li>
+    <li><a href="#writing">✍️ Writing</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ Palette Picker ═══ -->
+<div class="palette-picker" role="toolbar" aria-label="Color theme">
+  <button class="palette-swatch" data-p="indigo" style="background:#4F46E5" title="Indigo"></button>
+  <button class="palette-swatch" data-p="white"  style="background:#FFFFFF;border-color:#9CA3AF !important" title="White"></button>
+  <button class="palette-swatch" data-p="classic" style="background:conic-gradient(#EDE8D8 50%, #C07028 50%);border-color:#C07028 !important" title="Parchment"></button>
+</div>
+
+<script>
+  // ── Color palettes (light + dark for each) ───────────────────────
+  var PALETTES = {
+    white:  {'--bg':'#FFFFFF','--fg':'#111111','--accent':'#111111','--accent-soft':'#444444','--muted':'#666666','--link':'#111111','--hr':'#DDDDDD','--tag-bg':'#F4F4F4','--tag-fg':'#111111','--tag-border':'#CCCCCC','--border-line':'#BBBBBB','--timeline-dot':'#111111','--box-bg':'#F9F9F9','--box-border':'#E5E5E5','--scroll-bg':'#F5F5F5'},
+    classic: {'--bg':'#EDE8D8','--fg':'#1C1510','--accent':'#C07028','--accent-soft':'#D4842E','--muted':'#7A6848','--link':'#B8621C','--hr':'#D4C8A8','--tag-bg':'#F5EDD0','--tag-fg':'#7A3010','--tag-border':'#E0C898','--border-line':'#C07028','--timeline-dot':'#C07028','--box-bg':'#F5F0E8','--box-border':'#E0D8C0','--scroll-bg':'#F8F4EC'}
+  };
+  var DARK_PALETTES = {
+    white:  {'--bg':'#101018','--fg':'#E8E8FF','--accent':'#7C82E0','--accent-soft':'#9EA4F0','--muted':'#9090B8','--link':'#9EA4F0','--hr':'#2A2A44','--tag-bg':'#1A1A30','--tag-fg':'#A0A8F0','--tag-border':'#2D2D54','--border-line':'#7C82E0','--timeline-dot':'#7C82E0','--box-bg':'#161622','--box-border':'#2A2A44','--scroll-bg':'#111120'},
+    classic: {'--bg':'#1A1408','--fg':'#F0E8D0','--accent':'#E8902A','--accent-soft':'#F0A840','--muted':'#C4A878','--link':'#F0A840','--hr':'#3A2A14','--tag-bg':'#2A1E0A','--tag-fg':'#F0C880','--tag-border':'#5A3A18','--border-line':'#E8902A','--timeline-dot':'#E8902A','--box-bg':'#140E04','--box-border':'#3A2A14','--scroll-bg':'#110C04'}
+  };
+
+  function applyPalette(name) {
+    var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches;
+    var p = (dark ? DARK_PALETTES : PALETTES)[name] || PALETTES.white;
+    var r = document.documentElement;
+    for (var k in p) r.style.setProperty(k, p[k]);
+    r.style.colorScheme = dark ? 'dark' : 'light';
+    document.querySelectorAll('.palette-swatch').forEach(function(b){
+      b.classList.toggle('active', b.dataset.p === name);
+    });
+    try { localStorage.setItem('palette', name); } catch(e) {}
+  }
+
+  (function(){
+    // Load saved palette (default: indigo)
+    var saved = 'indigo';
+    try { saved = localStorage.getItem('palette') || 'white'; } catch(e) {}
+    if (!PALETTES[saved]) saved = 'white';
+    applyPalette(saved);
+
+    // Swatch click handlers
+    document.querySelectorAll('.palette-swatch').forEach(function(b){
+      b.addEventListener('click', function(){ applyPalette(b.dataset.p); });
+    });
+
+    // Re-apply if OS dark/light mode changes
+    if (window.matchMedia) {
+      window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change', function(){
+        var c = 'indigo';
+        try { c = localStorage.getItem('palette') || 'white'; } catch(e) {}
+        applyPalette(c);
+      });
+    }
+  })();
+
+  // ── Active section tracking for right sidebar ────────────────────
+  (function () {
+    var links = document.querySelectorAll('#side-nav a');
+    var sections = [];
+    links.forEach(function (a) {
+      var id = a.getAttribute('href').slice(1);
+      var el = document.getElementById(id);
+      if (el) sections.push({ el: el, a: a });
+    });
+    function update() {
+      var scrollY = window.scrollY + 120;
+      var active = null;
+      for (var i = sections.length - 1; i >= 0; i--) {
+        if (sections[i].el.offsetTop <= scrollY) { active = sections[i]; break; }
+      }
+      links.forEach(function (a) { a.classList.remove('active'); });
+      if (active) active.a.classList.add('active');
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  })();
+</script>

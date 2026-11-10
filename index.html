@@ -160,6 +160,23 @@
     flex-shrink: 0;
     user-select: none;
   }
+.profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 4px solid var(--accent);
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 10%;
+    display: block;
+}
+  
 
   /* ─── Bio area ─── */
   .content { padding-bottom: 60px; }
@@ -653,7 +670,7 @@
 
     <!-- Profile + Bio -->
     <div class="cf">
-      <div class="profile-avatar" aria-label="Sanjid Hasan initials">SH</div>
+      <div class="profile-avatar"> <img src="assets/img/Sanjid_Hasan.jpeg" alt="Sanjid Hasan"> </div>
 
       <h1 class="bio-name">Sanjid Hasan</h1>
       <p class="bio-eyebrow">EEE'22 @ KUET &middot;  &middot; Khulna, Bangladesh</p>

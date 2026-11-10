@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Research note | Sanjid Hasan</title>
+<meta name="theme-color" content="#0b0f14">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<!-- Shows research/<folder>/README.md. Open it as note.html?n=<folder>. -->
+
+<header class="wrap top">
+  <a class="logo" href="index.html"><span class="accent">~/</span>sanjid-hasan</a>
+  <nav aria-label="Site"><a href="index.html#notes-block">all notes</a><a href="index.html#research">papers</a></nav>
+</header>
+
+<main class="note">
+  <a class="back" href="index.html#notes-block">&larr; back to notes</a>
+  <article class="md" id="content"><p class="muted">Loading…</p></article>
+  <div class="files" id="files" hidden><h2>Files in this folder</h2><div class="links" id="file-list"></div></div>
+</main>
+
+<script src="assets/vendor/marked.min.js"></script>
+<script src="content.js"></script>
+<script src="assets/site.js"></script>
+<script>
+(function () {
+  var N = window.SITE_NOTES, esc = N.esc;
+  var slug = new URLSearchParams(location.search).get("n") || "";
+  var content = document.getElementById("content");
+  function fail(msg) { content.innerHTML = "<h1>Note not found</h1><p>" + esc(msg) + "</p>"; }
+  if (!/^[\w.-]+$/.test(slug) || slug.indexOf("..") !== -1) return fail("Check the link and try again.");
+  var base = "research/" + encodeURIComponent(slug) + "/";
+
+  N.list().then(function (notes) {
+    var note = notes[slug];
+    // If GitHub could not be reached, try the usual file names.
+    var names = note ? [note.readme] : ["README.md", "readme.md", "Readme.md"];
+    var tryNext = function (i) {
+      if (i >= names.length) throw new Error("missing");
+      return fetch(base + names[i]).then(function (r) { return r.ok ? r.text() : tryNext(i + 1); });
+    };
+    return tryNext(0).then(function (md) {
+      var meta = N.meta(slug, md);
+      document.title = meta.title + " | Sanjid Hasan";
+      if (!/^#\s+/m.test(md)) md = "# " + meta.title + "\n\n" + md;
+      content.innerHTML = marked.parse(md);
+      // Make images and links that point inside the folder work.
+      content.querySelectorAll("img[src], a[href]").forEach(function (el) {
+        var attr = el.tagName === "IMG" ? "src" : "href";
+        var v = el.getAttribute(attr);
+        if (v && !/^([a-z]+:|#|\/)/i.test(v)) el.setAttribute(attr, base + v);
+        if (el.tagName === "A" && /^https?:/.test(el.getAttribute("href"))) { el.target = "_blank"; el.rel = "noopener"; }
+      });
+      if (note && note.files.length) {
+        document.getElementById("file-list").innerHTML = note.files.map(function (f) {
+          return '<a href="' + base + encodeURIComponent(f) + '" target="_blank" rel="noopener">' + esc(f) + "</a>";
+        }).join("");
+        document.getElementById("files").hidden = false;
+      }
+    });
+  }).catch(function () { fail("There is no README.md in research/" + slug + "."); });
+})();
+</script>
+</body>
+</html>

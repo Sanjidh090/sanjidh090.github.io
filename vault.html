@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#ac7777">
+  <title>Private Research Archive | Sanjid Hasan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #ac7777;
+      --fg: #111111;
+      --accent: #111111;
+      --muted: #666666;
+      --surface: #f9f9f9;
+      --line: #e5e5e5;
+      --soft: #f5f5f5;
+      --danger: #8d2424;
+      --success: #246b42;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --bg: #0C0B1A;
+        --fg: #E5E0FF;
+        --accent: #A5B4FC;
+        --muted: #9490C8;
+        --surface: #111128;
+        --line: #2D2B4E;
+        --soft: #0F0E1C;
+        --danger: #ff9b9b;
+        --success: #8ce0ae;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 28px 16px 64px;
+      background: var(--bg); color: var(--fg);
+      font: 16px/1.65 'Lora', Georgia, serif;
+    }
+    .wrap { max-width: 820px; margin: 0 auto; }
+    header { display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:42px; }
+    .brand { font:600 14px 'Inter',sans-serif; letter-spacing:.02em; }
+    a { color:var(--accent); text-underline-offset:3px; }
+    .back { font:500 13px 'Inter',sans-serif; }
+    .eyebrow { color:var(--muted); font:600 11px 'Inter',sans-serif; letter-spacing:.14em; text-transform:uppercase; }
+    h1 { font-size:clamp(2rem,5vw,3rem); line-height:1.12; margin:8px 0 12px; }
+    .intro { color:var(--muted); max-width:620px; margin:0 0 26px; }
+    .panel {
+      background:var(--surface); border:1px solid var(--line); border-radius:12px;
+      padding:clamp(18px,4vw,28px); box-shadow:0 12px 30px rgba(0,0,0,.08);
+    }
+    label { display:block; font:600 12px 'Inter',sans-serif; margin:0 0 8px; }
+    input {
+      width:100%; border:1px solid var(--line); border-radius:8px; padding:13px 14px;
+      background:var(--soft); color:var(--fg); font:15px 'Inter',sans-serif;
+    }
+    input:focus-visible, button:focus-visible, a:focus-visible {
+      outline:3px solid var(--accent); outline-offset:3px;
+    }
+    button {
+      border:1px solid var(--accent); border-radius:8px; padding:11px 16px;
+      background:var(--accent); color:var(--surface); cursor:pointer;
+      font:600 13px 'Inter',sans-serif;
+    }
+    button.secondary { background:transparent; color:var(--fg); border-color:var(--line); }
+    button:disabled { opacity:.55; cursor:wait; }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:13px; }
+    .status { min-height:24px; margin:14px 0 0; font:13px/1.5 'Inter',sans-serif; color:var(--muted); }
+    .status.error { color:var(--danger); }
+    .status.success { color:var(--success); }
+    .hidden { display:none !important; }
+    .archive-top { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:18px; }
+    .archive-top h2 { margin:0; font-size:1.3rem; }
+    .count { color:var(--muted); font:12px 'Inter',sans-serif; }
+    .file-list { display:grid; gap:10px; margin-top:16px; }
+    .file {
+      border:1px solid var(--line); border-radius:9px; padding:14px;
+      background:var(--soft); display:flex; align-items:center; justify-content:space-between; gap:14px;
+    }
+    .file-main { min-width:0; }
+    .file-name { display:block; font:600 13px 'Inter',sans-serif; overflow-wrap:anywhere; }
+    .file-meta { color:var(--muted); font:11px 'Inter',sans-serif; margin-top:4px; }
+    .file-actions { display:flex; flex-wrap:wrap; gap:7px; flex-shrink:0; }
+    .file-actions button { padding:8px 10px; font-size:11px; }
+    .preview {
+      margin-top:18px; border:1px solid var(--line); border-radius:9px; overflow:hidden;
+      background:var(--soft);
+    }
+    .preview-head { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:10px 13px; border-bottom:1px solid var(--line); }
+    .preview-head strong { font:600 12px 'Inter',sans-serif; overflow-wrap:anywhere; }
+    pre {
+      margin:0; padding:16px; max-height:480px; overflow:auto; white-space:pre-wrap;
+      overflow-wrap:anywhere; font:12px/1.65 ui-monospace, SFMono-Regular, Consolas, monospace;
+    }
+    .privacy-note { color:var(--muted); font:11px/1.6 'Inter',sans-serif; margin-top:24px; }
+    @media(max-width:600px) {
+      header { margin-bottom:30px; }
+      .file { align-items:flex-start; flex-direction:column; }
+      .file-actions { width:100%; }
+      .file-actions button { flex:1; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <div class="brand">Sanjid Hasan <span aria-hidden="true">·</span> Research archive</div>
+      <a class="back" href="index.html">← Back to portfolio</a>
+    </header>
+
+    <p class="eyebrow">Personal knowledge library</p>
+    <h1>Private research archive</h1>
+    <p class="intro">A personal space for research notes, reading material and working documents. The archive is encrypted; the passphrase is used locally in this browser to unlock it.</p>
+
+    <section class="panel" id="unlock-panel" aria-labelledby="unlock-title">
+      <p class="eyebrow">Encrypted access</p>
+      <h2 id="unlock-title" style="margin:5px 0 16px;font-size:1.35rem">Welcome back.</h2>
+      <form id="unlock-form">
+        <label for="passphrase">Archive passphrase</label>
+        <input id="passphrase" type="password" autocomplete="current-password" required placeholder="Enter your passphrase">
+        <div class="actions">
+          <button id="unlock-button" type="submit">Unlock archive</button>
+        </div>
+      </form>
+      <p class="status" id="unlock-status" role="status" aria-live="polite">Your passphrase is never sent to a server.</p>
+    </section>
+
+    <section class="panel hidden" id="archive-panel" aria-labelledby="archive-title">
+      <div class="archive-top">
+        <div>
+          <p class="eyebrow">Unlocked</p>
+          <h2 id="archive-title">Your research files</h2>
+          <div class="count" id="file-count"></div>
+        </div>
+        <button class="secondary" id="lock-button" type="button">Lock archive</button>
+      </div>
+      <label for="search-files">Search your archive</label>
+      <input id="search-files" type="search" placeholder="Search by filename or folder">
+      <div class="file-list" id="file-list"></div>
+      <div class="preview hidden" id="preview">
+        <div class="preview-head">
+          <strong id="preview-title">Preview</strong>
+          <button class="secondary" id="close-preview" type="button">Close</button>
+        </div>
+        <pre id="preview-content"></pre>
+      </div>
+    </section>
+
+    <p class="privacy-note">
+      Security note: only the encrypted archive file should be committed to the public repository.
+      Keep the original, unencrypted research folder in a private backup. Use a long, unique passphrase.
+      This page decrypts files in your browser and does not transmit the passphrase.
+    </p>
+  </main>
+
+  <script>
+    const ARCHIVE_URL = "research/private-archive.enc.json";
+    const ITERATIONS_MIN = 300000;
+    let unlockedFiles = [];
+
+    const form = document.getElementById("unlock-form");
+    const passphraseInput = document.getElementById("passphrase");
+    const unlockButton = document.getElementById("unlock-button");
+    const statusEl = document.getElementById("unlock-status");
+    const unlockPanel = document.getElementById("unlock-panel");
+    const archivePanel = document.getElementById("archive-panel");
+    const fileList = document.getElementById("file-list");
+    const searchInput = document.getElementById("search-files");
+    const preview = document.getElementById("preview");
+
+    function setStatus(message, type = "") {
+      statusEl.textContent = message;
+      statusEl.className = "status" + (type ? " " + type : "");
+    }
+
+    function fromBase64(value) {
+      const binary = atob(value);
+      const bytes = new Uint8Array(binary.length);
+      for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+      return bytes;
+    }
+
+    function toBase64(bytes) {
+      let binary = "";
+      const chunk = 0x8000;
+      for (let i = 0; i < bytes.length; i += chunk) {
+        binary += String.fromCharCode(...bytes.subarray(i, i + chunk));
+      }
+      return btoa(binary);
+    }
+
+    async function deriveKey(passphrase, salt, iterations) {
+      const material = await crypto.subtle.importKey(
+        "raw", new TextEncoder().encode(passphrase), "PBKDF2", false, ["deriveKey"]
+      );
+      return crypto.subtle.deriveKey(
+        { name: "PBKDF2", salt, iterations, hash: "SHA-256" },
+        material,
+        { name: "AES-GCM", length: 256 },
+        false,
+        ["decrypt"]
+      );
+    }
+
+    async function decryptArchive(passphrase) {
+      const response = await fetch(ARCHIVE_URL, { cache: "no-store" });
+      if (!response.ok) {
+        throw new Error("The encrypted archive file was not found. Follow the setup instructions in README-portfolio-updates.md first.");
+      }
+      const payload = await response.json();
+      if (payload.version !== 1 || payload.kdf !== "PBKDF2-SHA256" || payload.cipher !== "AES-256-GCM") {
+        throw new Error("This archive format is not supported by this page.");
+      }
+      if (!Number.isInteger(payload.iterations) || payload.iterations < ITERATIONS_MIN) {
+        throw new Error("The archive uses an unsafe or unsupported key-derivation setting.");
+      }
+      const salt = fromBase64(payload.salt);
+      const nonce = fromBase64(payload.nonce);
+      const ciphertext = fromBase64(payload.ciphertext);
+      const key = await deriveKey(passphrase, salt, payload.iterations);
+      const clearBytes = await crypto.subtle.decrypt({ name: "AES-GCM", iv: nonce }, key, ciphertext);
+      const manifest = JSON.parse(new TextDecoder().decode(clearBytes));
+      if (!manifest || manifest.version !== 1 || !Array.isArray(manifest.files)) {
+        throw new Error("The decrypted archive has an invalid structure.");
+      }
+      return manifest.files;
+    }
+
+    function safeFileName(path) {
+      return path.split("/").pop() || "research-file";
+    }
+
+    function bytesFor(file) {
+      return fromBase64(file.data);
+    }
+
+    function downloadFile(file) {
+      const blob = new Blob([bytesFor(file)], { type: file.mime_type || "application/octet-stream" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = safeFileName(file.path);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1500);
+    }
+
+    function isTextFile(file) {
+      const ext = (file.path.split(".").pop() || "").toLowerCase();
+      return (file.mime_type || "").startsWith("text/") ||
+        ["md", "txt", "json", "csv", "html", "htm", "js", "py", "tex", "bib", "yaml", "yml", "xml"].includes(ext);
+    }
+
+    function showPreview(file) {
+      if (!isTextFile(file)) return;
+      document.getElementById("preview-title").textContent = file.path;
+      document.getElementById("preview-content").textContent = new TextDecoder().decode(bytesFor(file));
+      preview.classList.remove("hidden");
+      preview.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    function renderFiles(query = "") {
+      fileList.replaceChildren();
+      const q = query.trim().toLowerCase();
+      const filtered = unlockedFiles.filter(file => file.path.toLowerCase().includes(q));
+
+      if (!filtered.length) {
+        const empty = document.createElement("p");
+        empty.className = "status";
+        empty.textContent = "No matching files.";
+        fileList.appendChild(empty);
+        return;
+      }
+
+      filtered.forEach(file => {
+        const card = document.createElement("article");
+        card.className = "file";
+
+        const main = document.createElement("div");
+        main.className = "file-main";
+
+        const name = document.createElement("span");
+        name.className = "file-name";
+        name.textContent = file.path;
+
+        const meta = document.createElement("div");
+        meta.className = "file-meta";
+        meta.textContent = file.mime_type || "File";
+
+        main.append(name, meta);
+
+        const actions = document.createElement("div");
+        actions.className = "file-actions";
+
+        if (isTextFile(file)) {
+          const view = document.createElement("button");
+          view.type = "button";
+          view.className = "secondary";
+          view.textContent = "Read";
+          view.addEventListener("click", () => showPreview(file));
+          actions.appendChild(view);
+        }
+
+        const download = document.createElement("button");
+        download.type = "button";
+        download.textContent = "Download";
+        download.addEventListener("click", () => downloadFile(file));
+        actions.appendChild(download);
+
+        card.append(main, actions);
+        fileList.appendChild(card);
+      });
+    }
+
+    form.addEventListener("submit", async event => {
+      event.preventDefault();
+      const passphrase = passphraseInput.value;
+      if (!passphrase) return;
+
+      unlockButton.disabled = true;
+      unlockButton.textContent = "Unlocking…";
+      setStatus("Decrypting locally in your browser…");
+
+      try {
+        unlockedFiles = await decryptArchive(passphrase);
+        passphraseInput.value = "";
+        document.getElementById("file-count").textContent =
+          unlockedFiles.length + " file" + (unlockedFiles.length === 1 ? "" : "s");
+        unlockPanel.classList.add("hidden");
+        archivePanel.classList.remove("hidden");
+        renderFiles();
+      } catch (error) {
+        setStatus(error.message.includes("The encrypted archive file was not found")
+          ? error.message
+          : "Could not unlock the archive. Check the passphrase and try again.", "error");
+      } finally {
+        unlockButton.disabled = false;
+        unlockButton.textContent = "Unlock archive";
+      }
+    });
+
+    searchInput.addEventListener("input", () => renderFiles(searchInput.value));
+
+    document.getElementById("close-preview").addEventListener("click", () => {
+      preview.classList.add("hidden");
+      document.getElementById("preview-content").textContent = "";
+    });
+
+    document.getElementById("lock-button").addEventListener("click", () => {
+      unlockedFiles = [];
+      fileList.replaceChildren();
+      searchInput.value = "";
+      preview.classList.add("hidden");
+      document.getElementById("preview-content").textContent = "";
+      archivePanel.classList.add("hidden");
+      unlockPanel.classList.remove("hidden");
+      setStatus("Archive locked. Your passphrase was not stored.");
+    });
+  </script>
+</body>
+</html>

@@ -1263,14 +1263,18 @@
   <button class="palette-swatch" data-p="classic" style="background:conic-gradient(#EDE8D8 50%, #C07028 50%);border-color:#C07028 !important" title="Parchment" aria-label="Parchment theme" aria-pressed="false"></button>
 </div>
 
+
 <script>
-  // Colour palettes. The original rose background remains the default.
+  // ==========================================
+  // COLOUR PALETTES
+  // ==========================================
+
   var PALETTES = {
     rose: {
       '--bg':'#F7F7F5','--fg':'#111111','--accent':'#111111','--accent-soft':'#444444',
       '--muted':'#666666','--link':'#111111','--hr':'#DDDDDD','--tag-bg':'#F4F4F4',
       '--tag-fg':'#111111','--tag-border':'#CCCCCC','--border-line':'#BBBBBB',
-      '--timeline-dot':'#111111','--box-bg':'#F9F9F9','--box-border':'#E5E5E5',
+      '--timeline-dot':'#111111','--box-bg':'#FFFFFF','--box-border':'#E5E5E5',
       '--scroll-bg':'#F5F5F5'
     },
     indigo: {
@@ -1295,6 +1299,10 @@
       '--scroll-bg':'#F8F4EC'
     }
   };
+
+  // ==========================================
+  // DARK MODE PALETTES
+  // ==========================================
 
   var DARK_PALETTES = {
     rose: {
@@ -1327,113 +1335,273 @@
     }
   };
 
+  // ==========================================
+  // THEME SETTINGS
+  // ==========================================
+
   var activePalette = 'rose';
-  var activeMode = 'light';
+  var activeMode = 'auto';
+
   var paletteStorageKey = 'sanjid-portfolio-palette-v2';
-  var modeStorageKey = 'sanjid-portfolio-mode-v1';
+  var modeStorageKey = 'sanjid-portfolio-mode-v2';
+
+  // Detect the operating system/browser preference.
+  function getSystemMode() {
+    return window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light';
+  }
+
+  function getEffectiveMode() {
+    return activeMode === 'auto' ? getSystemMode() : activeMode;
+  }
+
+  // ==========================================
+  // APPLY THEME
+  // ==========================================
 
   function applyPalette(name) {
+
     if (!PALETTES[name]) name = 'rose';
+
     activePalette = name;
 
-    var paletteSet = activeMode === 'dark' ? DARK_PALETTES : PALETTES;
-    var palette = paletteSet[name] || paletteSet.rose;
+    var effectiveMode = getEffectiveMode();
+
+    var paletteSet = effectiveMode === 'dark'
+      ? DARK_PALETTES
+      : PALETTES;
+
+    var palette = paletteSet[name];
+
     var root = document.documentElement;
 
     Object.keys(palette).forEach(function(key) {
       root.style.setProperty(key, palette[key]);
     });
-    root.style.colorScheme = activeMode;
 
+    root.style.colorScheme = effectiveMode;
+
+    // Update selected colour indicator.
     document.querySelectorAll('.palette-swatch').forEach(function(button) {
+
       var selected = button.dataset.p === name;
+
       button.classList.toggle('active', selected);
+
       button.setAttribute('aria-pressed', String(selected));
+
     });
 
+    // Update appearance button.
     var modeButton = document.getElementById('mode-toggle');
+
     if (modeButton) {
-      var switchingToDark = activeMode === 'light';
-      modeButton.textContent = switchingToDark ? '☾' : '☀';
+
+      if (activeMode === 'auto') {
+        modeButton.textContent = '◐';
+        modeButton.title = 'System mode: ' + effectiveMode +
+          '. Click to set Dark mode manually.';
+        modeButton.setAttribute(
+          'aria-label',
+          'System appearance mode. Currently ' + effectiveMode
+        );
+      }
+
+      else if (activeMode === 'dark') {
+        modeButton.textContent = '☀';
+        modeButton.title = 'Dark mode. Click to switch to Light mode.';
+        modeButton.setAttribute('aria-label', 'Switch to light mode');
+      }
+
+      else {
+        modeButton.textContent = '☾';
+        modeButton.title = 'Light mode. Click to follow System mode.';
+        modeButton.setAttribute('aria-label', 'Follow system appearance');
+      }
+
       modeButton.setAttribute(
-        'aria-label',
-        switchingToDark ? 'Switch to dark mode' : 'Switch to light mode'
+        'aria-pressed',
+        String(effectiveMode === 'dark')
       );
-      modeButton.title = switchingToDark ? 'Switch to dark mode' : 'Switch to light mode';
-      modeButton.setAttribute('aria-pressed', String(activeMode === 'dark'));
     }
 
-    var themeColor = document.querySelector('meta[name="theme-color"]');
-    if (themeColor) themeColor.setAttribute('content', palette['--bg']);
+    // Update browser theme colour.
+    var themeColor = document.querySelector(
+      'meta[name="theme-color"]'
+    );
 
+    if (themeColor) {
+      themeColor.setAttribute('content', palette['--bg']);
+    }
+
+    // Save preferences.
     try {
       localStorage.setItem(paletteStorageKey, name);
       localStorage.setItem(modeStorageKey, activeMode);
     } catch (error) {
-      // Theme changes still work for this page view if storage is blocked.
+      console.warn('Theme preference could not be saved.');
     }
   }
 
-  function setMode(mode) {
-    activeMode = mode === 'dark' ? 'dark' : 'light';
-    applyPalette(activePalette);
-  }
+  // ==========================================
+  // INITIALISE THEME
+  // ==========================================
 
   (function() {
+
     var savedPalette = 'rose';
-    var savedMode = 'light';
+    var savedMode = 'auto';
 
     try {
+
       var storedPalette = localStorage.getItem(paletteStorageKey);
       var storedMode = localStorage.getItem(modeStorageKey);
-      if (storedPalette && PALETTES[storedPalette]) savedPalette = storedPalette;
-      if (storedMode === 'dark' || storedMode === 'light') savedMode = storedMode;
-    } catch (error) {}
 
+      if (storedPalette && PALETTES[storedPalette]) {
+        savedPalette = storedPalette;
+      }
+
+      if (
+        storedMode === 'dark' ||
+        storedMode === 'light' ||
+        storedMode === 'auto'
+      ) {
+        savedMode = storedMode;
+      }
+
+    } catch (error) {
+      console.warn('Could not load saved theme preferences.');
+    }
+
+    activePalette = savedPalette;
     activeMode = savedMode;
-    applyPalette(savedPalette);
 
+    applyPalette(activePalette);
+
+    // Colour palette buttons.
     document.querySelectorAll('.palette-swatch').forEach(function(button) {
+
       button.addEventListener('click', function() {
         applyPalette(button.dataset.p);
       });
+
     });
 
+    // Manual appearance button cycles:
+    // System → Dark → Light → System.
     var modeButton = document.getElementById('mode-toggle');
+
     if (modeButton) {
+
       modeButton.addEventListener('click', function() {
-        setMode(activeMode === 'dark' ? 'light' : 'dark');
+
+        if (activeMode === 'auto') {
+          setMode('dark');
+        }
+
+        else if (activeMode === 'dark') {
+          setMode('light');
+        }
+
+        else {
+          setMode('auto');
+        }
+
       });
+
     }
+
+    // Listen for operating system theme changes.
+    if (window.matchMedia) {
+
+      var systemTheme = window.matchMedia(
+        '(prefers-color-scheme: dark)'
+      );
+
+      var handleSystemChange = function() {
+
+        if (activeMode === 'auto') {
+          applyPalette(activePalette);
+        }
+
+      };
+
+      if (systemTheme.addEventListener) {
+        systemTheme.addEventListener('change', handleSystemChange);
+      } else if (systemTheme.addListener) {
+        systemTheme.addListener(handleSystemChange);
+      }
+
+    }
+
   })();
 
-  // Highlight the current section in the desktop side navigation.
+  function setMode(mode) {
+
+    if (['auto', 'dark', 'light'].includes(mode)) {
+      activeMode = mode;
+      applyPalette(activePalette);
+    }
+
+  }
+
+  // ==========================================
+  // SIDE NAVIGATION HIGHLIGHTING
+  // ==========================================
+
   (function() {
+
     var links = document.querySelectorAll('#side-nav a');
     var sections = [];
 
     links.forEach(function(link) {
+
       var id = link.getAttribute('href').slice(1);
       var element = document.getElementById(id);
-      if (element) sections.push({ element: element, link: link });
+
+      if (element) {
+        sections.push({
+          element: element,
+          link: link
+        });
+      }
+
     });
 
     function update() {
+
       var scrollY = window.scrollY + 120;
       var active = null;
+
       for (var i = sections.length - 1; i >= 0; i--) {
+
         if (sections[i].element.offsetTop <= scrollY) {
           active = sections[i];
           break;
         }
+
       }
-      links.forEach(function(link) { link.classList.remove('active'); });
-      if (active) active.link.classList.add('active');
+
+      links.forEach(function(link) {
+        link.classList.remove('active');
+      });
+
+      if (active) {
+        active.link.classList.add('active');
+      }
+
     }
 
-    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('scroll', update, {
+      passive: true
+    });
+
     update();
+
   })();
 </script>
+
 </body>
 </html>
